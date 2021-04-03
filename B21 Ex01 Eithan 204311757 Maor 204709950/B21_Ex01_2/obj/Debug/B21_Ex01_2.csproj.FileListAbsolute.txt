@@ -5,3 +5,10 @@ C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor
 C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.csproj.CoreCompileInputs.cache
 C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.exe
 C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\bin\Debug\B21_Ex01_2.exe.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\bin\Debug\B21_Ex01_2.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\bin\Debug\B21_Ex01_2.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.csprojAssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_2\obj\Debug\B21_Ex01_2.pdb
