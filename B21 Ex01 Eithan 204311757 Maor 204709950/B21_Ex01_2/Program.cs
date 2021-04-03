@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Ex01_2
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
@@ -14,7 +14,8 @@ namespace Ex01_2
         }
 
         /// <summary>
-        /// prints the desired sandClock of *
+        /// ---recursive method---
+        /// recursively prints the desired sandClock of *
         /// </summary>
         /// <param name="i_NumOfStars">helper parm for the recursive call</param>
         /// <param name="i_NumOfLines">the desired number of liness of stars</param>

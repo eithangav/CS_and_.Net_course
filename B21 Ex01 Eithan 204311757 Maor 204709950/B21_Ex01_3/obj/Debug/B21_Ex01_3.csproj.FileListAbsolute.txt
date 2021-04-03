@@ -1,0 +1,11 @@
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\bin\Debug\B21_Ex01_3.exe.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\bin\Debug\B21_Ex01_3.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\bin\Debug\B21_Ex01_3.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\bin\Debug\B21_Ex01_2.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\bin\Debug\B21_Ex01_2.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\bin\Debug\B21_Ex01_2.exe.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\obj\Debug\B21_Ex01_3.csprojAssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\obj\Debug\B21_Ex01_3.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\obj\Debug\B21_Ex01_3.csproj.CopyComplete
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\obj\Debug\B21_Ex01_3.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_3\obj\Debug\B21_Ex01_3.pdb
