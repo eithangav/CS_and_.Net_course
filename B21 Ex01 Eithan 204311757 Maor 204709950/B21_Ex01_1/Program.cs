@@ -41,10 +41,19 @@ namespace Ex01_1
             return binaryStr;
         }
 
-
+        /// <summary>
+        /// converts a given binary string of length 7 to decimal number
+        /// </summary>
+        /// <param name="i_BinaryStr"></param>
+        /// <returns>the decimal number stored in 'byte' variable</returns>
         private static byte binaryStringToDeminal(string i_BinaryStr)
         {
-            return Convert.ToByte(i_BinaryStr, 2);
+            byte decimalNumber = 0;
+            for(int i = 0; i < i_BinaryStr.Length; i++)
+            {
+                decimalNumber += (byte)(Math.Pow(2, i_BinaryStr.Length - i - 1) * (i_BinaryStr[i] - '0'));
+            }
+            return decimalNumber;
         }
 
         /// <summary>
