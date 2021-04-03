@@ -1,0 +1,7 @@
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\bin\Debug\B21_Ex01_1.exe.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\bin\Debug\B21_Ex01_1.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\bin\Debug\B21_Ex01_1.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\obj\Debug\B21_Ex01_1.csprojAssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\obj\Debug\B21_Ex01_1.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\obj\Debug\B21_Ex01_1.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\B21 Ex01 Eithan 204311757 Maor 204709950\B21_Ex01_1\obj\Debug\B21_Ex01_1.pdb
