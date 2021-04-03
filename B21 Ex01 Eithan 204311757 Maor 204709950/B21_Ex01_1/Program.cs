@@ -161,7 +161,7 @@ namespace Ex01_1
         /// <returns>1 if the number is a power of 2, and 0 otherwise</returns>
         private static byte isPowerOf2(byte i_Num)
         {
-            while(i_Num > 0)
+            while(i_Num > 1)
             {
                 if(i_Num % 2 != 0)
                 {
