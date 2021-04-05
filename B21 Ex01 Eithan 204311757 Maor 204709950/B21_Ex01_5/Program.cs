@@ -6,27 +6,41 @@ namespace Ex01_5
     {
         static void Main()
         {
-            int userInputNum = readAndParseUserInput();
-            printStatistics(userInputNum);
+            string userInputStr = readUserInput();
+
+            printStatistics(userInputStr);
 
             Console.WriteLine("Press 'Enter' to exit...");
             Console.ReadLine();
         }
 
-        private static void printStatistics(int i_inputNum)
+        /// <summary>
+        /// prints statistics of the input number
+        /// </summary>
+        /// <param name="i_inputStr"></param>
+        private static void printStatistics(string i_InputStr)
         {
-            Console.WriteLine(string.Format("The largest digit in the number is: {0}", findBiggestDigit(i_inputNum)));
-            Console.WriteLine(string.Format("The smallest digit in the number is: {0}", findSmallestDigit(i_inputNum)));
-            Console.WriteLine(string.Format("{0} of the digits in the number are divisible by 3", countDivisibleBy3(i_inputNum)));
-            Console.WriteLine(string.Format("{0} of the digits in the number are greater than the least significant digit ({1})", countGreaterThanLSD(i_inputNum), i_inputNum % 10));
+            // try to parse the input string to integer, if failed print an error
+            int userInputNum;
+            if (!int.TryParse(i_InputStr, out userInputNum))
+            {
+                Console.WriteLine("Error. Could not parse the input string");
+                return;
+            }
+
+            // if parsing succeeded, print the statistics
+            Console.WriteLine(string.Format("The largest digit in the number is: {0}", findBiggestDigit(userInputNum)));
+            Console.WriteLine(string.Format("The smallest digit in the number is: {0}", findSmallestDigit(i_InputStr)));
+            Console.WriteLine(string.Format("{0} of the digits in the number are divisible by 3", countDivisibleBy3(i_InputStr)));
+            Console.WriteLine(string.Format("{0} of the digits in the number are greater than the least significant digit ({1})", countGreaterThanLSD(userInputNum), userInputNum % 10));
 
         }
 
         /// <summary>
         /// reads the user's input iteratively until a valid input is inserted
         /// </summary>
-        /// <returns>the parsed valid input or -1 if the parsing was failed</returns>
-        private static int readAndParseUserInput()
+        /// <returns>the valid input string</returns>
+        private static string readUserInput()
         {
             Console.WriteLine("Enter a 6 digits number");
             string userInputStr = Console.ReadLine();
@@ -36,13 +50,7 @@ namespace Ex01_5
                 userInputStr = Console.ReadLine();
             }
 
-            // parsing
-            int userInputInt;
-            if(int.TryParse(userInputStr, out userInputInt))
-            {
-                return userInputInt;
-            }
-            return -1;
+            return userInputStr;
         }
 
         /// <summary>
@@ -93,40 +101,46 @@ namespace Ex01_5
         }
 
         /// <summary>
-        /// finds the smallest digit in a given integer
+        /// finds the smallest digit in a given number represented by a string
         /// </summary>
         /// <param name="i_Num"></param>
         /// <returns>the smallest digit in the integer</returns>
-        private static int findSmallestDigit(int i_Num)                                 // TODO: change to string input
+        private static int findSmallestDigit(string i_NumStr)
         {
-            int smallestDigit = int.MaxValue;
+            char smallestDigitChar = '9';
 
-            while (i_Num > 0)
+            for(int i = 0; i < i_NumStr.Length; i++)
             {
-                smallestDigit = Math.Min(smallestDigit, i_Num % 10);
-                i_Num /= 10;
+                if(i_NumStr[i] < smallestDigitChar)
+                {
+                    smallestDigitChar = i_NumStr[i];
+                }
             }
 
-            return smallestDigit;
+            int smallestDigitInt = smallestDigitChar - '0';
+
+            return smallestDigitInt;
         }
 
         /// <summary>
-        /// counts the number of digits which are divisible by 3
+        /// counts the number of digits (in a given number represented by a string) that are divisible by 3
         /// </summary>
-        /// <param name="i_Num"></param>
+        /// <param name="i_NumStr"></param>
         /// <returns>the number of digits which are divisible by 3</returns>
-        private static int countDivisibleBy3(int i_Num)                                 // TODO: change to string input
+        private static int countDivisibleBy3(string i_NumStr)
         {
             int counter = 0;
-            while(i_Num > 0)
+
+            for (int i = 0; i < i_NumStr.Length; i++)
             {
-                int LSD = i_Num % 10;
-                if (LSD % 3 == 0)
+                int currentDigit = i_NumStr[i] - '0';
+
+                if (currentDigit % 3 == 0)
                 {
                     counter++;
                 }
-                i_Num /= 10;
             }
+
             return counter;
         }
 
