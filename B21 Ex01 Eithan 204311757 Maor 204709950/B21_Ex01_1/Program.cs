@@ -32,12 +32,15 @@ namespace Ex01_1
         private static string readUsersBinaryString()
         {
             Console.WriteLine("Insert a binary number and press 'Enter'");
+
             string binaryStr = Console.ReadLine();
+
             while (!checkNumberValidation(binaryStr))
             {
                 Console.WriteLine("Invalid binary number format. Please try again and press 'Enter'");
                 binaryStr = Console.ReadLine();
             }
+
             return binaryStr;
         }
 
@@ -49,10 +52,12 @@ namespace Ex01_1
         private static byte binaryStringToDeminal(string i_BinaryStr)
         {
             byte decimalNumber = 0;
+
             for(int i = 0; i < i_BinaryStr.Length; i++)
             {
                 decimalNumber += (byte)(Math.Pow(2, i_BinaryStr.Length - i - 1) * (i_BinaryStr[i] - '0'));
             }
+
             return decimalNumber;
         }
 
@@ -71,6 +76,7 @@ namespace Ex01_1
                     return false;
                 }
             }
+
             // length validation
             return (i_BinaryNumber.Length == 7);
         }
@@ -88,32 +94,38 @@ namespace Ex01_1
             byte decimalNumber2 = binaryStringToDeminal(i_BinaryStr2);
             byte decimalNumber3 = binaryStringToDeminal(i_BinaryStr3);
             string decimalNumbersMsg = string.Format("The decimal numbers are: {0}, {1}, {2}", decimalNumber1, decimalNumber2, decimalNumber3);
+            
             Console.WriteLine(decimalNumbersMsg);
 
             // calculate the avarage number of zeros appearances in all of the numbers and print a message
             byte zerosAvg = calculateAvgAppearance(i_BinaryStr1, i_BinaryStr2, i_BinaryStr3, '0');
             string zerosAvgMsg = string.Format("The average number of zeros is: {0}", zerosAvg);
+            
             Console.WriteLine(zerosAvgMsg);
 
             // calculate the avarage number of ones appearances in all of the numbers and print a message
             byte onesAvg = calculateAvgAppearance(i_BinaryStr1, i_BinaryStr2, i_BinaryStr3, '1');
             string onesAvgMsg = string.Format("The average number of ones is: {0}", onesAvg);
+            
             Console.WriteLine(onesAvgMsg);
 
             // calculate how many numbers are a power of 2 and print a message
             byte powerOf2Counter = (byte)(isPowerOf2(decimalNumber1) + isPowerOf2(decimalNumber2) + isPowerOf2(decimalNumber3));
             string powerOf2Msg = string.Format("There are {0} numbers which are a power of 2", powerOf2Counter);
+            
             Console.WriteLine(powerOf2Msg);
 
             // find min and max numbers and print a message
             byte minNumber = findMin(decimalNumber1, decimalNumber2, decimalNumber3);
             byte maxNumber = findMax(decimalNumber1, decimalNumber2, decimalNumber3);
             string minAndMaxMsg = string.Format("The biggest number is {0} and the smallest number is {1}", maxNumber, minNumber);
+            
             Console.WriteLine(minAndMaxMsg);
 
             // calculate how many numbers has an ascending order of digits and print a message
             byte numOfAscendingDigits = (byte)(isAscendingDigits(decimalNumber1) + isAscendingDigits(decimalNumber2) + isAscendingDigits(decimalNumber3));
             string countAscendingMsg = string.Format("There are {0} numbers with ascending digits in the decimal representation", numOfAscendingDigits);
+            
             Console.WriteLine(countAscendingMsg);
         }
 
@@ -125,15 +137,18 @@ namespace Ex01_1
         private static byte isAscendingDigits(byte i_Num)
         {
             byte lastDigit;
+
             while(i_Num > 0)
             {
                 lastDigit = (byte)(i_Num % 10);
                 i_Num /= 10;
+
                 if(lastDigit <= i_Num % 10)
                 {
                     return 0;
                 }
             }
+
             return 1;
         }
 
@@ -147,6 +162,7 @@ namespace Ex01_1
         private static byte findMin(byte i_Num1, byte i_Num2, byte i_Num3)
         {
             byte min = Math.Min(i_Num1, i_Num2);
+
             return Math.Min(min, i_Num3);
         }
 
@@ -160,6 +176,7 @@ namespace Ex01_1
         private static byte findMax(byte i_Num1, byte i_Num2, byte i_Num3)
         {
             byte max = Math.Max(i_Num1, i_Num2);
+
             return Math.Max(max, i_Num3);
         }
 
@@ -178,6 +195,7 @@ namespace Ex01_1
                 }
                 i_Num /= 2;
             }
+
             return 1;
         }
 
@@ -193,12 +211,14 @@ namespace Ex01_1
         {
             // concatenates the given 3 strings
             StringBuilder numbersConcat = new StringBuilder();
+
             numbersConcat.Append(i_Str1);
             numbersConcat.Append(i_Str2);
             numbersConcat.Append(i_Str3);
 
             // uses helper method to count the number of appearances
             byte sumOfAppearance = countAppearance(numbersConcat.ToString(), i_Char);
+            
             // returns the average (dividing by 3)
             return (byte)(sumOfAppearance / 3);
         }
@@ -212,6 +232,7 @@ namespace Ex01_1
         private static byte countAppearance(string i_Str, char i_Char)
         {
             byte counter = 0;
+
             for(int i = 0; i < i_Str.Length; i++)
             {
                 if(i_Str[i] == i_Char)
@@ -219,6 +240,7 @@ namespace Ex01_1
                     counter++;
                 }
             }
+
             return counter;
         }
     }

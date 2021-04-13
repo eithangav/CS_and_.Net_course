@@ -22,18 +22,24 @@ namespace Ex01_5
         {
             // try to parse the input string to integer, if failed print an error
             int userInputNum;
+
             if (!int.TryParse(i_InputStr, out userInputNum))
             {
                 Console.WriteLine("Error. Could not parse the input string");
                 return;
             }
 
-            // if parsing succeeded, print the statistics
-            Console.WriteLine(string.Format("The largest digit in the number is: {0}", findBiggestDigit(userInputNum)));
-            Console.WriteLine(string.Format("The smallest digit in the number is: {0}", findSmallestDigit(i_InputStr)));
-            Console.WriteLine(string.Format("{0} of the digits in the number are divisible by 3", countDivisibleBy3(i_InputStr)));
-            Console.WriteLine(string.Format("{0} of the digits in the number are greater than the least significant digit ({1})", countGreaterThanLSD(userInputNum), userInputNum % 10));
+            // if parsing succeeded, difines string messages
+            String largestDigitMsg = string.Format("The largest digit in the number is: {0}", findBiggestDigit(userInputNum));
+            String smallestDigitMsg = string.Format("The smallest digit in the number is: {0}", findSmallestDigit(i_InputStr));
+            String divisibleBy3Msg = string.Format("{0} of the digits in the number are divisible by 3", countDivisibleBy3(i_InputStr));
+            String greaterThanLsbMsg = string.Format("{0} of the digits in the number are greater than the least significant digit ({1})", countGreaterThanLSD(userInputNum), userInputNum % 10);
 
+            // prints messages
+            Console.WriteLine(largestDigitMsg);
+            Console.WriteLine(smallestDigitMsg);
+            Console.WriteLine(divisibleBy3Msg);
+            Console.WriteLine(greaterThanLsbMsg);
         }
 
         /// <summary>
@@ -43,7 +49,9 @@ namespace Ex01_5
         private static string readUserInput()
         {
             Console.WriteLine("Enter a 6 digits number");
+
             string userInputStr = Console.ReadLine();
+
             while (!checkValidation(userInputStr))
             {
                 Console.WriteLine("Invalid input. Enter a 6 digits number");
@@ -68,6 +76,7 @@ namespace Ex01_5
 
             // checks that all chars are digits and that there is at least one digit that is positive
             bool nonZeroDigitExsists = false;
+
             for(int i = 0; i < i_Str.Length; i++)
             {
                 if(i_Str[i] < '0' || i_Str[i] > '9')
@@ -79,6 +88,7 @@ namespace Ex01_5
                     nonZeroDigitExsists = true;
                 }
             }
+
             return nonZeroDigitExsists;
         }
 
@@ -154,14 +164,17 @@ namespace Ex01_5
             int LSD = i_Num % 10;
             i_Num /= 10;
             int counter = 0;
+
             while (i_Num > 0)
             {
                 if (i_Num % 10 > LSD)
                 {
                     counter++;
                 }
+
                 i_Num /= 10;
             }
+
             return counter;
         }
     }

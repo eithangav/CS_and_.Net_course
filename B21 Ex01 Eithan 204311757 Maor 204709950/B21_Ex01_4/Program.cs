@@ -7,6 +7,7 @@ namespace Ex01_4
         static void Main()
         {
             string userInputStr = readUserInput();
+
             printStatistics(userInputStr);
 
             Console.WriteLine("Press 'Enter' to exit...");
@@ -22,20 +23,24 @@ namespace Ex01_4
         {
             // checks if the string is a palindrome and prints a message
             string isPalindromeStr = "is";
+
             if (!isPalindrome(i_Str))
             {
                 isPalindromeStr = "is not";
             }
+
             Console.WriteLine(string.Format("The input string {0} a palindrome", isPalindromeStr));
 
             // in case the string is an integer, checks if the integer is divisible by 4 and prints a message
             if (isInteger(i_Str))
             {
                 string isDivisibleStr = "is";
+
                 if (!isDivisibleBy4(int.Parse(i_Str)))
                 {
                     isDivisibleStr = "is not";
                 }
+
                 Console.WriteLine(string.Format("The number {0} {1} divisible by 4", i_Str, isDivisibleStr));
             }
 
@@ -54,6 +59,7 @@ namespace Ex01_4
         private static int countUppercaseChars(string i_Str)
         {
             int counter = 0;
+
             for(int i = 0; i < i_Str.Length; i++)
             {
                 if(i_Str[i] >= 'A' && i_Str[i] <= 'Z')
@@ -61,6 +67,7 @@ namespace Ex01_4
                     counter++;
                 }
             }
+
             return counter;
         }
 
@@ -75,6 +82,7 @@ namespace Ex01_4
             {
                 return true;
             }
+
             return false;
         }
 
@@ -117,14 +125,17 @@ namespace Ex01_4
         private static string readUserInput()
         {
             Console.WriteLine("Please enter a 10 character string (English letters only or digits only)");
+            
             string userInputStr = Console.ReadLine();
 
             // repeatedly ask the user for a valid input
             while (!checkValidation(userInputStr))
             {
                 Console.WriteLine("Invalid input. Please enter a 10 character string (English letters only or digits only)");
+                
                 userInputStr = Console.ReadLine();
             }
+
             return userInputStr;
         }
 
@@ -149,6 +160,7 @@ namespace Ex01_4
             {
                 return true;
             }
+
             return false;
         }
 
@@ -167,6 +179,7 @@ namespace Ex01_4
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -185,6 +198,7 @@ namespace Ex01_4
                     return false;
                 }
             }
+
             return true;
         }
     }

@@ -8,10 +8,11 @@ namespace Ex01_3
         static void Main()
         {
             int numOfLines = readUserInput();
-            Ex01_2.Program.printSandClock(numOfLines, numOfLines);
+
+            Ex01_2.Program.PrintSandClock(numOfLines, numOfLines);
+
             Console.WriteLine("Press 'Enter' to exit...");
             Console.ReadLine();
-
         }
 
         /// <summary>
@@ -21,6 +22,7 @@ namespace Ex01_3
         private static int readUserInput()
         {
             Console.WriteLine("Please enter the number of lines for the sand machine:");
+            
             string userInputStr = Console.ReadLine();
 
             // repeatedly ask the user for a valid input
@@ -40,7 +42,6 @@ namespace Ex01_3
             }
 
             return userInput;
-
         }
 
         /// <summary>
@@ -57,6 +58,7 @@ namespace Ex01_3
                     return false;
                 }
             }
+
             return true;
         }
     }

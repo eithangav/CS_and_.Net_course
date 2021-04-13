@@ -8,7 +8,8 @@ namespace Ex01_2
         public static void Main()
         {
             // prints the sandClock of numberOfStars = 5
-            printSandClock(5, 5);
+            PrintSandClock(5, 5);
+
             Console.WriteLine("Press 'Enter' to exit");
             Console.ReadLine();
         }
@@ -19,23 +20,24 @@ namespace Ex01_2
         /// </summary>
         /// <param name="i_NumOfStars">helper parm for the recursive call</param>
         /// <param name="i_NumOfLines">the desired number of liness of stars</param>
-        public static void printSandClock(int i_NumOfStars, int i_NumOfLines)
+        public static void PrintSandClock(int i_NumOfStars, int i_NumOfLines)
         {
             // base condition
             if(i_NumOfStars <= 1)
             {
-                printStarsLine(1, i_NumOfLines);
+                PrintStarsLine(1, i_NumOfLines);
+
                 return;
             }
 
             // prints the current line of stars
-            printStarsLine(i_NumOfStars, i_NumOfLines);
+            PrintStarsLine(i_NumOfStars, i_NumOfLines);
 
             // the recursive call
-            printSandClock(i_NumOfStars - 2, i_NumOfLines);
+            PrintSandClock(i_NumOfStars - 2, i_NumOfLines);
 
             // prints the current line of stars
-            printStarsLine(i_NumOfStars, i_NumOfLines);
+            PrintStarsLine(i_NumOfStars, i_NumOfLines);
         }
 
         /// <summary>
@@ -43,7 +45,7 @@ namespace Ex01_2
         /// </summary>
         /// <param name="i_NumOfStars"></param>
         /// <param name="i_NumOfChars"></param>
-        public static void printStarsLine(int i_NumOfStars, int i_NumOfChars)
+        public static void PrintStarsLine(int i_NumOfStars, int i_NumOfChars)
         {
             // the number of spaces at the beginning and at the end of the line
             int numOfSpaces = (i_NumOfChars - i_NumOfStars) / 2;
