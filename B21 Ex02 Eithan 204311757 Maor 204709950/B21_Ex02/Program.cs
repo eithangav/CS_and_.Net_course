@@ -5,9 +5,10 @@ namespace B21_Ex02
 {
     class Program
     {
-        static void Main(string[] args)
+
+        static void Main()
         {
-            Console.WriteLine("Hello World!");
+            Tournament turnament = new Tournament();
         }
     }
     
