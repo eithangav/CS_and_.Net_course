@@ -1,0 +1,15 @@
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\B21_Ex02.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\B21_Ex02.deps.json
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\B21_Ex02.runtimeconfig.json
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\B21_Ex02.runtimeconfig.dev.json
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\B21_Ex02.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\B21_Ex02.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\bin\Debug\netcoreapp3.1\Ex02.ConsoleUtils.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.csprojAssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.AssemblyInfoInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.AssemblyInfo.cs
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.csproj.CopyComplete
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex02 Eithan 204311757 Maor 204709950\B21_Ex02\obj\Debug\netcoreapp3.1\B21_Ex02.genruntimeconfig.cache
