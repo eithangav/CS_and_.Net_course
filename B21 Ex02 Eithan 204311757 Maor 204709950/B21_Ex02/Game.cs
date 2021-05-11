@@ -13,8 +13,8 @@ namespace B21_Ex02
 
         public Game(byte i_BoardSize, bool i_IsMultiplayer)
         {
-            this.m_BoardSize = i_BoardSize;
-            this.m_IsMultiplayer = i_IsMultiplayer;
+            m_BoardSize = i_BoardSize;
+            m_IsMultiplayer = i_IsMultiplayer;
             boardInitializer(m_BoardSize); 
 
         }
@@ -22,10 +22,18 @@ namespace B21_Ex02
         
         private void boardInitializer(byte i_BoardSize)
         {
+            m_Board = new char[i_BoardSize, i_BoardSize];
 
+            for(int i=0; i< i_BoardSize; i++)
+            {
+                for(int j=0; j<i_BoardSize; j++)
+                {
+                    m_Board.SetValue(' ', j);
+                }
+            }
         }
 
-        public byte PlayerMove(byte i_Row, byte i_Column)
+        public byte PlayerMove(Cell i_Cell)
         {
             return 1;
         }
@@ -35,25 +43,39 @@ namespace B21_Ex02
             return 1;
         }
 
-        private void updateCell(byte i_Row, byte i_Column)
+        private void updateCell(Cell i_Cell)
         {
-
+            m_Board[i_Cell.row, i_Cell.column] = currentPlayerSign();
+            m_FilledCells++;
         } 
 
-        private bool isEmptyCell(byte i_Row, byte i_Column)
+        private bool isEmptyCell(Cell i_Cell)
         {
-            return true;
+            return m_Board[i_Cell.row, i_Cell.column] == ' ';
         }
 
-        private bool didLose()
+        private bool didLose(Cell i_Cell)
         {
+            char currentSign = currentPlayerSign();
+
+            // Check column
+            bool columnSequence = true;
+
+            // not imlemented yet
+            for(int i=0; i<m_BoardSize; i++)
+            {
+                if(m_Board[i, i_Cell.column] != currentSign)
+                {
+                    columnSequence = false;
+                }
+            }
+
             return false;
         }
 
         private bool isTie()
         {
-            
-            return false;
+            return Math.Pow(m_BoardSize, 2) == m_FilledCells;
         }
 
         private Cell randomCellInitializer()
@@ -69,6 +91,14 @@ namespace B21_Ex02
             }
         }
 
+        public byte BoardSize
+        {
+            get
+            {
+                return m_BoardSize;
+            }
+        }
+
         public byte PlayedLast
         {
             get
@@ -77,6 +107,21 @@ namespace B21_Ex02
             }
         }
 
+        private char currentPlayerSign()
+        {
+            char cellContent;
+
+            if (this.PlayedLast == 1)
+            {
+                cellContent = 'O';
+            }
+            else
+            {
+                cellContent = 'X';
+            }
+
+            return cellContent;
+        }
 
 
 
