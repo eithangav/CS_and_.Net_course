@@ -149,6 +149,7 @@ namespace B21_Ex02
 
         public void PlayerWinMsg(byte i_PlayerNumber)
         {
+            Console.WriteLine(String.Format("Congragulation Player {} won the game!", i_PlayerNumber));
 
         }
 
