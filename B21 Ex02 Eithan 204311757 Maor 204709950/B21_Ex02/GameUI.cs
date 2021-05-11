@@ -128,7 +128,7 @@ namespace B21_Ex02
 
         private char[,] drawInitialBoard()
         {
-            byte drowingBoardSize = m_Game.BoardSize * 2 + 2;
+            byte drowingBoardSize = (byte)(m_Game.BoardSize * 2 + 2);
             char[,] drowingBoard = new char[drowingBoardSize, drowingBoardSize];
 
 
