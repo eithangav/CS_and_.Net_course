@@ -15,6 +15,7 @@ namespace B21_Ex02
             m_BoardDrowing = drawInitialBoard();
         }
 
+
         //Validates the initial input of board size from the user
         //Returns the selected input size  
         public static byte InsertBoardSizeMsg()
@@ -142,7 +143,7 @@ namespace B21_Ex02
         }
 
 
-        //
+        //Checks if the user would like to play another round
         public bool PlayAgainMsg()
         {
             bool isValidInput = false;
@@ -196,7 +197,6 @@ namespace B21_Ex02
         }
 
 
-      
         //Gets the desired input cell from the player
         public Cell InsertNextPlayerMoveMsg()
         {
