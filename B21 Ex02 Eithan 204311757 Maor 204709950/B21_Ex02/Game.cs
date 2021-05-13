@@ -11,78 +11,189 @@ namespace B21_Ex02
         private byte m_BoardSize;
         private bool m_IsMultiplayer;
 
+        /* Constructor */
         public Game(byte i_BoardSize, bool i_IsMultiplayer)
         {
             m_BoardSize = i_BoardSize;
             m_IsMultiplayer = i_IsMultiplayer;
-            boardInitializer(m_BoardSize); 
-
+            m_FilledCells = 0;
+            boardInitializer(); 
         }
 
-        
-        private void boardInitializer(byte i_BoardSize)
+        /* Intializes all of the board's cells with the 'space' character. */
+        private void boardInitializer()
         {
-            m_Board = new char[i_BoardSize, i_BoardSize];
+            m_Board = new char[m_BoardSize, m_BoardSize];
 
-            for(int i=0; i< i_BoardSize; i++)
+            for(int i=0; i< m_BoardSize; i++)
             {
-                for(int j=0; j<i_BoardSize; j++)
+                for(int j=0; j<m_BoardSize; j++)
                 {
-                    m_Board.SetValue(' ', j);
+                    m_Board[i, j] = ' ';
                 }
             }
         }
 
-        public byte PlayerMove(Cell i_Cell)
+        /* Plays a move by a player request. If the game mode is not Multiplayer, preforms a computer move too.
+         * Returns result values as the following:
+         * -1 - invalid cell values
+         * 0 - game is not over, keep playing
+         * 1 - player 1 lose
+         * 2 - player 2 lose
+         * 3 - tie
+         */
+        public int PlayerMove(Cell i_userChoice)
         {
-            return 1;
+            // play the user's move
+            int result = makeMove(i_userChoice);
+
+            // if the game mode is not multiplayer, play a computer move
+            if(result == 0 && !m_IsMultiplayer)
+            {
+                Cell randomFreeCell = pickRandomFreeCell();
+                if (randomFreeCell.row != 255)
+                {
+                    result = makeMove(randomFreeCell);
+                }
+            }
+
+            return result;
         }
 
-        private byte computerMove()
+        /* Plays a move by the input cell's values.
+         * Returns result values as the following:
+         * -1 - invalid cell values
+         * 0 - game is not over, keep playing
+         * 1 - player 1 lose
+         * 2 - player 2 lose
+         * 3 - tie
+         */
+        private int makeMove(Cell i_Cell)
         {
-            return 1;
+            bool validCellIndexes = i_Cell.row < m_BoardSize && i_Cell.column < m_BoardSize;
+            int result = 0;
+
+            if (!validCellIndexes)      //invalid cell
+            {
+                result = -1;
+            }
+            else if(isBoardFull())      //tie
+            {
+                result = 3;
+            }
+            else                        //play
+            {
+                updateCell(i_Cell);
+
+                if (didLose(i_Cell))    //player lose
+                {
+                    result = PlayedLast;
+                }
+                else if (isBoardFull()) //tie
+                {
+                    result = 3;
+                }
+            }
+
+            return result;
         }
 
+        /* Updates a cell value in the board matrix and increments 'FilledCells' value by 1. */
         private void updateCell(Cell i_Cell)
         {
             m_Board[i_Cell.row, i_Cell.column] = currentPlayerSign();
             m_FilledCells++;
-        } 
+        }
 
+        /* Returns true if the input cell is free, and false otherwise */
         private bool isEmptyCell(Cell i_Cell)
         {
             return m_Board[i_Cell.row, i_Cell.column] == ' ';
         }
 
+        /* Returns true if the last played player had lost the game, and false otherwise.
+         * Losing is where there is a complete sequence of the player's sign on the board. */
         private bool didLose(Cell i_Cell)
         {
-            char currentSign = currentPlayerSign();
+            // gets the sign of the last player in order to search for a sequence
+            char currentSign = lastPlayerSign();
 
-            // Check column
+            bool isOnMainDiagonal = i_Cell.row == i_Cell.column;
+            bool isOnAntiDiagonal = i_Cell.row == m_BoardSize - i_Cell.column - 1;
+
+            // initializes all of the sequences queries to 'true'
             bool columnSequence = true;
+            bool rowSequence = true;
+            bool mainDiagonalSequence = true;
+            bool antiDiagonalSequence = true;
 
-            // not imlemented yet
+            // searches the board for sequence BRAKERS
             for(int i=0; i<m_BoardSize; i++)
             {
-                if(m_Board[i, i_Cell.column] != currentSign)
+
+                if(m_Board[i, i_Cell.column] != currentSign)    
                 {
+                    //a column sequence braker was found
                     columnSequence = false;
+                }
+                if(m_Board[i_Cell.row, i] != currentSign)       
+                {
+                    //a row sequence braker was found
+                    rowSequence = false;
+                }
+                if(isOnMainDiagonal && m_Board[i, i] != currentSign)    
+                {
+                    /* either the cell is not on the main diagonal
+                     * or a main diagonal sequence braker was found */
+                    mainDiagonalSequence = false;
+                }
+                if(isOnAntiDiagonal && m_Board[i, m_BoardSize - i - 1] != currentSign)
+                {
+                    /* either the cell is not on the anti-diagonal
+                     * or an anti-diagonal sequence braker was found */
+                    antiDiagonalSequence = false;
                 }
             }
 
-            return false;
+            return columnSequence || rowSequence || mainDiagonalSequence || antiDiagonalSequence;
         }
 
-        private bool isTie()
+        /* Returns true if the board is full, and false otherwise. */
+        private bool isBoardFull()
         {
             return Math.Pow(m_BoardSize, 2) == m_FilledCells;
         }
 
-        private Cell randomCellInitializer()
+        /* Picks a random cell that is free. 
+         Returns the picked cell if, or a cell with the values (255,255) in case of failure. */
+        private Cell pickRandomFreeCell()
         {
-            
+            int numOfFreeCells = (byte)(Math.Pow(m_BoardSize, 2) - m_FilledCells);
+
+            // randomize an integer between (0 - num of free cells)
+            Random random = new Random();
+            byte randomCellOrder = (byte)random.Next(0, numOfFreeCells);
+
+            // adjust the random integer to cell's values (by order)
+            for(byte i=0; i<m_BoardSize; i++)
+            {
+                for(byte j=0; j<m_BoardSize; j++)
+                {
+                    if(randomCellOrder == 0)
+                    {
+                        return new Cell(i, j);
+                    }
+                    else if(m_Board[i, j] == ' ')
+                    {
+                        randomCellOrder--;
+                    }
+                }
+            }
+
+            return new Cell(255, 255);
         }
 
+        /* Board's matrix getter */
         public char[,] Board
         {
             get
@@ -91,6 +202,7 @@ namespace B21_Ex02
             }
         }
 
+        /* Board size value getter */
         public byte BoardSize
         {
             get
@@ -99,6 +211,8 @@ namespace B21_Ex02
             }
         }
 
+        /* Played last getter.
+         * Returns 1 if player 1 had played last, and 2 if player 2 played last. */
         public byte PlayedLast
         {
             get
@@ -107,25 +221,39 @@ namespace B21_Ex02
             }
         }
 
-        private char currentPlayerSign()
+        /* Returns the sign (X/O) of the player that had played the last move. */
+        private char lastPlayerSign()
         {
-            char cellContent;
+            char sign;
 
-            if (this.PlayedLast == 1)
+            if (this.PlayedLast == 2)
             {
-                cellContent = 'O';
+                sign = 'O';
             }
             else
             {
-                cellContent = 'X';
+                sign = 'X';
             }
 
-            return cellContent;
+            return sign;
         }
 
+        /* Returns the sign (X/O) of the player that is about to play the next move. */
+        private char currentPlayerSign()
+        {
+            char sign;
 
+            if (this.PlayedLast == 1)
+            {
+                sign = 'O';
+            }
+            else
+            {
+                sign = 'X';
+            }
 
-
+            return sign;
+        }
     }
 
     
