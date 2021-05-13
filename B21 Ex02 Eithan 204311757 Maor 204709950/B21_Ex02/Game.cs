@@ -168,6 +168,7 @@ namespace B21_Ex02
          Returns the picked cell if, or a cell with the values (255,255) in case of failure. */
         private Cell pickRandomFreeCell()
         {
+<<<<<<< HEAD
             int numOfFreeCells = (byte)(Math.Pow(m_BoardSize, 2) - m_FilledCells);
 
             // randomize an integer between (0 - num of free cells)
@@ -191,6 +192,9 @@ namespace B21_Ex02
             }
 
             return new Cell(255, 255);
+=======
+            return new Cell(1, 2);
+>>>>>>> 7e48079b44048ee2e45597569a184d8c8cf11bc9
         }
 
         /* Board's matrix getter */
