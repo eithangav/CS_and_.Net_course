@@ -27,24 +27,16 @@ namespace B21_Ex02
             gameRun();
         }
 
-<<<<<<< HEAD
-        private void RunGame()
-=======
         /* Game runner - Init Game and GameUI and iteratively runs new round
          * until a game is ended. */
         private void gameRun()
->>>>>>> ec969105d82867cf774865836f0dae06ded6b02b
         {
             m_Game = new Game(m_BoardSize, m_IsMultiplayer);
             m_GameUI = new GameUI(m_Game);
 
             m_GameUI.PrintBoard();
-<<<<<<< HEAD
-        }
-=======
             Cell usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
             int roundResult = m_Game.PlayerMove(usersChoice);
->>>>>>> ec969105d82867cf774865836f0dae06ded6b02b
 
             while(roundResult == 0)
             {
@@ -55,15 +47,13 @@ namespace B21_Ex02
 
             gameEnd(roundResult);
         }
-<<<<<<< HEAD
-=======
 
         /* End a game - Prints the result, asks  */
         private void gameEnd(int gameResult)
         {
             if (gameResult == 3)
             {
-                m_GameUI.TieGame();
+                m_GameUI.TieGameMsg();
             }
             else if (gameResult == 2)
             {
@@ -76,13 +66,12 @@ namespace B21_Ex02
                 m_GameUI.PlayerWinMsg(2);
             }
 
-            m_GameUI.PointsStatusMessage(m_Player1Score, m_Player2Score);
+            m_GameUI.PointStatusMsg(m_Player1Score, m_Player2Score);
 
             if (m_GameUI.PlayAgainMsg())
             {
                 gameRun();
             }
         }
->>>>>>> ec969105d82867cf774865836f0dae06ded6b02b
     }
 }
