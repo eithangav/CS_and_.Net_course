@@ -106,7 +106,7 @@ namespace B21_Ex02
         }
 
         /* Returns true if the input cell is free, and false otherwise */
-        private bool isEmptyCell(Cell i_Cell)
+        public bool IsEmptyCell(Cell i_Cell)
         {
             return m_Board[i_Cell.row, i_Cell.column] == ' ';
         }

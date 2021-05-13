@@ -8,7 +8,7 @@ namespace B21_Ex02
 
         static void Main()
         {
-            Tournament turnament = new Tournament();
+            Tournament tournament = new Tournament();
         }
     }
     
