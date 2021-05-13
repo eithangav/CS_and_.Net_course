@@ -33,8 +33,8 @@ namespace B21_Ex02
             
             m_GameUI.PrintBoard();
 
-            userChosenCell = m_GameUI.InsertNextPlayerMoveMsg();
-            m_GameUI.
+        public void StartNewGame() 
+        {
 
         }
 
