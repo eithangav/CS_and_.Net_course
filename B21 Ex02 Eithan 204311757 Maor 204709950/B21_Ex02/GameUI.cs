@@ -12,8 +12,8 @@ namespace B21_Ex02
         public GameUI(Game i_Game)
         {
             m_Game = i_Game;
-            m_BoardDrowing = InitialBoard();
-            PrintBoard();
+          /*  m_BoardDrowing = GenerateBoard(m_Game.Board);
+            PrintBoard();*/
         }
 
 
@@ -37,14 +37,12 @@ namespace B21_Ex02
                 if(boardSize.Length != 1)
                 {
                     Console.WriteLine(invalidInputMsg);
-                    continue;
                 }
                 else if(boardSize.Length == 1)
                 {
                     if(byte.Parse(boardSize) < 3 || byte.Parse(boardSize) > 9)
                     {
                         Console.WriteLine(invalidInputMsg);
-                        continue;
                     }
                     else
                     {
@@ -76,7 +74,6 @@ namespace B21_Ex02
                 if(userChoice.Length != 1)
                 {
                     Console.WriteLine(invalidInputMsg);
-                    continue;
                 }
                 else if(userChoice.Length == 1)
                 {
@@ -94,7 +91,6 @@ namespace B21_Ex02
                     else
                     {
                         Console.WriteLine(invalidInputMsg);
-                        continue;
                     }
                 }
             }
@@ -111,11 +107,19 @@ namespace B21_Ex02
         }
 
 
-        //TODO
-        public void TieGame(byte i_PlayerNumber)
+        //Tie Game Message
+        public void TieGameMsg()
         {
-            Console.WriteLine(String.Format("Congragulation Player {} won the game!", i_PlayerNumber));
+            Console.WriteLine(String.Format("You got a Tie Game!"));
 
+        }
+
+
+        //Game points status message
+        public void PointStatusMsg(byte i_Player1Score, byte i_Player2Score)
+        {
+            Console.WriteLine("Game score status:");
+            Console.WriteLine(string.Format("Player1 Score: {}, Player2 Score: {}", i_Player1Score, i_Player2Score));
         }
 
 
@@ -138,7 +142,6 @@ namespace B21_Ex02
                 if (userInput.Length != 1)
                 {
                     Console.WriteLine(invalidMsg);
-                    continue;
                 }
                 else if (userInput.Length == 1)
                 {
@@ -156,7 +159,6 @@ namespace B21_Ex02
                     else
                     {
                         Console.WriteLine(invalidMsg);
-                        continue;
                     }
                 }
             }
@@ -201,14 +203,12 @@ namespace B21_Ex02
                 if(userInputCell.Length != 3)
                 {
                     Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
-                    continue;
                 }
                 else if(userInputCell.Length == 3)
                 {
                     if (userInputCell[1] != ' ')
                     {
                         Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
-                        continue;
                     }
                     else
                     {
@@ -219,13 +219,11 @@ namespace B21_Ex02
                         if (x < 0 || x > m_Game.BoardSize)
                         {
                             Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
-                            continue;
                         }
 
                         else if (y < 0 || y > m_Game.BoardSize)
                         {
                             Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
-                            continue;
                         }
                         else
                         {
@@ -253,8 +251,24 @@ namespace B21_Ex02
             return cellToReturn;
         }
 
+  
+        //Prints the Board
+        public void PrintBoard()
+        {
+            for (int i = 0; i < m_BoardDrowing.GetLength(0); i++)
+            {
+                for (int j = 0; j < m_BoardDrowing.GetLength(1); j++)
+                {
+                    Console.Write(m_BoardDrowing[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
         //TODO
-        private char[,] InitialBoard()
+        //update m_Game.bord to the bord.
+        private char[,] GenerateBoard(char[,] m_GameBord)
         {
             byte drowingBoardSize = (byte)(m_Game.BoardSize * 4 + 2);
             char[,] drowingBoard = new char[drowingBoardSize, drowingBoardSize];
@@ -262,14 +276,6 @@ namespace B21_Ex02
 
 
             return drowingBoard;
-
-        }
-
-
-        //TODO
-        public void PrintBoard()
-        {
-
 
         }
     }
