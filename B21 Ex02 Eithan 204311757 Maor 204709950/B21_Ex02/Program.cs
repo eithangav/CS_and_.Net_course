@@ -13,48 +13,6 @@ namespace B21_Ex02
             byte drowingBoardSize = (byte)(n*4  + 2);
             string[,] drowingBoard = new string[drowingBoardSize, drowingBoardSize];
 
-            /* for (int i = 0; i < drowingBoardSize; i++)
-             {
-                 for (int j = 0; j < drowingBoardSize; j++)
-                 {
-                     if (i == 0)
-                     {
-                         if (j % 2 == 1)
-                         {
-                             drowingBoard[i, j] = " ";
-
-                         }
-
-                         else if (j % 2 == 0 && j != 0)
-                         {
-                             drowingBoard[i, j] = "  " + (j/2).ToString();
-                         }
-                     }
-                     else if (j == 0)
-                     {
-                         if (i % 2 == 1)
-                         {
-                             drowingBoard[i, j] = " ";
-                         }
-                         else if (i % 2 == 0 && i != 0)
-                         {
-                             drowingBoard[i, j] = "  " + (i/2).ToString();
-                         }
-                     }
-                     else
-                     {
-                         if(i % 2 == 1)
-                         {
-                             drowingBoard[i, j] = "= ";
-                         }
-                         if (j % 2 == 1)
-                         {
-                             drowingBoard[i, j] = "| ";
-                         }
-                     }
-                 }
-             }*/
-
             byte countColNum = 3;
             byte countColSpace = 1;
             byte colNum = 1;
@@ -111,7 +69,7 @@ namespace B21_Ex02
                     }
                     else
                     {
-                        drowingBoard[i, j] = "-";
+                        drowingBoard[i, j] = "_";
                     }
                 }
             }

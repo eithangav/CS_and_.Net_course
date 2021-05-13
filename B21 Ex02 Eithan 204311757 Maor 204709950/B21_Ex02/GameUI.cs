@@ -12,7 +12,8 @@ namespace B21_Ex02
         public GameUI(Game i_Game)
         {
             m_Game = i_Game;
-            m_BoardDrowing = drawInitialBoard();
+            m_BoardDrowing = InitialBoard();
+            PrintBoard();
         }
 
 
@@ -229,7 +230,7 @@ namespace B21_Ex02
                         else
                         {
                             cellToReturn = new Cell(x, y);
-                            if (m_Game.isEmptyCell(cellToReturn))
+                       /*     if (m_Game.isEmptyCell(cellToReturn))
                             {
                                 isValidInput = true;
                                 break;
@@ -238,7 +239,7 @@ namespace B21_Ex02
                             {
                                 CellIsUsedMsg(cellToReturn);
                                 continue;
-                            }
+                            }*/
                         }
                     }
                 }
@@ -253,12 +254,14 @@ namespace B21_Ex02
         }
 
         //TODO
-        private void drawInitialBoard()
+        private char[,] InitialBoard()
         {
-            byte drowingBoardSize = (byte)(m_Game.BoardSize * 2 + 2);
+            byte drowingBoardSize = (byte)(m_Game.BoardSize * 4 + 2);
             char[,] drowingBoard = new char[drowingBoardSize, drowingBoardSize];
 
 
+
+            return drowingBoard;
 
         }
 
