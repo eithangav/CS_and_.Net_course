@@ -16,22 +16,8 @@ namespace B21_Ex02
 
         public Tournament()
         {
-            this.m_Player1Score = 0;
-            this.m_Player2Score = 0;
-            this.m_ComputerScore = 0;
-        }
-
-        public void StartTournament()
-        {
 
         }
-
-        public void StartNewGame() 
-        {
-
-        }
-
-
 
     }
 }
