@@ -102,41 +102,16 @@ namespace B21_Ex02
         }
 
 
-        //Validate the user input choice for game moves
-        public bool IsValidInput(string i_InputStr)
+        //Prints the user 
+        public void PlayerWinMsg(byte i_PlayerNumber)
         {
-            bool validPlayerInput = true;
-            byte x, y;
+            Console.WriteLine(String.Format("Congragulation Player {} won the game!", i_PlayerNumber));
 
-            string[] inputAfterSplit = new string[2];
-
-            if(i_InputStr.Length != 3)
-            {
-                validPlayerInput = false;
-            }
-            else
-            {
-                inputAfterSplit = i_InputStr.Split(" ");
-                x = byte.Parse(inputAfterSplit[0]);
-                y = byte.Parse(inputAfterSplit[1]);
-
-                if(x < 0 || x > m_Game.BoardSize)
-                {
-                    validPlayerInput = false;
-                }
-                else if (y < 0 || y > m_Game.BoardSize)
-                {
-                    validPlayerInput = false;
-
-                }
-            }
-
-            return validPlayerInput;
         }
 
 
-        //Prints the user 
-        public void PlayerWinMsg(byte i_PlayerNumber)
+        //TODO
+        public void TieGame(byte i_PlayerNumber)
         {
             Console.WriteLine(String.Format("Congragulation Player {} won the game!", i_PlayerNumber));
 
@@ -185,9 +160,13 @@ namespace B21_Ex02
                 }
             }
 
+            if(isPlayAgain)
+            {
+                Console.Clear();
+            }
+
             return isPlayAgain;
         }
-
 
 
         public void CellIsUsedMsg(Cell i_Cell)
@@ -198,6 +177,9 @@ namespace B21_Ex02
 
 
         //Gets the desired input cell from the player
+        //TODO:
+        //if IsEmptyCell(cell) from gamereturn CellIsUseMsg
+        //return cell
         public Cell InsertNextPlayerMoveMsg()
         {
             Cell newCell;
@@ -244,20 +226,58 @@ namespace B21_Ex02
                 }
             }
 
+            //TODO:
+            if (isValidInput)
+            {
+                Console.Clear();
+            }
+
             newCell = new Cell((byte)(userInputCell[0]), (byte)(userInputCell[2]));
 
             return newCell;
         }
 
+        //Validate the user input choice for game moves
+        //
+        private Cell IsValidInput(string i_InputStr)
+        {
+            bool validPlayerInput = true;
+            byte x, y;
+
+            string[] inputAfterSplit = new string[2];
+
+            if (i_InputStr.Length != 3)
+            {
+                validPlayerInput = false;
+            }
+            else
+            {
+                inputAfterSplit = i_InputStr.Split(" ");
+                x = byte.Parse(inputAfterSplit[0]);
+                y = byte.Parse(inputAfterSplit[1]);
+
+                if (x < 0 || x > m_Game.BoardSize)
+                {
+                    validPlayerInput = false;
+                }
+                else if (y < 0 || y > m_Game.BoardSize)
+                {
+                    validPlayerInput = false;
+
+                }
+            }
+
+            return validPlayerInput;
+        }
+
 
         //TODO
-        private char[,] drawInitialBoard()
+        private void drawInitialBoard()
         {
             byte drowingBoardSize = (byte)(m_Game.BoardSize * 2 + 2);
             char[,] drowingBoard = new char[drowingBoardSize, drowingBoardSize];
 
 
-            return drowingBoard;
 
         }
 

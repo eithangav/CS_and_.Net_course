@@ -80,7 +80,7 @@ namespace B21_Ex02
 
         private Cell randomCellInitializer()
         {
-            
+            return new Cell(1, 2);
         }
 
         public char[,] Board
