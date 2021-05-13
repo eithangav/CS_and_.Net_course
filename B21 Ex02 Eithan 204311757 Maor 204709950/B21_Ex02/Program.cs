@@ -29,7 +29,7 @@ namespace B21_Ex02
                     {
                         if (j % 2 == 0)
                         {
-                            drowingBoard[i, j] = "//";
+                            drowingBoard[i, j] = " ";
                         }
                         else
                         {
@@ -41,7 +41,7 @@ namespace B21_Ex02
                             else if (j == countColNum)
                             {
                                 drowingBoard[i, j] = colNum.ToString();
-                                colNum += 2;
+                                colNum ++;
                                 countColNum += 4;
                             }
                         }
@@ -50,19 +50,19 @@ namespace B21_Ex02
                     {
                         if(i % 2 == 0)
                         {
-                            drowingBoard[i, j] = "row";
+                            drowingBoard[i, j] = " ";
                         }
                         else if(i % 2 == 1)
                         {
-                            if(j == countRowSpace)
+                         /*   if(i == countRowSpace)
                             {
                                 drowingBoard[i, j] = "=";
                                 countRowSpace += 4;
-                            }
-                            else if (j == countRowNum)
+                            }*/
+                            if (i == countRowNum)
                             {
                                 drowingBoard[i, j] = RowNum.ToString();
-                                RowNum += 2;
+                                RowNum ++;
                                 countRowSpace += 4;
                             } 
                         }
