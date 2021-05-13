@@ -254,26 +254,6 @@ namespace B21_Ex02
             return cellToReturn;
         }
 
-        //Validate the user input choice for game moves
-        //
-        private Cell IsValidInput(string i_InputStr)
-        {
-            bool validPlayerInput = true;
-            byte x, y;
-            Cell cellToReturn;
-
-            string[] inputAfterSplit = new string[2];
-
-            inputAfterSplit = i_InputStr.Split(" ");
-            x = byte.Parse(inputAfterSplit[0]);
-            y = byte.Parse(inputAfterSplit[1]);
-  
-            cellToReturn = new Cell(x, y);
-
-            return cellToReturn;
-        }
-
-
         //TODO
         private void drawInitialBoard()
         {
