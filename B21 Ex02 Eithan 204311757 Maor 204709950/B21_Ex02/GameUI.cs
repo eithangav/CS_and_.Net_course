@@ -182,12 +182,15 @@ namespace B21_Ex02
         //return cell
         public Cell InsertNextPlayerMoveMsg()
         {
-            Cell newCell;
             bool isValidInput = false;
             string userInputCell = "";
             int playerNumber = m_Game.PlayedLast + 1;
-            
-            string insertValueMsg = "Player {0}, insert desired cell values in range {1} (format: number space number. Example: `1 3`)";
+
+            string[] inputAfterSplit = new string[2];
+            byte x, y;
+            Cell cellToReturn = new Cell(255, 255);
+
+            string insertValueMsg = "Player {0}, insert desired cell values in range 0 : {1} (format: number space number. Example: `1 3`)";
             string invalidMsg = "Invalid input. Insert desired cell values in range {0} format: `number space number`. Example: `1 3`";
 
             Console.WriteLine(string.Format(insertValueMsg, playerNumber, m_Game.BoardSize));
@@ -203,38 +206,52 @@ namespace B21_Ex02
                 }
                 else if(userInputCell.Length == 3)
                 {
-                    if(userInputCell[1] != ' ')
-                    {
-                        Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
-                        continue;
-                    }
-                    else if(userInputCell[0] < 0 || userInputCell[0] > m_Game.BoardSize)
-                    {
-                        Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
-                        continue;
-                    }
-                    else if (userInputCell[2] < 0 || userInputCell[2] > m_Game.BoardSize)
+                    if (userInputCell[1] != ' ')
                     {
                         Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
                         continue;
                     }
                     else
                     {
-                        isValidInput = true;
-                        break;
+                        inputAfterSplit = userInputCell.Split(" ");
+                        x = byte.Parse(inputAfterSplit[0]);
+                        y = byte.Parse(inputAfterSplit[2]);
+
+                        if (x < 0 || x > m_Game.BoardSize)
+                        {
+                            Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
+                            continue;
+                        }
+
+                        else if (y < 0 || y > m_Game.BoardSize)
+                        {
+                            Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
+                            continue;
+                        }
+                        else
+                        {
+                            cellToReturn = new Cell(x, y);
+                            if (m_Game.isEmptyCell(cellToReturn))
+                            {
+                                isValidInput = true;
+                                break;
+                            }
+                            else
+                            {
+                                CellIsUsedMsg(cellToReturn);
+                                continue;
+                            }
+                        }
                     }
                 }
             }
 
-            //TODO:
             if (isValidInput)
             {
                 Console.Clear();
             }
 
-            newCell = new Cell((byte)(userInputCell[0]), (byte)(userInputCell[2]));
-
-            return newCell;
+            return cellToReturn;
         }
 
         //Validate the user input choice for game moves
@@ -243,31 +260,17 @@ namespace B21_Ex02
         {
             bool validPlayerInput = true;
             byte x, y;
+            Cell cellToReturn;
 
             string[] inputAfterSplit = new string[2];
 
-            if (i_InputStr.Length != 3)
-            {
-                validPlayerInput = false;
-            }
-            else
-            {
-                inputAfterSplit = i_InputStr.Split(" ");
-                x = byte.Parse(inputAfterSplit[0]);
-                y = byte.Parse(inputAfterSplit[1]);
+            inputAfterSplit = i_InputStr.Split(" ");
+            x = byte.Parse(inputAfterSplit[0]);
+            y = byte.Parse(inputAfterSplit[1]);
+  
+            cellToReturn = new Cell(x, y);
 
-                if (x < 0 || x > m_Game.BoardSize)
-                {
-                    validPlayerInput = false;
-                }
-                else if (y < 0 || y > m_Game.BoardSize)
-                {
-                    validPlayerInput = false;
-
-                }
-            }
-
-            return validPlayerInput;
+            return cellToReturn;
         }
 
 
