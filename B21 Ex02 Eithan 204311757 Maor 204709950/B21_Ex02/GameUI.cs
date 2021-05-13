@@ -177,9 +177,7 @@ namespace B21_Ex02
 
 
         //Gets the desired input cell from the player
-        //TODO:
-        //if IsEmptyCell(cell) from gamereturn CellIsUseMsg
-        //return cell
+        //Validates the input and return the new cell
         public Cell InsertNextPlayerMoveMsg()
         {
             bool isValidInput = false;
