@@ -34,13 +34,13 @@ namespace B21_Ex02
             m_Game = new Game(m_BoardSize, m_IsMultiplayer);
             m_GameUI = new GameUI(m_Game);
 
-            m_GameUI.PrintBoard();
+            m_GameUI.PrintBoard(m_Game.Board);
             Cell usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
             int roundResult = m_Game.PlayerMove(usersChoice);
 
             while(roundResult == 0)
             {
-                m_GameUI.PrintBoard();
+                m_GameUI.PrintBoard(m_Game.Board);
                 usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
                 roundResult = m_Game.PlayerMove(usersChoice);
             }

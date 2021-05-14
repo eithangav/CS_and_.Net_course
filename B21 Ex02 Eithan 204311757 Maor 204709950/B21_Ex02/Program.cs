@@ -8,138 +8,79 @@ namespace B21_Ex02
 
         static void Main()
         {
-            byte n = 5;
-            //  Tournament turnament = new Tournament();
-            byte drowingBoardSize = (byte)(n*2  + 1);
-            string[,] drowingBoard = new string[drowingBoardSize, drowingBoardSize];
+            //Tournament turnament = new Tournament();
 
+            Game game = new Game(3, true); // just for sintax use. erelevant values 
 
-            for (int i = 0; i < drowingBoardSize; i++)
+            char[,] gameBoard = game.Board;
+            byte n = 9;
+            byte drowingBoardSize = (byte)(n + 1);
+            char[,] drowingBoard = new char[drowingBoardSize, drowingBoardSize];
+
+            //Initialize drawing board
+            for (int row = 0; row < drowingBoardSize; row++)
             {
-                for (int j = 0; j < drowingBoardSize; j++)
+                for (int col = 0; col < drowingBoardSize; col++)
                 {
-                    if (i == 0 && j != 0)
-                    {
-                        if (j % 2 == 0)
-                        {
-                            drowingBoard[i, j] = " ";
-                        }
-                        else
-                        {
-                            if (j == countColSpace)
-                            {
-                                drowingBoard[i, j] = "|";
-                                countColSpace += 4;
-                            }
-                            else if (j == countColNum)
-                            {
-                                drowingBoard[i, j] = colNum.ToString();
-                                colNum++;
-                                countColNum += 4;
-                            }
-                        }
-                    }
-                    else if (i != 0 && j == 0)
-                    {
-                        if (i % 2 == 0)
-                        {
-                            drowingBoard[i, j] = " ";
-                        }
-                        else if (i % 2 == 1)
-                        {
-                            if (i == countRowSpace)
-                            {
-                                drowingBoard[i, j] = "=";
-                                countRowSpace += 4;
-                            }
-                            /*  if (i == countRowNum)
-                              {*/
-                            drowingBoard[i, j] = RowNum.ToString();
-                            RowNum++;
-                            countRowSpace += 4;
-                            /*    } */
-                        }
-                    }
-                    else
-                    {
-                        drowingBoard[i, j] = "_";
-                    }
+                    drowingBoard[row, col] = ' ';
                 }
             }
 
-            byte countColNum = 3;
-            byte countColSpace = 1;
-            byte colNum = 1;
+            drowingBoard[1, 1] = 'X';
+            drowingBoard[2, 2] = 'X';
+            drowingBoard[3, 3] = 'X';
+            drowingBoard[4, 4] = 'X';
+            drowingBoard[5, 5] = 'X';
+            drowingBoard[9, 9] = 'X';
 
-            byte countRowNum = 3;
-            byte countRowSpace = 1;
-            byte RowNum = 1;
+            int countCol = 1;
+            int countRow = 1;
 
-            for (int i = 0; i < drowingBoardSize; i++)
+            //Printing drawing board
+            for (int row = 0; row < drowingBoardSize; row++)
             {
-                for (int j = 0; j < drowingBoardSize; j++)
+                if (row > 0)
                 {
-                    if (i == 0 && j != 0)
-                    {
-                        if (j % 2 == 0)
-                        {
-                            drowingBoard[i, j] = " ";
-                        }
-                        else
-                        {
-                            if (j == countColSpace)
-                            {
-                                drowingBoard[i, j] = "|";
-                                countColSpace += 4;
-                            }
-                            else if (j == countColNum)
-                            {
-                                drowingBoard[i, j] = colNum.ToString();
-                                colNum++;
-                                countColNum += 4;
-                            }
-                        }
-                    }
-                    else if (i != 0 && j == 0)
-                    {
-                        if (i % 2 == 0)
-                        {
-                            drowingBoard[i, j] = " ";
-                        }
-                        else if (i % 2 == 1)
-                        {
-                            if (i == countRowSpace)
-                            {
-                                drowingBoard[i, j] = "=";
-                                countRowSpace += 4;
-                            }
-                            /*  if (i == countRowNum)
-                              {*//*
-                            drowingBoard[i, j] = RowNum.ToString();
-                                RowNum ++;
-                                countRowSpace += 4;
-                        *//*    } *//*
-                        }
-                    }
-                    else
-                    {
-                        drowingBoard[i, j] = "_";
-                    }
+                    Console.Write(countRow + " | ");
+                    countRow++;
                 }
-            }*/
-
-
-
-                            for (int i = 0; i < drowingBoardSize; i++)
-            {
-                for(int j = 0; j < drowingBoardSize; j++)
+                for (int col = 0; col < drowingBoardSize; col++)
                 {
-                    Console.Write(drowingBoard[i, j] + " ");
-                }
+                    if (row == 0 && col > 0)
+                    {
+                        Console.Write("   " + countCol + "    ");
+                        countCol++;
+                    }
 
-                Console.WriteLine("\n");
+                    else if (row > 0 && col == 0)
+                    {
+                        Console.Write("  ");
+                    }
+
+                    else if (row > 0)
+                    {
+                        Console.Write(drowingBoard[row, col]);
+                        Console.Write("   |   ");
+
+                    }
+
+                }
+                if (row == 0)
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+
+                    Console.WriteLine("\n");
+                    Console.Write("  ");
+                    for (int i = 0; i < drowingBoardSize; i++)
+                    {
+                        Console.Write("=======");
+                    }
+                    Console.WriteLine("\n");
+                }
             }
         }
     }
-    
 }
