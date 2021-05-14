@@ -204,6 +204,7 @@ namespace B21_Ex02
             {
                 userInputCell = Console.ReadLine();
 
+
                 if(userInputCell.Length != 3)
                 {
                     Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
@@ -261,6 +262,57 @@ namespace B21_Ex02
             return cellToReturn;
         }
 
+
+        private void isQuit(char i_QuitChar) 
+        {
+            string userCoice;
+            bool isValidInput = false;
+            bool isNewGame = false;
+
+            string quitStr = "Player {0} Quit the game.";
+            string newGameUserChoiceStr = "Would you like to play a new game? (Y/N)";
+            string inValidInputStr = "Invalid input. Would you like to play a new game?";
+
+            if (i_QuitChar == 'Q' || i_QuitChar == 'q')
+            {
+                Console.Clear();
+                Console.WriteLine(string.Format(quitStr, m_Game.PlayedLast));
+
+                Console.WriteLine(newGameUserChoiceStr);
+                while (!isValidInput)
+                {
+                    userCoice = Console.ReadLine();
+
+                    if(userCoice.Length != 1)
+                    {
+                        Console.WriteLine(inValidInputStr);
+                    }
+                    else if(userCoice.ToLower()[0] == 'y')
+                    {
+                        isValidInput = true;
+                        isNewGame = true;
+                    }
+                    else if (userCoice.ToLower()[0] == 'n')
+                    {
+                        isValidInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine(inValidInputStr);
+                    }
+                }
+
+                /*TODO:
+                 *How to run a new game from GameUI?? 
+                 */
+                if (isNewGame)
+                {
+
+                }
+
+
+            }
+        }
   
         /*Prints the Board*/
         public void PrintBoard(char[,] m_GameBord)
