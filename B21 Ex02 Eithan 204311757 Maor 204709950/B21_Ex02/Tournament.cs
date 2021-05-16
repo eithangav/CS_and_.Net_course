@@ -34,13 +34,13 @@ namespace B21_Ex02
             m_Game = new Game(m_BoardSize, m_IsMultiplayer);
             m_GameUI = new GameUI(m_Game);
 
-            m_GameUI.PrintBoard();
+            m_GameUI.PrintBoard(m_Game.Board);
             Cell usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
             int roundResult = m_Game.PlayerMove(usersChoice);
 
             while(roundResult == 0)
             {
-                m_GameUI.PrintBoard();
+                m_GameUI.PrintBoard(m_Game.Board);
                 usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
                 roundResult = m_Game.PlayerMove(usersChoice);
             }
@@ -53,7 +53,7 @@ namespace B21_Ex02
         {
             if (gameResult == 3)
             {
-                m_GameUI.TieGame();
+                m_GameUI.TieGameMsg();
             }
             else if (gameResult == 2)
             {
@@ -66,7 +66,7 @@ namespace B21_Ex02
                 m_GameUI.PlayerWinMsg(2);
             }
 
-            m_GameUI.PointsStatusMessage(m_Player1Score, m_Player2Score);
+            m_GameUI.PointStatusMsg(m_Player1Score, m_Player2Score);
 
             if (m_GameUI.PlayAgainMsg())
             {
