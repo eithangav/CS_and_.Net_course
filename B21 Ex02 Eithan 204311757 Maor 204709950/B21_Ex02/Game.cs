@@ -41,11 +41,22 @@ namespace B21_Ex02
          * 1 - player 1 lose
          * 2 - player 2 lose
          * 3 - tie
+         * 4 - quit
          */
         public int PlayerMove(Cell i_userChoice)
         {
-            // play the user's move
-            int result = makeMove(i_userChoice);
+            int result = 0;
+
+            if(i_userChoice.row == 254)
+            {
+                // the user has quit the game
+                result = 4;
+            }
+            else
+            {
+                // play the user's move
+                result = makeMove(i_userChoice);
+            }
 
             // if the game mode is not multiplayer, play a computer move
             if(result == 0 && !m_IsMultiplayer)
@@ -218,6 +229,24 @@ namespace B21_Ex02
             get
             {
                 return (byte)(m_FilledCells % 2 + 1);
+            }
+        }
+
+        /* Currently playing getter.
+         * Returns 1 if it's the 1st player's turn, 
+         * and 2 if it's the 2nd player's turn. */
+        public byte CurrentPlaying
+        {
+            get
+            {
+                byte playerNum = 1;
+
+                if (m_FilledCells % 2 == 1)
+                {
+                    playerNum = 2;
+                }
+
+                return playerNum;
             }
         }
 

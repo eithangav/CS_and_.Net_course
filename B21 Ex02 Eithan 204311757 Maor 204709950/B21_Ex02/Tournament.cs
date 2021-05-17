@@ -34,9 +34,8 @@ namespace B21_Ex02
             m_Game = new Game(m_BoardSize, m_IsMultiplayer);
             m_GameUI = new GameUI(m_Game);
 
-            m_GameUI.PrintBoard(m_Game.Board);
-            Cell usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
-            int roundResult = m_Game.PlayerMove(usersChoice);
+            int roundResult = 0;
+            Cell usersChoice = new Cell(255,255);
 
             while(roundResult == 0)
             {
@@ -49,18 +48,22 @@ namespace B21_Ex02
         }
 
         /* End a game - Prints the result, asks  */
-        private void gameEnd(int gameResult)
+        private void gameEnd(int i_GameResult)
         {
-            if (gameResult == 3)
+            if(i_GameResult == 4)
+            {
+                m_Game.QuitMsg();
+            }
+            else if (i_GameResult == 3)
             {
                 m_GameUI.TieGameMsg();
             }
-            else if (gameResult == 2)
+            else if (i_GameResult == 2)
             {
                 m_Player1Score++;
                 m_GameUI.PlayerWinMsg(1);
             }
-            else if (gameResult == 1)
+            else if (i_GameResult == 1)
             {
                 m_Player2Score++;
                 m_GameUI.PlayerWinMsg(2);
