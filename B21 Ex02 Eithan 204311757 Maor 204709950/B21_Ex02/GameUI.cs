@@ -22,7 +22,7 @@ namespace B21_Ex02
             string boardSize = "";
             bool validInput = false;
           
-            string welcomeMsg = "Welcome to `Reverse Tic-Tac-Toe` Game for Console! \n ";
+            string welcomeMsg = "Welcome to `Reverse Tic-Tac-Toe` Game for Console!";
             string insertBoardSizeMsg = "Please insert board size number between 3 to 9";
             string invalidInputMsg = "Invalid input board size. Please insert number between 3 to 9";
 
@@ -179,7 +179,7 @@ namespace B21_Ex02
         /*Prints a message that the desired cell is already in used*/
         public void CellIsUsedMsg(Cell i_Cell)
         {
-            Console.WriteLine(string.Format("The cell ({0}, {1}) has already filled. /n Please select another cell ", i_Cell.row, i_Cell.column));
+            Console.WriteLine(string.Format("The cell ({0}, {1}) has already filled. \nPlease select another cell!", i_Cell.row, i_Cell.column));
         }
 
 
