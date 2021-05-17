@@ -127,7 +127,7 @@ namespace B21_Ex02
         private bool didLose(Cell i_Cell)
         {
             // gets the sign of the last player in order to search for a sequence
-            char currentSign = lastPlayerSign();
+            char lastPlayerSign = this.lastPlayerSign();
 
             bool isOnMainDiagonal = i_Cell.row == i_Cell.column;
             bool isOnAntiDiagonal = i_Cell.row == m_BoardSize - i_Cell.column - 1;
@@ -142,23 +142,23 @@ namespace B21_Ex02
             for(int i=0; i<m_BoardSize; i++)
             {
 
-                if(m_Board[i, i_Cell.column] != currentSign)    
+                if(m_Board[i, i_Cell.column] != lastPlayerSign)    
                 {
                     //a column sequence braker was found
                     columnSequence = false;
                 }
-                if(m_Board[i_Cell.row, i] != currentSign)       
+                if(m_Board[i_Cell.row, i] != lastPlayerSign)       
                 {
                     //a row sequence braker was found
                     rowSequence = false;
                 }
-                if(!isOnMainDiagonal || (isOnMainDiagonal && m_Board[i, i] != currentSign))    
+                if(!isOnMainDiagonal || (isOnMainDiagonal && m_Board[i, i] != lastPlayerSign))    
                 {
                     /* either the cell is not on the main diagonal
                      * or a main diagonal sequence braker was found */
                     mainDiagonalSequence = false;
                 }
-                if(!isOnAntiDiagonal || (isOnAntiDiagonal && m_Board[i, m_BoardSize - i - 1] != currentSign))
+                if(!isOnAntiDiagonal || (isOnAntiDiagonal && m_Board[i, m_BoardSize - i - 1] != lastPlayerSign))
                 {
                     /* either the cell is not on the anti-diagonal
                      * or an anti-diagonal sequence braker was found */
@@ -190,11 +190,13 @@ namespace B21_Ex02
             {
                 for(byte j=0; j<m_BoardSize; j++)
                 {
-                    if(randomCellOrder == 0)
+                    Cell randomCell = new Cell(i, j);
+
+                    if(IsEmptyCell(randomCell) && randomCellOrder == 0)
                     {
-                        return new Cell(i, j);
+                        return randomCell;
                     }
-                    else if(m_Board[i, j] == ' ')
+                    else if(IsEmptyCell(randomCell))
                     {
                         randomCellOrder--;
                     }
@@ -228,7 +230,19 @@ namespace B21_Ex02
         {
             get
             {
-                return (byte)(m_FilledCells % 2 + 1);
+                byte playerNum = 2;
+
+                if(m_FilledCells == 0)
+                {
+                    playerNum = 0;
+                }
+
+                else if (m_FilledCells % 2 == 1)
+                {
+                    playerNum = 1;
+                }
+
+                return playerNum;
             }
         }
 
@@ -272,13 +286,13 @@ namespace B21_Ex02
         {
             char sign;
 
-            if (this.PlayedLast == 1)
+            if (this.CurrentPlaying == 1)
             {
-                sign = 'O';
+                sign = 'X';
             }
             else
             {
-                sign = 'X';
+                sign = 'O';
             }
 
             return sign;
