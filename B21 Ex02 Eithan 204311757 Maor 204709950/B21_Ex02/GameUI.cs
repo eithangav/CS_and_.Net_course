@@ -179,7 +179,7 @@ namespace B21_Ex02
         /*Prints a message that the desired cell is already in used*/
         public void CellIsUsedMsg(Cell i_Cell)
         {
-            Console.WriteLine(string.Format("The cell {0} has already filled. /n Please select another cell", i_Cell));
+            Console.WriteLine(string.Format("The cell ({0}, {1}) has already filled. /n Please select another cell ", i_Cell.row, i_Cell.column));
         }
 
 
@@ -190,7 +190,7 @@ namespace B21_Ex02
             bool isValidInput = false;
             bool isPlayerQuit = false;
             string userInputCell = "";
-            int playerNumber = m_Game.PlayedLast + 1;
+            int playerNumber = m_Game.CurrentPlaying;
 
             string[] inputAfterSplit = new string[2];
             byte x, y;
@@ -213,7 +213,6 @@ namespace B21_Ex02
                     break;
                 }
               
-
                 if(userInputCell.Length != 3)
                 {
                     Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
@@ -229,6 +228,8 @@ namespace B21_Ex02
                     else
                     {
                         inputAfterSplit = userInputCell.Split(" ");
+                       
+                        //if(inputAfterSplit[0] < "3" || inputAfterSplit[0] >)
                         x = byte.Parse(inputAfterSplit[0]);
                         y = byte.Parse(inputAfterSplit[1]);
 
@@ -246,7 +247,7 @@ namespace B21_Ex02
                         {
                             cellToReturn = new Cell(x, y);
 
-                            if (m_Game.IsEmptyCell(cellToReturn))
+                            if (m_Game.IsEmptyCell(new Cell((byte)(cellToReturn.row - 1), (byte)(cellToReturn.column - 1))))
                             {
                                 isValidInput = true;
                                 break;
@@ -262,14 +263,17 @@ namespace B21_Ex02
                 }
             }
 
-            //TODO
-            if (isValidInput)
-            {
-                Console.Clear(); //TODO: change according to the assignment
-            }
+            //TODO  
+            Console.Clear(); //TODO: change according to the assignment
+
 
             /*If the user cheese to quit - return (254, 254)
-            * else, return the user choice */            
+            * else, return the user choice */
+            if (!isPlayerQuit)
+            {
+                cellToReturn = new Cell((byte)(cellToReturn.row - 1), (byte)(cellToReturn.column - 1));
+            }
+            
             return cellToReturn;
         }
 
@@ -343,7 +347,7 @@ namespace B21_Ex02
                          *Eithan: if the user choose: `1 1` i.e.(1,1) -> it fills the (1,1) cell in the `drowingBoard`!
                          *!!!!!!!!!!!!!!!!!!!
                          */
-                        Console.Write(m_Game.Board[row, col]);
+                        Console.Write(m_Game.Board[row-1, col-1]);
                         Console.Write("   |   ");
                     }
                 }
