@@ -228,12 +228,19 @@ namespace B21_Ex02
                     else
                     {
                         inputAfterSplit = userInputCell.Split(" ");
-                       
-                        //if(inputAfterSplit[0] < "3" || inputAfterSplit[0] >)
-                        x = byte.Parse(inputAfterSplit[0]);
-                        y = byte.Parse(inputAfterSplit[1]);
 
-                        if (x < 0 || x > m_Game.BoardSize)
+                        bool parseSuccessX = false;
+                        bool parseSuccessY = false;
+
+                        parseSuccessX = Byte.TryParse(inputAfterSplit[0], out x);
+                        parseSuccessY = Byte.TryParse(inputAfterSplit[1], out y);
+
+                        if(!parseSuccessX || !parseSuccessY)
+                        {
+                            Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
+                        }
+
+                        else if (x < 0 || x > m_Game.BoardSize)
                         {
                             Console.WriteLine(string.Format(invalidMsg, m_Game.BoardSize));
                         }
