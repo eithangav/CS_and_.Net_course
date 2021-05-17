@@ -289,6 +289,7 @@ namespace B21_Ex02
         }
 
         
+        //Quit game message
         public void QuitMsg()
         {
             string quitStr = "Player {0} Quit the game.";
