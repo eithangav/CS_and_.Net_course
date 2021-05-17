@@ -303,7 +303,6 @@ namespace B21_Ex02
         {
             string quitStr = "Player {0} Quit the game.";
             Console.WriteLine(string.Format(quitStr, m_Game.CurrentPlaying));
-
         }
 
 
