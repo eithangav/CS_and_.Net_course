@@ -169,7 +169,7 @@ namespace B21_Ex02
 
             if(isPlayAgain)
             {
-                Console.Clear();
+                Ex02.ConsoleUtils.Screen.Clear();
             }
 
             return isPlayAgain;
@@ -270,9 +270,7 @@ namespace B21_Ex02
                 }
             }
 
-            //TODO  
-            Console.Clear(); //TODO: change according to the assignment
-
+            Ex02.ConsoleUtils.Screen.Clear();
 
             /*If the user cheese to quit - return (254, 254)
             * else, return the user choice */
@@ -292,7 +290,7 @@ namespace B21_Ex02
 
             if (i_QuitChar == "Q" || i_QuitChar == "q")
             {
-                Console.Clear();
+                Ex02.ConsoleUtils.Screen.Clear();
                 isPlayerQuit = true;
             }
 
@@ -305,7 +303,6 @@ namespace B21_Ex02
         {
             string quitStr = "Player {0} Quit the game.";
             Console.WriteLine(string.Format(quitStr, m_Game.CurrentPlaying));
-
         }
 
 
