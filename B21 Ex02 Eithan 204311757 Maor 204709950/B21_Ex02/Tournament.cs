@@ -39,9 +39,10 @@ namespace B21_Ex02
 
             while(roundResult == 0)
             {
-                m_GameUI.PrintBoard(m_Game.Board);
                 usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
                 roundResult = m_Game.PlayerMove(usersChoice);
+                m_GameUI.PrintBoard(m_Game.Board);
+              
             }
 
             gameEnd(roundResult);
@@ -52,7 +53,7 @@ namespace B21_Ex02
         {
             if(i_GameResult == 4)
             {
-                m_Game.QuitMsg();
+                m_GameUI.QuitMsg();
             }
             else if (i_GameResult == 3)
             {

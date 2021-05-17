@@ -152,13 +152,13 @@ namespace B21_Ex02
                     //a row sequence braker was found
                     rowSequence = false;
                 }
-                if(isOnMainDiagonal && m_Board[i, i] != currentSign)    
+                if(!isOnMainDiagonal || (isOnMainDiagonal && m_Board[i, i] != currentSign))    
                 {
                     /* either the cell is not on the main diagonal
                      * or a main diagonal sequence braker was found */
                     mainDiagonalSequence = false;
                 }
-                if(isOnAntiDiagonal && m_Board[i, m_BoardSize - i - 1] != currentSign)
+                if(!isOnAntiDiagonal || (isOnAntiDiagonal && m_Board[i, m_BoardSize - i - 1] != currentSign))
                 {
                     /* either the cell is not on the anti-diagonal
                      * or an anti-diagonal sequence braker was found */
