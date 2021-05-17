@@ -42,7 +42,6 @@ namespace B21_Ex02
                 usersChoice = m_GameUI.InsertNextPlayerMoveMsg();
                 roundResult = m_Game.PlayerMove(usersChoice);
                 m_GameUI.PrintBoard(m_Game.Board);
-              
             }
 
             gameEnd(roundResult);

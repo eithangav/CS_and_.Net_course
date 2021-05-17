@@ -350,10 +350,7 @@ namespace B21_Ex02
 
                     else if (row > 0)
                     {
-                        /*TODO:
-                         *Eithan: if the user choose: `1 1` i.e.(1,1) -> it fills the (1,1) cell in the `drowingBoard`!
-                         *!!!!!!!!!!!!!!!!!!!
-                         */
+
                         Console.Write(m_Game.Board[row-1, col-1]);
                         Console.Write("   |   ");
                     }
