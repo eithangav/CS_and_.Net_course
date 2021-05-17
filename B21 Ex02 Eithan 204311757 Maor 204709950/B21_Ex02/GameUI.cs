@@ -359,7 +359,7 @@ namespace B21_Ex02
                          *Eithan: if the user choose: `1 1` i.e.(1,1) -> it fills the (1,1) cell in the `drowingBoard`!
                          *!!!!!!!!!!!!!!!!!!!
                          */
-                        Console.Write(drowingBoard[row, col]);
+                        Console.Write(m_Game.Board[row, col]);
                         Console.Write("   |   ");
                     }
                 }
