@@ -255,6 +255,4 @@ namespace B21_Ex02
             return sign;
         }
     }
-
-    
 }
