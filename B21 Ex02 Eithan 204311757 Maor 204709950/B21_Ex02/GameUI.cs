@@ -188,12 +188,13 @@ namespace B21_Ex02
         public Cell InsertNextPlayerMoveMsg()
         {
             bool isValidInput = false;
+            bool isPlayerQuit = false;
             string userInputCell = "";
             int playerNumber = m_Game.PlayedLast + 1;
 
             string[] inputAfterSplit = new string[2];
             byte x, y;
-            Cell cellToReturn = new Cell(255, 255);
+            Cell cellToReturn = new Cell(254, 254); //Initialize cell value to 'quit'
 
             string insertValueMsg = "Player {0}, insert desired cell values in range 1 : {1} (format: number space number. Example: `1 3`)";
             string invalidMsg = "Invalid input. Insert desired cell values in range 1 : {0} format: `number space number`. Example: `1 3`";
@@ -204,6 +205,14 @@ namespace B21_Ex02
             {
                 userInputCell = Console.ReadLine();
 
+                //Checks if the user cheese to quit
+                isPlayerQuit = isQuit(userInputCell);
+                if (isPlayerQuit)
+                {
+                    isValidInput = true;
+                    break;
+                }
+              
 
                 if(userInputCell.Length != 3)
                 {
@@ -259,61 +268,36 @@ namespace B21_Ex02
                 Console.Clear(); //TODO: change according to the assignment
             }
 
+            /*If the user cheese to quit - return (254, 254)
+            * else, return the user choice */            
             return cellToReturn;
         }
 
 
-        private void isQuit(char i_QuitChar) 
+        //Checks if the user chose to quit.
+        private bool isQuit(string i_QuitChar)
         {
-            string userCoice;
-            bool isValidInput = false;
-            bool isNewGame = false;
+            bool isPlayerQuit = false;
 
-            string quitStr = "Player {0} Quit the game.";
-            string newGameUserChoiceStr = "Would you like to play a new game? (Y/N)";
-            string inValidInputStr = "Invalid input. Would you like to play a new game?";
-
-            if (i_QuitChar == 'Q' || i_QuitChar == 'q')
+            if (i_QuitChar == "Q" || i_QuitChar == "q")
             {
                 Console.Clear();
-                Console.WriteLine(string.Format(quitStr, m_Game.PlayedLast));
-
-                Console.WriteLine(newGameUserChoiceStr);
-                while (!isValidInput)
-                {
-                    userCoice = Console.ReadLine();
-
-                    if(userCoice.Length != 1)
-                    {
-                        Console.WriteLine(inValidInputStr);
-                    }
-                    else if(userCoice.ToLower()[0] == 'y')
-                    {
-                        isValidInput = true;
-                        isNewGame = true;
-                    }
-                    else if (userCoice.ToLower()[0] == 'n')
-                    {
-                        isValidInput = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine(inValidInputStr);
-                    }
-                }
-
-                /*TODO:
-                 *How to run a new game from GameUI?? 
-                 */
-                if (isNewGame)
-                {
-
-                }
-
-
+                isPlayerQuit = true;
             }
+
+            return isPlayerQuit;  
         }
-  
+
+        
+        //Quit game message
+        public void QuitMsg()
+        {
+            string quitStr = "Player {0} Quit the game.";
+            Console.WriteLine(string.Format(quitStr, m_Game.CurrentPlaying));
+
+        }
+
+
         /*Prints the Board*/
         public void PrintBoard(char[,] m_GameBord)
         {
@@ -359,7 +343,7 @@ namespace B21_Ex02
                          *Eithan: if the user choose: `1 1` i.e.(1,1) -> it fills the (1,1) cell in the `drowingBoard`!
                          *!!!!!!!!!!!!!!!!!!!
                          */
-                        Console.Write(drowingBoard[row, col]);
+                        Console.Write(m_Game.Board[row, col]);
                         Console.Write("   |   ");
                     }
                 }
