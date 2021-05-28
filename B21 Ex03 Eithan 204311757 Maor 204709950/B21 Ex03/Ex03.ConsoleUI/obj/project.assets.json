@@ -1,45 +1,31 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
-      "Ex03.GarageLogic/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/Ex03.GarageLogic.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Ex03.GarageLogic.dll": {}
-        }
-      }
-    }
+    ".NETCoreApp,Version=v3.1": {}
   },
-  "libraries": {
-    "Ex03.GarageLogic/1.0.0": {
-      "type": "project",
-      "path": "../Ex03.GarageLogic/Ex03.GarageLogic.csproj",
-      "msbuildProject": "../Ex03.GarageLogic/Ex03.GarageLogic.csproj"
-    }
-  },
+  "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": [
-      "Ex03.GarageLogic >= 1.0.0"
-    ]
+    ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\maors\\.nuget\\packages\\": {}
+    "C:\\Users\\Eitan Gavrieli\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj",
+      "projectUniqueName": "C:\\Users\\Eitan Gavrieli\\VisualStudio source\\repos\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj",
       "projectName": "Ex03.ConsoleUI",
-      "projectPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj",
-      "packagesPath": "C:\\Users\\maors\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.ConsoleUI\\obj\\",
+      "projectPath": "C:\\Users\\Eitan Gavrieli\\VisualStudio source\\repos\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.ConsoleUI\\Ex03.ConsoleUI.csproj",
+      "packagesPath": "C:\\Users\\Eitan Gavrieli\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Eitan Gavrieli\\VisualStudio source\\repos\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.ConsoleUI\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\maors\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Eitan Gavrieli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -52,11 +38,7 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {
-            "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj": {
-              "projectPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -83,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
