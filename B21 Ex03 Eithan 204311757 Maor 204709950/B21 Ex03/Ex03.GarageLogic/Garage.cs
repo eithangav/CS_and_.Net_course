@@ -117,6 +117,7 @@ namespace Ex03.GarageLogic
             return platesId;
         }
 
+
         //Change the vehicle state in the garage
         public void CangeVehicleState(string i_PlateId, VehicleStatus i_vehicleStatus)
         {
@@ -136,18 +137,49 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void InflateWhells(string i_PlateId) 
+
+        //Inflate wheel pressure in the specified vehicle in the garage
+        public void InflateWheels(string i_PlateId) 
         {
             try
             {
                 if (m_Customers.ContainsKey(i_PlateId))
                 {
                     List<Vehicle.Wheel> m_Wheels =  m_Customers[i_PlateId].Vevicle.Wheels;
+
                     foreach(var wheel in m_Wheels)
                     {
                         wheel.Inflate(wheel.MissingAirPressure);
                     }
                 }
+            }
+            catch(KeyNotFoundException e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+
+                throw new KeyNotFoundException(string.Format("key plateId {0} not found", i_PlateId));
+
+            }
+        }
+
+
+        //Refuel gas tank in the specified vehicle in the garage
+        public void Refuel(string i_PlateId, GasType i_GasType, float i_Liters)
+        {
+            try
+            {
+                if (m_Customers.ContainsKey(i_PlateId))
+                {
+                    m_Customers[i_PlateId].Vevicle;
+
+                }
+            }
+            catch (KeyNotFoundException e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+
+                throw new KeyNotFoundException(string.Format("key plateId {0} not found", i_PlateId));
+
             }
         }
     }
