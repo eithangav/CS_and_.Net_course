@@ -6,6 +6,12 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
+        private Dictionary<string, Customer> m_Customers;
+
+        public Garage()
+        {
+            m_Customers = null;
+        }
     }
 
     public enum VehicleStatus
