@@ -6,10 +6,10 @@ namespace Ex03.GarageLogic
 {
     interface IGasVehicle
     {
-        public void Refuel(byte i_Liters, GasType i_GasType);
+        public void Refuel(float i_Liters, GasType i_GasType);
         public GasType GasType { get; }
-        public float EnergyLeft { get; }
-        public float MaxEnergy { get; }
+        public float FuelLeft { get; }
+        public float MaxFuel { get; }
     }
 
     public enum GasType
