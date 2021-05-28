@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21_Ex03\\B21_Ex03.csproj",
-      "projectName": "B21_Ex03",
-      "projectPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21_Ex03\\B21_Ex03.csproj",
+      "projectUniqueName": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj",
+      "projectName": "Ex03.GarageLogic",
+      "projectPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj",
       "packagesPath": "C:\\Users\\maors\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21_Ex03\\obj\\",
+      "outputPath": "C:\\Users\\maors\\OneDrive\\שולחן העבודה\\maor\\לימודים\\מדמח יזמות\\שנה ג\\סמסטר ב\\מדמח\\C#\\שיעורי בית\\Git\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\maors\\AppData\\Roaming\\NuGet\\NuGet.Config",
