@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace B21_Ex03
+namespace Ex03.ConsoleUI
 {
     class Program
     {
