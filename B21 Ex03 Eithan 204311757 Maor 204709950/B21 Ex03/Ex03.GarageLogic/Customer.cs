@@ -54,7 +54,7 @@ namespace Ex03.GarageLogic
         }
 
         //Properties to get the customer's vehicle object
-        public Vehicle Vevicle
+        public Vehicle Vehicle
         {
             get
             {
