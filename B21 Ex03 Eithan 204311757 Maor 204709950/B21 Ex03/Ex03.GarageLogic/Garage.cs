@@ -166,14 +166,31 @@ namespace Ex03.GarageLogic
         //Refuel gas tank in the specified vehicle in the garage
         public void Refuel(string i_PlateId, GasType i_GasType, float i_Liters)
         {
+            Vehicle vehivleToRefuel;
+
             try
             {
+                //TODO//////////////////
+
                 if (m_Customers.ContainsKey(i_PlateId))
                 {
-                    m_Customers[i_PlateId].Vevicle;
+                    vehivleToRefuel = m_Customers[i_PlateId].Vehicle;
+
+                    if (vehivleToRefuel is GasCar)
+                    {
+                        vehivleToRefuel = (GasCar)(vehivleToRefuel);
+                        {
+
+                        }
+                    }
+                    else if (vehivleToRefuel is Truck)
+                    {
+
+                    }
 
                 }
             }
+
             catch (KeyNotFoundException e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
@@ -182,12 +199,25 @@ namespace Ex03.GarageLogic
 
             }
         }
-    }
+
+
+        //Charges specified lectric vehicle in the garage
+        public void ChargeBattery(string i_PlateId, GasType i_GasType, float i_Liters)
+        {
+            //TODO:
+        }
+
+
+        //Retuens the specified vehicle details
+        public void GetVehicleDetels(string i_PlateId, GasType i_GasType, float i_Liters)
+        {
+            //TODO:
+        }
 
 
 
 
-    public enum VehicleStatus
+        public enum VehicleStatus
     {
         InProgress,
         Done,
