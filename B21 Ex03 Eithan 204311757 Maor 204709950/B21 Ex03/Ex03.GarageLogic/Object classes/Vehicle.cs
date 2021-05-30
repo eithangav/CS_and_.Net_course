@@ -69,15 +69,16 @@ namespace Ex03.GarageLogic
                 m_MaxAirPressure = i_MaxAirPressure;
             }
 
+            // Throws ValueOutOfRangeException
             public void Inflate(float i_AirToInflate)
             {
-                if(i_AirToInflate <= m_MaxAirPressure - m_CurrentAirPressure)
+                if(i_AirToInflate <= m_MaxAirPressure - m_CurrentAirPressure && i_AirToInflate >= 0)
                 {
                     m_CurrentAirPressure += i_AirToInflate;
                 }
                 else
                 {
-                    //TO DO: throw ValueOutOfRangeException
+                    throw new ValueOutOfRangeException(0, m_MaxAirPressure - m_CurrentAirPressure);
                 }
             }
 
@@ -104,6 +105,6 @@ namespace Ex03.GarageLogic
                     return m_Manufacturer;
                 }
             }
-        }
+        }s
     }
 }
