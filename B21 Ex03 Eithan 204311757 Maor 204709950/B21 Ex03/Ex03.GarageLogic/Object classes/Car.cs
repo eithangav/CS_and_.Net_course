@@ -32,20 +32,4 @@ namespace Ex03.GarageLogic
             }
         }
     }
-
-    public enum NumOfDoors
-    {
-        Two,
-        Three,
-        Four,
-        Five
-    }
-
-    public enum Color
-    {
-        Red,
-        Silver,
-        White,
-        Black
-    }
 }

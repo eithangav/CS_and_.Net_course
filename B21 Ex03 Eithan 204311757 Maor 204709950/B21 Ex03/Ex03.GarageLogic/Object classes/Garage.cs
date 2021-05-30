@@ -9,8 +9,8 @@ namespace Ex03.GarageLogic
         private Dictionary<string, Customer> m_Customers;
 
         //TODO: GarageUi need to clear the list every iteration
-        public static List<Vehicle.Wheel> wheels = new List<Vehicle.Wheel>(); 
-        
+        public static List<Vehicle.Wheel> wheels = new List<Vehicle.Wheel>();
+
 
         public Garage()
         {
@@ -20,31 +20,31 @@ namespace Ex03.GarageLogic
         //TODO:
         //1. Update diagram
         //2. COnstructors of all vehicles types
-        
+
         //Creates a new Customer
         private Customer createNewCusromer(string i_CostumerName, string i_CostumerPhone, Vehicle i_Vehicle)
         {
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, i_Vehicle);
             return newCustomer;
-        } 
+        }
 
         //Creates new Wheel
         public Vehicle.Wheel CreateWheel(string i_Manufacture, float i_CurrentPressure, float i_MaxPresxure)
         {
             Vehicle.Wheel newWheel = new Vehicle.Wheel(i_Manufacture, i_CurrentPressure, i_MaxPresxure);
-            return newWheel; 
+            return newWheel;
         }
 
 
         //Insert new gas car to the garage
-        public void InsertGasCar(string i_CostumerName, string i_CostumerPhone, string i_Model, 
-            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, Color i_color, 
+        public void InsertGasCar(string i_CostumerName, string i_CostumerPhone, string i_Model,
+            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, Color i_color,
             NumOfDoors i_NumOfDoors)
         {
             GasCar newGasCar = new GasCar(i_Model, i_PlateID, i_EnergyLeft, i_wheels, i_color, i_NumOfDoors);
-           
+
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasCar);
-            
+
             m_Customers.Add(i_PlateID, newCustomer);
         }
 
@@ -108,8 +108,8 @@ namespace Ex03.GarageLogic
         public List<string> GetPlatesId()
         {
             List<string> platesId = new List<string>();
-            
-            foreach(var item in m_Customers)
+
+            foreach (var item in m_Customers)
             {
                 platesId.Add(item.Key);
             }
@@ -129,7 +129,7 @@ namespace Ex03.GarageLogic
                 }
             }
 
-            catch(KeyNotFoundException e)
+            catch (KeyNotFoundException e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
 
@@ -139,21 +139,21 @@ namespace Ex03.GarageLogic
 
 
         //Inflate wheel pressure in the specified vehicle in the garage
-        public void InflateWheels(string i_PlateId) 
+        public void InflateWheels(string i_PlateId)
         {
             try
             {
                 if (m_Customers.ContainsKey(i_PlateId))
                 {
-                    List<Vehicle.Wheel> m_Wheels =  m_Customers[i_PlateId].Vevicle.Wheels;
+                    List<Vehicle.Wheel> m_Wheels = m_Customers[i_PlateId].Vevicle.Wheels;
 
-                    foreach(var wheel in m_Wheels)
+                    foreach (var wheel in m_Wheels)
                     {
                         wheel.Inflate(wheel.MissingAirPressure);
                     }
                 }
             }
-            catch(KeyNotFoundException e)
+            catch (KeyNotFoundException e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
 
@@ -213,16 +213,5 @@ namespace Ex03.GarageLogic
         {
             //TODO:
         }
-
-
-
-
-        public enum VehicleStatus
-    {
-        InProgress,
-        Done,
-        Payed
     }
-
-
 }

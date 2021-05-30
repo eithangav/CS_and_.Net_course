@@ -11,12 +11,4 @@ namespace Ex03.GarageLogic
         public float FuelLeft { get; }
         public float MaxFuel { get; }
     }
-
-    public enum GasType
-    {
-        Octan98,
-        Octan96,
-        Octan95,
-        Soler
-    }
 }
