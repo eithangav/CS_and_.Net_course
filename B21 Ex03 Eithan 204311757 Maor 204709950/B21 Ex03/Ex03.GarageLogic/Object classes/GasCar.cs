@@ -18,15 +18,20 @@ namespace Ex03.GarageLogic
             m_MaxFuel = i_MaxFuel;
         }
 
+        // Throws ArgumentException and ValueOutOfRangeException
         public void Refuel(float i_Liters, GasType i_GasType)
         {
-            if (i_GasType == m_GasType && i_Liters <= m_MaxFuel - m_FuelLeft)
+            if (i_GasType == m_GasType && i_Liters <= m_MaxFuel - m_FuelLeft && i_Liters >= 0)
             {
                 m_FuelLeft += i_Liters;
             }
+            else if (i_GasType != m_GasType)
+            {
+                throw new ArgumentException();
+            }
             else
             {
-                // TO DO: throw exceptions (wrong gas type / too much fuel)
+                throw new ValueOutOfRangeException(0, m_MaxFuel - m_FuelLeft);
             }
         }
 
