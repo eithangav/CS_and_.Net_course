@@ -105,6 +105,7 @@ namespace Ex03.GarageLogic
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newTruck);
 
             m_Customers.Add(i_PlateID, newCustomer);
+            
 
         }
         //end of TODO: update Diagram
@@ -137,6 +138,7 @@ namespace Ex03.GarageLogic
 
         //Inflate wheel pressure in the specified vehicle in the garage
         //Throws KeyNotFoundException
+        //Throws FormatException
         public void InflateWheels(string i_PlateId)
         {    
             if (m_Customers.ContainsKey(i_PlateId))
@@ -147,12 +149,13 @@ namespace Ex03.GarageLogic
                 {
                     wheel.Inflate(wheel.MissingAirPressure);
                 }
-            } 
+            }          
         }
 
 
         //Refuel gas tank in the specified vehicle in the garage
         //Throws KeyNotFoundException
+        //Throws FormatException
         public void Refuel(string i_PlateId, GasType i_GasType, float i_Liters)
         {
             Vehicle vehivleToRefuel;
@@ -175,11 +178,13 @@ namespace Ex03.GarageLogic
 
                 }
             }
+            
         }
 
 
         //Charges specified lectric vehicle in the garage
         //Throws KeyNotFoundException
+        //Throws FormatException
         public void ChargeBattery(string i_PlateId, GasType i_GasType, float i_Liters)
         {
             //TODO:
@@ -188,9 +193,12 @@ namespace Ex03.GarageLogic
 
         //Retuens the specified vehicle details
         //Throws KeyNotFoundException
-        public void GetVehicleDetels(string i_PlateId, GasType i_GasType, float i_Liters)
+        //Throws FormatException
+        public Vehicle GetVehicleDetels(string i_PlateId)
         {
             //TODO:
+            Customer VehicleOwner = m_Customers[i_PlateId];
+            return VehicleOwner.Vehicle;
         }
     }
 }
