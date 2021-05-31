@@ -4,6 +4,15 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
+    /**
+     format exception - invalid argument using if
+     argument exception - invalid argument using if
+    */
+
+
+    //TODO:
+    //1. Update diagram
+
     public class Garage
     {
         private Dictionary<string, Customer> m_Customers;
@@ -17,16 +26,13 @@ namespace Ex03.GarageLogic
             m_Customers = null;
         }
 
-        //TODO:
-        //1. Update diagram
-        //2. COnstructors of all vehicles types
 
-        //Creates a new Customer
+/*        //Creates a new Customer
         private Customer createNewCusromer(string i_CostumerName, string i_CostumerPhone, Vehicle i_Vehicle)
         {
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, i_Vehicle);
             return newCustomer;
-        }
+        }*/
 
         //Creates new Wheel
         public Vehicle.Wheel CreateWheel(string i_Manufacture, float i_CurrentPressure, float i_MaxPresxure)
@@ -37,11 +43,11 @@ namespace Ex03.GarageLogic
 
 
         //Insert new gas car to the garage
-        public void InsertGasCar(string i_CostumerName, string i_CostumerPhone, string i_Model,
-            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, Color i_color,
-            NumOfDoors i_NumOfDoors)
+        //Throws ArgumentException
+        public void InsertGasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType,
+            float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            GasCar newGasCar = new GasCar(i_Model, i_PlateID, i_EnergyLeft, i_wheels, i_color, i_NumOfDoors);
+            GasCar newGasCar = new GasCar(i_Model, i_PlateID, i_Color, i_NumOfDoors, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
 
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasCar);
 
@@ -50,11 +56,11 @@ namespace Ex03.GarageLogic
 
 
         //Insert new electric car to the garage
-        public void InsertElectricCar(string i_CostumerName, string i_CostumerPhone, string i_Model,
-            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, Color i_color,
-            NumOfDoors i_NumOfDoors)
+        //Throws ArgumentException
+        public void InsertElectricCar(string i_Model, string i_PlateID, Color i_color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime, 
+            string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, float i_EnergyLeft, string i_CostumerName, string i_CostumerPhone)
         {
-            GasCar newElectricCar = new ElectricCar(i_Model, i_PlateID, i_EnergyLeft, i_wheels, i_color, i_NumOfDoors);
+            ElectricCar newElectricCar = new ElectricCar(i_Model, i_PlateID, i_color, i_NumOfDoors, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
 
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricCar);
 
@@ -63,11 +69,11 @@ namespace Ex03.GarageLogic
 
 
         //Insert new electric motorcycle to the garage
-        public void InsertElectricMotorcycle(string i_CostumerName, string i_CostumerPhone, string i_Model,
-            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, LicenseType i_LicenseType,
-            int i_EngineCapacity)
+        //Throws ArgumentException
+        public void InsertElectricMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity,
+            float i_BatteryLeft, float i_MaxBateryTime, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            ElectricMotorcycle newElectricMotorcycle = new ElectricMotorcycle(i_Model, i_PlateID, i_EnergyLeft, i_wheels, i_LicenseType, i_EngineCapacity);
+            ElectricMotorcycle newElectricMotorcycle = new ElectricMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
 
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricMotorcycle);
 
@@ -75,13 +81,12 @@ namespace Ex03.GarageLogic
         }
 
 
-
         //Insert new gas motorcycle to the garage
-        public void InsertGascMotorcycle(string i_CostumerName, string i_CostumerPhone, string i_Model,
-            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, LicenseType i_LicenseType,
-            int i_EngineCapacity)
+        //Throws ArgumentException
+        public void InsertGascMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, GasType i_GasType,
+            float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            GasMotorcycle newGasMotorcycle = new GasMotorcycle(i_Model, i_PlateID, i_EnergyLeft, i_wheels, i_LicenseType, i_EngineCapacity);
+            GasMotorcycle newGasMotorcycle = new GasMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
 
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasMotorcycle);
 
@@ -91,10 +96,11 @@ namespace Ex03.GarageLogic
 
 
         //Insert new truck to the garage
-        public void InsertTruck(string i_CostumerName, string i_CostumerPhone, string i_Model,
-            string i_PlateID, float i_EnergyLeft, List<Vehicle.Wheel> i_wheels, bool i_ContainCimicals, float i_MaxCargoWeight)
+        //Throws ArgumentException
+        public void InsertTruck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType,
+            float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            Truck newTruck = new Truck(i_Model, i_PlateID, i_EnergyLeft, i_EnergyLeft, i_wheels, i_ContainCimicals, i_MaxCargoWeight);
+            Truck newTruck = new Truck(i_Model, i_PlateID, i_ContainsCimicals, i_MaxCargoWeight, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
 
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newTruck);
 
@@ -119,89 +125,61 @@ namespace Ex03.GarageLogic
 
 
         //Change the vehicle state in the garage
+        //Throws KeyNotFoundException
         public void CangeVehicleState(string i_PlateId, VehicleStatus i_vehicleStatus)
         {
-            try
+            if (m_Customers.ContainsKey(i_PlateId))
             {
-                if (m_Customers.ContainsKey(i_PlateId))
-                {
-                    m_Customers[i_PlateId].VehicleStatus = i_vehicleStatus;
-                }
-            }
-
-            catch (KeyNotFoundException e)
-            {
-                Console.WriteLine(e.StackTrace.ToString());
-
-                throw new KeyNotFoundException(string.Format("key plateId {0} not found", i_PlateId));
+                m_Customers[i_PlateId].VehicleStatus = i_vehicleStatus;
             }
         }
 
 
         //Inflate wheel pressure in the specified vehicle in the garage
+        //Throws KeyNotFoundException
         public void InflateWheels(string i_PlateId)
-        {
-            try
+        {    
+            if (m_Customers.ContainsKey(i_PlateId))
             {
-                if (m_Customers.ContainsKey(i_PlateId))
+                List<Vehicle.Wheel> m_Wheels = m_Customers[i_PlateId].Vehicle.Wheels;
+
+                foreach (var wheel in m_Wheels)
                 {
-                    List<Vehicle.Wheel> m_Wheels = m_Customers[i_PlateId].Vevicle.Wheels;
-
-                    foreach (var wheel in m_Wheels)
-                    {
-                        wheel.Inflate(wheel.MissingAirPressure);
-                    }
+                    wheel.Inflate(wheel.MissingAirPressure);
                 }
-            }
-            catch (KeyNotFoundException e)
-            {
-                Console.WriteLine(e.StackTrace.ToString());
-
-                throw new KeyNotFoundException(string.Format("key plateId {0} not found", i_PlateId));
-
-            }
+            } 
         }
 
 
         //Refuel gas tank in the specified vehicle in the garage
+        //Throws KeyNotFoundException
         public void Refuel(string i_PlateId, GasType i_GasType, float i_Liters)
         {
             Vehicle vehivleToRefuel;
 
-            try
-            {
                 //TODO//////////////////
 
-                if (m_Customers.ContainsKey(i_PlateId))
+            if (m_Customers.ContainsKey(i_PlateId))
+            {
+                vehivleToRefuel = m_Customers[i_PlateId].Vehicle;
+
+                if (vehivleToRefuel is GasCar)
                 {
-                    vehivleToRefuel = m_Customers[i_PlateId].Vehicle;
-
-                    if (vehivleToRefuel is GasCar)
-                    {
-                        vehivleToRefuel = (GasCar)(vehivleToRefuel);
-                        {
-
-                        }
-                    }
-                    else if (vehivleToRefuel is Truck)
+                    vehivleToRefuel = (GasCar)(vehivleToRefuel);
                     {
 
                     }
+                }
+                else if (vehivleToRefuel is Truck)
+                {
 
                 }
-            }
-
-            catch (KeyNotFoundException e)
-            {
-                Console.WriteLine(e.StackTrace.ToString());
-
-                throw new KeyNotFoundException(string.Format("key plateId {0} not found", i_PlateId));
-
             }
         }
 
 
         //Charges specified lectric vehicle in the garage
+        //Throws KeyNotFoundException
         public void ChargeBattery(string i_PlateId, GasType i_GasType, float i_Liters)
         {
             //TODO:
@@ -209,6 +187,7 @@ namespace Ex03.GarageLogic
 
 
         //Retuens the specified vehicle details
+        //Throws KeyNotFoundException
         public void GetVehicleDetels(string i_PlateId, GasType i_GasType, float i_Liters)
         {
             //TODO:

@@ -6,6 +6,9 @@ namespace Ex03.GarageLogic
 {
     public class ValueOutOfRangeException: Exception
     {
+        //format exception - invalid argument using if
+        //argument exception - invalid argument using if
+
         private float m_MinValue;
         private float m_MaxValue;
 
