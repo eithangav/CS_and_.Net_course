@@ -10,8 +10,10 @@ namespace Ex03.GarageLogic
         private float m_FuelLeft;
         private float m_MaxFuel;
 
-        public GasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType, float i_FuelLeft, float i_MaxFuel) :
-            base(i_Model, i_PlateID, (i_FuelLeft / i_MaxFuel) * 100, i_Color, i_NumOfDoors)
+        public GasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType, 
+            float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
+            base(i_Model, i_PlateID, (i_FuelLeft / i_MaxFuel) * 100, i_Color, i_NumOfDoors,
+                i_WheelsManufacturers, i_WheelsCurrentAirPressures)
         {
             m_GasType = i_GasType;
             m_FuelLeft = i_FuelLeft;

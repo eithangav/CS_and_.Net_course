@@ -9,8 +9,10 @@ namespace Ex03.GarageLogic
         private float m_BatteryLeft;
         private float m_MaxBatteryTime;
 
-        public ElectricCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime):
-            base(i_Model, i_PlateID, (i_BatteryLeft / i_MaxBateryTime) * 100, i_Color, i_NumOfDoors)
+        public ElectricCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime,
+            string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
+            base(i_Model, i_PlateID, (i_BatteryLeft / i_MaxBateryTime) * 100, i_Color, i_NumOfDoors, 
+                i_WheelsManufacturers, i_WheelsCurrentAirPressures)
         {
             m_BatteryLeft = i_BatteryLeft;
             m_MaxBatteryTime = i_MaxBateryTime;

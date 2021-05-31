@@ -24,6 +24,40 @@ namespace Ex03.GarageLogic
             return i_Vehicle.PlateID == this.m_PlateID;
         }
 
+        // Throws ArgumentException
+        public void SetWheels(byte i_NumOfWheels, string[] i_Manufacturers, float[] i_CurrentAirPressures, float i_MaxAirPressure)
+        {
+            bool arraysLengthValid = i_NumOfWheels == i_Manufacturers.Length && i_NumOfWheels == i_CurrentAirPressures.Length;
+            bool arraysContentValid = true;
+
+            if (arraysLengthValid)
+            {
+                // Validate arrays' content
+                for (int i = 0; i < i_NumOfWheels; i++)
+                {
+                    if (i_CurrentAirPressures[i] < 0 || i_CurrentAirPressures[i] > i_MaxAirPressure || i_Manufacturers[i] == "")
+                    {
+                        arraysContentValid = false;
+                        break;
+                    }
+                }
+
+                if (arraysContentValid)
+                {
+                    m_Wheels.Clear();
+
+                    for (int i = 0; i < i_NumOfWheels; i++)
+                    {
+                        m_Wheels.Add(new Wheel(i_Manufacturers[i], i_CurrentAirPressures[i], i_MaxAirPressure));
+                    }
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+        }
+
         public string Model
         {
             get
@@ -105,6 +139,6 @@ namespace Ex03.GarageLogic
                     return m_Manufacturer;
                 }
             }
-        }s
+        }
     }
 }
