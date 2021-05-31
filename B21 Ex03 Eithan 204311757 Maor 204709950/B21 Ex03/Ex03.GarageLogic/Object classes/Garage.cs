@@ -4,11 +4,6 @@ using System.Text;
 
 namespace Ex03.GarageLogic
 {
-    /**
-     format exception - invalid argument using if
-     argument exception - invalid argument using if
-    */
-
 
     //TODO:
     //1. Update diagram
@@ -26,18 +21,13 @@ namespace Ex03.GarageLogic
             m_Customers = null;
         }
 
-
-/*        //Creates a new Customer
-        private Customer createNewCusromer(string i_CostumerName, string i_CostumerPhone, Vehicle i_Vehicle)
-        {
-            Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, i_Vehicle);
-            return newCustomer;
-        }*/
+ 
 
         //Creates new Wheel
         public Vehicle.Wheel CreateWheel(string i_Manufacture, float i_CurrentPressure, float i_MaxPresxure)
         {
             Vehicle.Wheel newWheel = new Vehicle.Wheel(i_Manufacture, i_CurrentPressure, i_MaxPresxure);
+
             return newWheel;
         }
 
@@ -105,9 +95,8 @@ namespace Ex03.GarageLogic
             Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newTruck);
 
             m_Customers.Add(i_PlateID, newCustomer);
-            
-
         }
+
         //end of TODO: update Diagram
 
 
@@ -116,29 +105,35 @@ namespace Ex03.GarageLogic
         {
             List<string> platesId = new List<string>();
 
-            foreach (var item in m_Customers)
+            if(m_Customers.Count > 0)
             {
-                platesId.Add(item.Key);
+                foreach (var item in m_Customers)
+                {
+                    platesId.Add(item.Key);
+                }
             }
-
+ 
             return platesId;
         }
 
 
         //Change the vehicle state in the garage
-        //Throws KeyNotFoundException
+        //Throws ArgumentNullException and ArgumentException/FormatException?
         public void CangeVehicleState(string i_PlateId, VehicleStatus i_vehicleStatus)
         {
             if (m_Customers.ContainsKey(i_PlateId))
             {
                 m_Customers[i_PlateId].VehicleStatus = i_vehicleStatus;
             }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
 
         //Inflate wheel pressure in the specified vehicle in the garage
-        //Throws KeyNotFoundException
-        //Throws FormatException
+        //Throws ArgumentNullException and ArgumentException/FormatException?
         public void InflateWheels(string i_PlateId)
         {    
             if (m_Customers.ContainsKey(i_PlateId))
@@ -149,56 +144,116 @@ namespace Ex03.GarageLogic
                 {
                     wheel.Inflate(wheel.MissingAirPressure);
                 }
-            }          
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
 
-        //Refuel gas tank in the specified vehicle in the garage
-        //Throws KeyNotFoundException
-        //Throws FormatException
-        public void Refuel(string i_PlateId, GasType i_GasType, float i_Liters)
+        //return the vehicle object of this plate id
+        //Throw ArgumentNullException if there is'nt a matching vehicle in the garage
+        public Vehicle getVehicleInGarage(string i_PlateId)
         {
-            Vehicle vehivleToRefuel;
-
-                //TODO//////////////////
+            Vehicle m_VehicleToReturn = null;
 
             if (m_Customers.ContainsKey(i_PlateId))
             {
-                vehivleToRefuel = m_Customers[i_PlateId].Vehicle;
+                m_VehicleToReturn = m_Customers[i_PlateId].Vehicle;
 
-                if (vehivleToRefuel is GasCar)
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+
+            return m_VehicleToReturn;
+        }
+
+
+
+        //Refuel gas tank in the specified vehicle in the garage
+        //Throws ArgumentNullException, ArgumentException and FormatException?
+
+        //TODO: Update method name in the Diagram
+        public void RefuelVehicle(string i_PlateId, GasType i_GasType, float i_Liters)
+        {
+            if (m_Customers.ContainsKey(i_PlateId))
+            {
+
+                if (m_Customers[i_PlateId].Vehicle is GasCar m_GasCarToRefuel)
                 {
-                    vehivleToRefuel = (GasCar)(vehivleToRefuel);
-                    {
-
-                    }
+                    m_GasCarToRefuel.Refuel(i_Liters, i_GasType);
                 }
-                else if (vehivleToRefuel is Truck)
+                else if (m_Customers[i_PlateId].Vehicle is GasMotorcycle m_GasMotorcycleToRefuel)
                 {
-
+                    m_GasMotorcycleToRefuel.Refuel(i_Liters, i_GasType);
                 }
+                else if (m_Customers[i_PlateId].Vehicle is Truck m_TruckToRefuel)
+                {
+                    m_TruckToRefuel.Refuel(i_Liters, i_GasType);
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException(); 
             }
             
         }
 
 
-        //Charges specified lectric vehicle in the garage
-        //Throws KeyNotFoundException
-        //Throws FormatException
-        public void ChargeBattery(string i_PlateId, GasType i_GasType, float i_Liters)
+        //Charges specified Electric vehicle in the garage
+        //Throws ArgumentNullException, ArgumentException and FormatException
+        public void ChargeBattery(string i_PlateId, float i_Hours)
         {
-            //TODO:
+            if (m_Customers.ContainsKey(i_PlateId))
+            {
+                if (m_Customers[i_PlateId].Vehicle is ElectricCar m_GasCarToRefuel)
+                {
+                    m_GasCarToRefuel.ChargeBattery(i_Hours);
+                }
+                else if (m_Customers[i_PlateId].Vehicle is ElectricMotorcycle m_GasMotorcycleToRefuel)
+                {
+                    m_GasMotorcycleToRefuel.ChargeBattery(i_Hours);
+                }
+                else
+                {
+                    throw new ArgumentException();
+                }
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
         }
 
 
-        //Retuens the specified vehicle details
-        //Throws KeyNotFoundException
-        //Throws FormatException
+        //Retuens the specified vehicle - GarageUi will iterate over
+        //the returned vehicle and print its details.
+        //Throws ArgumentNullException, ArgumentException and FormatException
         public Vehicle GetVehicleDetels(string i_PlateId)
         {
-            //TODO:
-            Customer VehicleOwner = m_Customers[i_PlateId];
-            return VehicleOwner.Vehicle;
+            if (m_Customers.ContainsKey(i_PlateId))
+            {
+                return m_Customers[i_PlateId].Vehicle;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+        }
+
+        public Dictionary<string, Customer> Customers
+        {
+            get
+            {
+                return m_Customers;
+            }
         }
     }
 }

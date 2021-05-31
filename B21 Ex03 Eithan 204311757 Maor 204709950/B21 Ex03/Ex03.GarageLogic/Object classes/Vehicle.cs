@@ -118,6 +118,23 @@ namespace Ex03.GarageLogic
                 }
             }
 
+            
+            //Sets the air pressure of this whell to maximum
+            public void InflateToMax()
+            {
+                m_CurrentAirPressure = m_MaxAirPressure;
+            }
+
+
+            public float MaxAirPressure
+            {
+                get
+                {
+                    return m_MaxAirPressure;
+                }
+            }
+
+
             public float CurrentAirPressure
             {
                 get

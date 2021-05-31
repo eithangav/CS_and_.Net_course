@@ -12,6 +12,8 @@ namespace Ex03.GarageLogic
         private GasType m_GasType;
         private float m_FuelLeft;
         private float m_MaxFuel;
+        private VehicleType m_vehicleType;
+
 
         // Throws ArgumentException
         public Truck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType, 
@@ -23,6 +25,7 @@ namespace Ex03.GarageLogic
             m_FuelLeft = i_FuelLeft;
             m_MaxFuel = i_MaxFuel;
             m_GasType = i_GasType;
+            m_vehicleType = VehicleType.Truck;
             SetWheels(16, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 26);
         }
 
@@ -80,6 +83,14 @@ namespace Ex03.GarageLogic
             get
             {
                 return m_MaxFuel;
+            }
+        }
+
+        public VehicleType VehicleType
+        {
+            get
+            {
+                return m_vehicleType;
             }
         }
     }

@@ -9,6 +9,8 @@ namespace Ex03.GarageLogic
         private GasType m_GasType;
         private float m_FuelLeft;
         private float m_MaxFuel;
+        private VehicleType m_vehicleType;
+
 
         public GasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType, 
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
@@ -18,6 +20,7 @@ namespace Ex03.GarageLogic
             m_GasType = i_GasType;
             m_FuelLeft = i_FuelLeft;
             m_MaxFuel = i_MaxFuel;
+            m_vehicleType = VehicleType.GasCar;
         }
 
         // Throws ArgumentException and ValueOutOfRangeException
@@ -58,6 +61,14 @@ namespace Ex03.GarageLogic
             get
             {
                 return m_MaxFuel;
+            }
+        }
+
+        public VehicleType VehicleType
+        {
+            get
+            {
+                return m_vehicleType;
             }
         }
     }
