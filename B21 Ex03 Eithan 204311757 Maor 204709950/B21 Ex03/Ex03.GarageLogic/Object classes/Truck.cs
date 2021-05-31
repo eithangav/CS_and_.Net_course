@@ -13,7 +13,9 @@ namespace Ex03.GarageLogic
         private float m_FuelLeft;
         private float m_MaxFuel;
 
-        public Truck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType, float i_FuelLeft, float i_MaxFuel): 
+        // Throws ArgumentException
+        public Truck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType, 
+            float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) : 
             base(i_Model, i_PlateID, (i_FuelLeft/i_MaxFuel)*100)
         {
             m_ContainsCimicals = i_ContainsCimicals;
@@ -21,6 +23,7 @@ namespace Ex03.GarageLogic
             m_FuelLeft = i_FuelLeft;
             m_MaxFuel = i_MaxFuel;
             m_GasType = i_GasType;
+            SetWheels(16, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 26);
         }
 
         // Throws ArgumentException and ValueOutOfRangeException

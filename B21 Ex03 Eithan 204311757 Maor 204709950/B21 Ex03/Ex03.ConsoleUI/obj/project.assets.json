@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    ".NETCoreApp,Version=v3.1": {
+      "Ex03.GarageLogic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/Ex03.GarageLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Ex03.GarageLogic.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Ex03.GarageLogic/1.0.0": {
+      "type": "project",
+      "path": "../Ex03.GarageLogic/Ex03.GarageLogic.csproj",
+      "msbuildProject": "../Ex03.GarageLogic/Ex03.GarageLogic.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    ".NETCoreApp,Version=v3.1": [
+      "Ex03.GarageLogic >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Eitan Gavrieli\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Eitan Gavrieli\\VisualStudio source\\repos\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj": {
+              "projectPath": "C:\\Users\\Eitan Gavrieli\\VisualStudio source\\repos\\CS_and_.Net_course\\B21 Ex03 Eithan 204311757 Maor 204709950\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
