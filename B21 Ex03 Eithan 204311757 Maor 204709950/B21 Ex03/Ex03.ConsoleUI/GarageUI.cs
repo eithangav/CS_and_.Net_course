@@ -19,7 +19,7 @@ namespace Ex03.ConsoleUI
             Console.WriteLine("Welcome to the Garage!");
         }
 
-        private byte activateMenu()
+        private byte MainMenu()
         {
             Console.WriteLine(string.Format("Please choose an action: (enter a number between 1-{0})" +
                 "\n1. Insert new vehicle" +
@@ -36,16 +36,11 @@ namespace Ex03.ConsoleUI
             return 1;
         }
 
-        private void validateInput(string i_Input, byte i_MaxValue)
+        private byte parseAndValidateMenuInput(string i_Input, byte i_MaxValue)
         {
-            bool result = false;
-
-            if()
-
-            byte numInput = byte.Parse(i_Input);
 
 
-            return result;
+            return 1;
         }
     }
 }
