@@ -24,6 +24,8 @@ namespace Ex03.GarageLogic
             return i_Vehicle.PlateID == this.m_PlateID;
         }
 
+
+
         // Throws ArgumentException
         public void SetWheels(byte i_NumOfWheels, string[] i_Manufacturers, float[] i_CurrentAirPressures, float i_MaxAirPressure)
         {
@@ -115,6 +117,23 @@ namespace Ex03.GarageLogic
                     throw new ValueOutOfRangeException(0, m_MaxAirPressure - m_CurrentAirPressure);
                 }
             }
+
+            
+            //Sets the air pressure of this whell to maximum
+            public void InflateToMax()
+            {
+                m_CurrentAirPressure = m_MaxAirPressure;
+            }
+
+
+            public float MaxAirPressure
+            {
+                get
+                {
+                    return m_MaxAirPressure;
+                }
+            }
+
 
             public float CurrentAirPressure
             {

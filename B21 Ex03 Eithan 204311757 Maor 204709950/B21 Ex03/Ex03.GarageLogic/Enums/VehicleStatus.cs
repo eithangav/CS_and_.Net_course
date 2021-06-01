@@ -6,6 +6,7 @@ namespace Ex03.GarageLogic
 {
     public enum  VehicleStatus
     {
+        AllCars,
         InProgress,
         Done,
         Payed
