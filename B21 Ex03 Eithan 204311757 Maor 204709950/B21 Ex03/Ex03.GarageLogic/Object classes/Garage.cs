@@ -129,7 +129,7 @@ namespace Ex03.GarageLogic
                 // Change the existing vehicle's status to "InProgress"
                 ChangeVehicleState(i_PlateID, VehicleStatus.InProgress);
             }
-
+            
             return operationSucceeded;
         }
 

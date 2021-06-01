@@ -24,16 +24,39 @@ namespace Ex03.ConsoleUI
         public GarageUI()
         {
             m_Garage = new Garage();
+
+            LunchConsoleUI();
         }
 
-        private void printWelcomeMsg()
+        private void LunchConsoleUI()
         {
             Console.WriteLine("Welcome to the Garage!");
+
+            while (true)
+            {
+                byte operationToExecute = MainMenu();
+
+                if(operationToExecute == 1)
+                {
+                    insertNewVehicle();
+                }
+                else if(operationToExecute == 2)
+                {
+
+                }
+                // ... complete all other options ...
+                else if(operationToExecute == 8)
+                {
+                    killConsoleUI();
+                }
+
+                Console.Clear();
+            }
         }
 
         private byte MainMenu()
         {
-            Console.WriteLine(string.Format("Please choose an action: (enter a number between 1-{0})" +
+            Console.WriteLine(string.Format("Please choose an action: (enter a number between 1-8)" +
                 "\n1. Insert new vehicle" +
                 "\n2. List the garage's plate IDs" +
                 "\n3. Change vehicle's status" +
@@ -43,19 +66,63 @@ namespace Ex03.ConsoleUI
                 "\n7. Show vehicle's details" +
                 "\n8. Exit"));
 
-            string userChoice = Console.ReadLine();
-
-            return 1;
+            return  readAndValidateMenuNumInput(8);
         }
 
-        private byte parseAndValidateMenuInput(string i_Input, byte i_MaxValue)
+        private byte readAndValidateMenuNumInput(byte i_MaxValue)
+        {
+            string userChoice;
+            byte userChoiceNum = 0;
+            string invalidInputMsg = string.Format("Invalid input. Please enter a number in range (1-{0})", i_MaxValue);
+
+            while (userChoiceNum == 0)
+            {
+                userChoice = Console.ReadLine();
+
+                try
+                {
+                    userChoiceNum = byte.Parse(userChoice);
+
+                    if (userChoiceNum < 1 || userChoiceNum > i_MaxValue)
+                    {
+                        userChoiceNum = 0;
+                        Console.WriteLine(invalidInputMsg);
+                    }
+                }
+                catch
+                {
+                    userChoiceNum = 0;
+                    Console.WriteLine(invalidInputMsg);
+                }
+            }
+
+            return userChoiceNum;
+        }
+
+        private void killConsoleUI()
+        {
+            // TODO: implement ending the program
+        }
+
+        private void insertNewVehicle()
         {
 
-
-            return 1;
         }
 
+        private void showGaragePlatesId()
+        {
 
+        }
+
+        private void changeVehicleState()
+        {
+
+        }
+
+        private void inflateWheels()
+        {
+
+        }
 
         //Prints all the vehicles's plate id in the garage by filtered by Vehicle status.
         //If the user didnt choose vehicle status - return all the plates id in the garage
@@ -116,7 +183,7 @@ namespace Ex03.ConsoleUI
            
             try
             {
-                m_Garage.CangeVehicleState(i_PlateId, i_vehicleStatus);
+                m_Garage.ChangeVehicleState(i_PlateId, i_vehicleStatus);
             }
 
             //In case no plate id found
