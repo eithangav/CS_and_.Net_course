@@ -8,6 +8,8 @@ namespace Ex03.GarageLogic
     {
         private float m_BatteryLeft;
         private float m_MaxBatteryTime;
+        private VehicleType m_vehicleType;
+
 
         public ElectricMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, 
             float i_BatteryLeft, float i_MaxBateryTime, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
@@ -16,6 +18,7 @@ namespace Ex03.GarageLogic
         {
             m_BatteryLeft = i_BatteryLeft;
             m_MaxBatteryTime = i_MaxBateryTime;
+            m_vehicleType = VehicleType.GasMotorcycle;
         }
 
         // Throws ValueOutOfRangeException
@@ -44,6 +47,14 @@ namespace Ex03.GarageLogic
             get
             {
                 return m_MaxBatteryTime;
+            }
+        }
+
+        public VehicleType VehicleType
+        {
+            get
+            {
+                return m_vehicleType;
             }
         }
     }

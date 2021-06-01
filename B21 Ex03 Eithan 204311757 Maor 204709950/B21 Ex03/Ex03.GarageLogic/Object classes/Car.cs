@@ -10,6 +10,11 @@ namespace Ex03.GarageLogic
         private NumOfDoors m_NumOfDoors;
 
         // Throws ArgumentException
+        /**
+      * TODO: send two arrays - wheels manufactures, wheel current air preasure
+      * לשאול את המשתמש רק עבור לחץ אוויר נוכחי ויצרן
+      * כנ"ל לגבי כל אחד מהרכבים רכבים, אופנועים
+      */
         public Car(string i_Model, string i_PlateID, float i_EnergyLeft, Color i_Color, NumOfDoors i_NumOfDoors,
             string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
             base(i_Model, i_PlateID, i_EnergyLeft)
