@@ -93,7 +93,10 @@ namespace Ex03.GarageLogic
         //end of TODO: update Diagram
 
 
-        //Return a list of all the plateIds of the vehicles in the garage
+        /// <summary>
+        /// Get all of the vehicle's plate IDs in the garage
+        /// </summary>
+        /// <returns>A list of all the plate IDs</returns>
         public List<string> GetPlatesId()
         {
             List<string> platesId = new List<string>();
@@ -109,6 +112,10 @@ namespace Ex03.GarageLogic
             return platesId;
         }
 
+        /// <summary>
+        /// Get some (by vehicle's status) of the vehicle's plate IDs in the garage
+        /// </summary>
+        /// <returns>A list of the desired plate IDs</returns>
         public List<string> GetPlatesId(VehicleStatus i_VehicleStatus)
         {
             List<string> platesId = new List<string>();
