@@ -11,6 +11,9 @@ namespace Ex03.GarageLogic
         private float m_EnergyLeft;
         private List<Wheel> m_Wheels;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Vehicle(string i_Model, string i_PlateID, float i_EnergyLeft)
         {
             m_Model = i_Model;
@@ -19,6 +22,10 @@ namespace Ex03.GarageLogic
             m_Wheels = null;
         }
 
+        /// <summary>
+        /// Returns true if the given and this vehicle's plate IDs are identical
+        /// </summary>
+        /// <returns></returns>
         public bool Equals(Vehicle i_Vehicle)
         {
             return i_Vehicle.PlateID == this.m_PlateID;
@@ -26,12 +33,18 @@ namespace Ex03.GarageLogic
 
 
 
-        // Throws ArgumentException
+        /// <summary>
+        /// Clears and re-Sets the vehicle's wheels with the given parameters. 
+        /// Manufacturers and CurrentAirPressures arrays should be ordered in a corresponding way
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public void SetWheels(byte i_NumOfWheels, string[] i_Manufacturers, float[] i_CurrentAirPressures, float i_MaxAirPressure)
         {
+            // Validate the length of the array parameters
             bool arraysLengthValid = i_NumOfWheels == i_Manufacturers.Length && i_NumOfWheels == i_CurrentAirPressures.Length;
             bool arraysContentValid = true;
 
+            
             if (arraysLengthValid)
             {
                 // Validate arrays' content
@@ -44,6 +57,7 @@ namespace Ex03.GarageLogic
                     }
                 }
 
+                // In case both validations succeded:
                 if (arraysContentValid)
                 {
                     m_Wheels.Clear();
@@ -53,6 +67,7 @@ namespace Ex03.GarageLogic
                         m_Wheels.Add(new Wheel(i_Manufacturers[i], i_CurrentAirPressures[i], i_MaxAirPressure));
                     }
                 }
+                // In case of validation failure:
                 else
                 {
                     throw new ArgumentException();
@@ -60,6 +75,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the vehicle's model
+        /// </summary>
         public string Model
         {
             get
@@ -68,6 +86,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the vehicle's plate ID
+        /// </summary>
         public string PlateID
         {
             get
@@ -76,6 +97,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the amount of energy left in the vehicle (by percentage)
+        /// </summary>
         public float EnergyLeft
         {
             get
@@ -84,6 +108,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns a list of the vehicle's wheels
+        /// </summary>
         public List<Wheel> Wheels
         {
             get
@@ -92,12 +119,18 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Inner class of Vehicle. Represents a wheel of a vehicle
+        /// </summary>
         public class Wheel
         {
             private string m_Manufacturer;
             private float m_CurrentAirPressure;
             private float m_MaxAirPressure;
 
+            /// <summary>
+            /// Constructor
+            /// </summary>
             public Wheel(string i_Manufacturer, float i_CurrentAirPressure, float i_MaxAirPressure)
             {
                 m_Manufacturer = i_Manufacturer;
@@ -105,7 +138,10 @@ namespace Ex03.GarageLogic
                 m_MaxAirPressure = i_MaxAirPressure;
             }
 
-            // Throws ValueOutOfRangeException
+            /// <summary>
+            /// Inflates a wheel with the given amount of air (by pressure units)
+            /// </summary>
+            /// <exception cref="ValueOutOfRangeException"></exception>
             public void Inflate(float i_AirToInflate)
             {
                 if(i_AirToInflate <= m_MaxAirPressure - m_CurrentAirPressure && i_AirToInflate >= 0)
@@ -118,14 +154,9 @@ namespace Ex03.GarageLogic
                 }
             }
 
-            
-            //Sets the air pressure of this whell to maximum
-            public void InflateToMax()
-            {
-                m_CurrentAirPressure = m_MaxAirPressure;
-            }
-
-
+            /// <summary>
+            /// Returns the maximum possible pressure in the wheel
+            /// </summary>
             public float MaxAirPressure
             {
                 get
@@ -134,7 +165,9 @@ namespace Ex03.GarageLogic
                 }
             }
 
-
+            /// <summary>
+            /// Returns the current air pressure in the wheel
+            /// </summary>
             public float CurrentAirPressure
             {
                 get
@@ -143,6 +176,9 @@ namespace Ex03.GarageLogic
                 }
             }
 
+            /// <summary>
+            /// Returns the missing air pressure in the wheel
+            /// </summary>
             public float MissingAirPressure
             {
                 get
@@ -151,6 +187,9 @@ namespace Ex03.GarageLogic
                 }
             }
 
+            /// <summary>
+            /// Returns the name of the manufacturer of the wheel
+            /// </summary>
             public string Manufacturer
             {
                 get

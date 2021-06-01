@@ -9,12 +9,10 @@ namespace Ex03.GarageLogic
         private LicenseType m_LiscenceType;
         private int m_EngineCapacity;
 
-        // Throws ArgumentException
-        /**
-      * TODO: send two arrays - wheels manufactures, wheel current air preasure
-      * לשאול את המשתמש רק עבור לחץ אוויר נוכחי ויצרן
-      * כנ"ל לגבי כל אחד מהרכבים רכבים, אופנועים
-      */
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Motorcycle(string i_Model, string i_PlateID, float i_EnergyLeft, LicenseType i_LicenseType, int i_EngineCapacity,
             string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
             base(i_Model, i_PlateID, i_EnergyLeft)
@@ -24,6 +22,9 @@ namespace Ex03.GarageLogic
             SetWheels(2, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 30);
         }
 
+        /// <summary>
+        /// Returns the license type of the motorcycle
+        /// </summary>
         public LicenseType LicenseType
         {
             get
@@ -32,6 +33,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the engine capacity of the motorcycle
+        /// </summary>
         public int EngineCapacity
         {
             get

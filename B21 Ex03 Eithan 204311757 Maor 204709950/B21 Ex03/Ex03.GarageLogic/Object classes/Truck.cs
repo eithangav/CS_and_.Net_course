@@ -8,14 +8,14 @@ namespace Ex03.GarageLogic
     {
         private bool m_ContainsCimicals;
         private float m_MaxCargoWeight;
-
         private GasType m_GasType;
         private float m_FuelLeft;
         private float m_MaxFuel;
-        private VehicleType m_vehicleType;
 
-
-        // Throws ArgumentException
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Truck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType, 
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) : 
             base(i_Model, i_PlateID, (i_FuelLeft/i_MaxFuel)*100)
@@ -25,11 +25,13 @@ namespace Ex03.GarageLogic
             m_FuelLeft = i_FuelLeft;
             m_MaxFuel = i_MaxFuel;
             m_GasType = i_GasType;
-            m_vehicleType = VehicleType.Truck;
             SetWheels(16, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 26);
         }
 
-        // Throws ArgumentException and ValueOutOfRangeException
+        /// <summary>
+        /// Refuels the truck with the given amount of liters and gas type
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ValueOutOfRangeException"></exception>
         public void Refuel(float i_Liters, GasType i_GasType)
         {
             if(i_GasType == m_GasType && i_Liters <= m_MaxFuel - m_FuelLeft && i_Liters >= 0)
@@ -46,6 +48,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns true if the truck contains cimicals, and false otherwise
+        /// </summary>
         public bool ContainsCimicals
         {
             get
@@ -54,6 +59,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the maximum cargo weight of the truck
+        /// </summary>
         public float MaxCargoWeight
         {
             get
@@ -62,6 +70,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the gas type of the truck
+        /// </summary>
         public GasType GasType
         {
             get
@@ -70,6 +81,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the amount of fuel (by liters) left
+        /// </summary>
         public float FuelLeft
         {
             get
@@ -78,19 +92,14 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the maximum capacity of the fuel tank (by liters)
+        /// </summary>
         public float MaxFuel
         {
             get
             {
                 return m_MaxFuel;
-            }
-        }
-
-        public VehicleType VehicleType
-        {
-            get
-            {
-                return m_vehicleType;
             }
         }
     }

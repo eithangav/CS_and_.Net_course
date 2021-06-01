@@ -12,7 +12,9 @@ namespace Ex03.GarageLogic
         private Vehicle m_Vehicle;
 
 
-        //CTOR for new garage's customer
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Customer(string i_CustomerName, string i_CustomerPhone, Vehicle i_Vehicle)
         {
             m_CustomerName = i_CustomerName;
@@ -22,7 +24,9 @@ namespace Ex03.GarageLogic
 
         }
 
-        //Properties to get the customer's name
+        /// <summary>
+        /// Returns the customer's name
+        /// </summary>
         public string CustomerName
         {
             get
@@ -31,7 +35,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //Properties to get the customer's phone number
+        /// <summary>
+        /// Returns the customer's phone number
+        /// </summary>
         public string CustomerPhone
         {
             get
@@ -40,7 +46,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //Properties to get / set the customer's vehicle status in the garage
+        /// <summary>
+        /// Get / Set property for the customer's vehicle status in the garage
+        /// </summary>
         public VehicleStatus VehicleStatus
         {
             get
@@ -53,7 +61,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //Properties to get the customer's vehicle object
+        /// <summary>
+        /// Returns the customer's vehicle
+        /// </summary>
         public Vehicle Vehicle
         {
             get

@@ -8,9 +8,11 @@ namespace Ex03.GarageLogic
     {
         private float m_BatteryLeft;
         private float m_MaxBatteryTime;
-        private VehicleType m_vehicleType;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public ElectricMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, 
             float i_BatteryLeft, float i_MaxBateryTime, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
             base(i_Model, i_PlateID, (i_BatteryLeft / i_MaxBateryTime) * 100, i_LicenseType, i_EngineCapacity,
@@ -18,10 +20,12 @@ namespace Ex03.GarageLogic
         {
             m_BatteryLeft = i_BatteryLeft;
             m_MaxBatteryTime = i_MaxBateryTime;
-            m_vehicleType = VehicleType.GasMotorcycle;
         }
 
-        // Throws ValueOutOfRangeException
+        /// <summary>
+        /// Charges the battery with the given time (by hours)
+        /// </summary>
+        /// <exception cref="ValueOutOfRangeException"></exception>
         public void ChargeBattery(float i_Hours)
         {
             if (i_Hours <= m_MaxBatteryTime - m_BatteryLeft && i_Hours >= 0)
@@ -34,6 +38,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the time left in the battery (by hours)
+        /// </summary>
         public float BatteryLeft
         {
             get
@@ -42,19 +49,14 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the maximum time capacity of the battery (by hours)
+        /// </summary>
         public float MaxBatteryTime
         {
             get
             {
                 return m_MaxBatteryTime;
-            }
-        }
-
-        public VehicleType VehicleType
-        {
-            get
-            {
-                return m_vehicleType;
             }
         }
     }
