@@ -15,7 +15,6 @@ namespace Ex03.GarageLogic
         //TODO: GarageUi need to clear the list every iteration
         public static List<Vehicle.Wheel> wheels = new List<Vehicle.Wheel>();
 
-
         public Garage()
         {
             m_Customers = null;
