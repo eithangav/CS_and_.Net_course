@@ -10,6 +10,7 @@ namespace Ex03.GarageLogic
 
     public class Garage
     {
+        // A dictionary to store the garage's Customers (keyed by PlateID)
         private Dictionary<string, Customer> m_Customers;
 
         /// <summary>
