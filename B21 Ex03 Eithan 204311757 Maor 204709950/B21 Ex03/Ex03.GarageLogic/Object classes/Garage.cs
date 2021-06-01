@@ -24,74 +24,150 @@ namespace Ex03.GarageLogic
         /// Insert new gas car to the garage
         /// </summary>
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
-        public void InsertGasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType,
+        /// <returns>True if a new gas car has been inserted to the garage, and false otherwise</returns>
+        public bool InsertGasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            GasCar newGasCar = new GasCar(i_Model, i_PlateID, i_Color, i_NumOfDoors, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+            bool operationSucceeded = false;
 
-            Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasCar);
+            if (!vehicleExists(i_PlateID))
+            {
+                GasCar newGasCar = new GasCar(i_Model, i_PlateID, i_Color, i_NumOfDoors, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+                Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasCar);
 
-            m_Customers.Add(i_PlateID, newCustomer);
+                m_Customers.Add(i_PlateID, newCustomer);
+
+                operationSucceeded = true;
+            }
+            else
+            {
+                // Change the existing vehicle's status to "InProgress"
+                ChangeVehicleState(i_PlateID, VehicleStatus.InProgress);
+            }
+
+            return operationSucceeded;
         }
 
         /// <summary>
         /// Insert new electric car to the garage
         /// </summary>
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
-        public void InsertElectricCar(string i_Model, string i_PlateID, Color i_color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime, 
+        /// <returns>True if a new electric car has been inserted to the garage, and false otherwise</returns>
+        public bool InsertElectricCar(string i_Model, string i_PlateID, Color i_color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime, 
             string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, float i_EnergyLeft, string i_CostumerName, string i_CostumerPhone)
         {
-            ElectricCar newElectricCar = new ElectricCar(i_Model, i_PlateID, i_color, i_NumOfDoors, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+            bool operationSucceeded = false;
 
-            Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricCar);
+            if (!vehicleExists(i_PlateID))
+            {
+                ElectricCar newElectricCar = new ElectricCar(i_Model, i_PlateID, i_color, i_NumOfDoors, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+                Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricCar);
 
-            m_Customers.Add(i_PlateID, newCustomer);
+                m_Customers.Add(i_PlateID, newCustomer);
+
+                operationSucceeded = true;
+            }
+            else
+            {
+                // Change the existing vehicle's status to "InProgress"
+                ChangeVehicleState(i_PlateID, VehicleStatus.InProgress);
+            }
+
+            return operationSucceeded;
         }
 
         /// <summary>
         /// Insert new electric motorcycle to the garage
         /// </summary>
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
-        public void InsertElectricMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity,
+        /// <returns>True if a new electric motorcycle has been inserted to the garage, and false otherwise</returns>
+        public bool InsertElectricMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity,
             float i_BatteryLeft, float i_MaxBateryTime, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            ElectricMotorcycle newElectricMotorcycle = new ElectricMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+            bool operationSucceeded = false;
 
-            Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricMotorcycle);
+            if (!vehicleExists(i_PlateID))
+            {
+                ElectricMotorcycle newElectricMotorcycle = new ElectricMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+                Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricMotorcycle);
 
-            m_Customers.Add(i_PlateID, newCustomer);
+                m_Customers.Add(i_PlateID, newCustomer);
+
+                operationSucceeded = true;
+            }
+            else
+            {
+                // Change the existing vehicle's status to "InProgress"
+                ChangeVehicleState(i_PlateID, VehicleStatus.InProgress);
+            }
+
+            return operationSucceeded;
         }
 
         /// <summary>
         /// Insert new gas motorcycle to the garage
         /// </summary>
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
-        public void InsertGascMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, GasType i_GasType,
+        /// <returns>True if a new gas motorcycle has been inserted to the garage, and false otherwise</returns>
+        public bool InsertGascMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            GasMotorcycle newGasMotorcycle = new GasMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+            bool operationSucceeded = false;
 
-            Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasMotorcycle);
+            if (!vehicleExists(i_PlateID))
+            {
+                GasMotorcycle newGasMotorcycle = new GasMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+                Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasMotorcycle);
 
-            m_Customers.Add(i_PlateID, newCustomer);
+                m_Customers.Add(i_PlateID, newCustomer);
+
+                operationSucceeded = true;
+            }
+            else
+            {
+                // Change the existing vehicle's status to "InProgress"
+                ChangeVehicleState(i_PlateID, VehicleStatus.InProgress);
+            }
+
+            return operationSucceeded;
         }
 
         /// <summary>
         /// Insert new truck to the garage
         /// </summary>
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
-        public void InsertTruck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType,
+        /// <returns>True if a new truck has been inserted to the garage, and false otherwise</returns>
+        public bool InsertTruck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
-            Truck newTruck = new Truck(i_Model, i_PlateID, i_ContainsCimicals, i_MaxCargoWeight, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+            bool operationSucceeded = false;
 
-            Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newTruck);
+            if (!vehicleExists(i_PlateID))
+            {
+                Truck newTruck = new Truck(i_Model, i_PlateID, i_ContainsCimicals, i_MaxCargoWeight, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
+                Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newTruck);
 
-            m_Customers.Add(i_PlateID, newCustomer);
+                m_Customers.Add(i_PlateID, newCustomer);
+
+                operationSucceeded = true;
+            }
+            else
+            {
+                // Change the existing vehicle's status to "InProgress"
+                ChangeVehicleState(i_PlateID, VehicleStatus.InProgress);
+            }
+
+            return operationSucceeded;
         }
 
-        //end of TODO: update Diagram
-
+        /// <summary>
+        /// Check if the given plate id already exists in the garage
+        /// </summary>
+        /// <returns>True if exists, and false otherwise</returns>
+        private bool vehicleExists(string i_PlateID)
+        {
+            return m_Customers.ContainsKey(i_PlateID);
+        }
 
         /// <summary>
         /// Get all of the vehicle's plate IDs in the garage
@@ -134,27 +210,29 @@ namespace Ex03.GarageLogic
             return platesId;
         }
 
-
-        //Change the vehicle state in the garage
-        //Throws ArgumentNullException and ArgumentException/FormatException?
-        public void CangeVehicleState(string i_PlateId, VehicleStatus i_vehicleStatus)
+        /// <summary>
+        /// Change the vehicle state in the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
+        public void ChangeVehicleState(string i_PlateId, VehicleStatus i_VehicleStatus)
         {
-            if (m_Customers.ContainsKey(i_PlateId))
+            if (vehicleExists(i_PlateId))
             {
-                m_Customers[i_PlateId].VehicleStatus = i_vehicleStatus;
+                m_Customers[i_PlateId].VehicleStatus = i_VehicleStatus;
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
         }
 
-
-        //Inflate wheel pressure in the specified vehicle in the garage
-        //Throws ArgumentNullException and ArgumentException/FormatException?
+        /// <summary>
+        /// Inflate all wheels' pressure to maximum in the specified vehicle in the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ValueOutOfRangeException"></exception>
         public void InflateWheels(string i_PlateId)
         {    
-            if (m_Customers.ContainsKey(i_PlateId))
+            if (vehicleExists(i_PlateId))
             {
                 List<Vehicle.Wheel> m_Wheels = m_Customers[i_PlateId].Vehicle.Wheels;
 
@@ -165,52 +243,53 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
         }
 
-
-        //return the vehicle object of this plate id
-        //Throw ArgumentNullException if there is'nt a matching vehicle in the garage
-        public Vehicle getVehicleInGarage(string i_PlateId)
+        /// <summary>
+        /// Get vehicle by its plate ID
+        /// </summary>
+        /// <returns>The vehicle object of this plate id</returns>
+        /// <exception cref="ArgumentException"></exception>
+        private Vehicle getVehicleByPlateId(string i_PlateId)
         {
-            Vehicle m_VehicleToReturn = null;
+            Vehicle vehicleToReturn = null;
 
-            if (m_Customers.ContainsKey(i_PlateId))
+            if (vehicleExists(i_PlateId))
             {
-                m_VehicleToReturn = m_Customers[i_PlateId].Vehicle;
+                vehicleToReturn = m_Customers[i_PlateId].Vehicle;
 
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
 
-            return m_VehicleToReturn;
+            return vehicleToReturn;
         }
 
-
-
-        //Refuel gas tank in the specified vehicle in the garage
-        //Throws ArgumentNullException, ArgumentException and FormatException?
-
-        //TODO: Update method name in the Diagram
+        /// <summary>
+        /// Refuel the gas tank in the specified vehicle in the garage with the given gas type and liters amount
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ValueOutOfRangeException"></exception>
         public void RefuelVehicle(string i_PlateId, GasType i_GasType, float i_Liters)
         {
-            if (m_Customers.ContainsKey(i_PlateId))
+            if (vehicleExists(i_PlateId))
             {
+                Vehicle vehicle = getVehicleByPlateId(i_PlateId);
 
-                if (m_Customers[i_PlateId].Vehicle is GasCar m_GasCarToRefuel)
+                if (vehicle is GasCar gasCarToRefuel)
                 {
-                    m_GasCarToRefuel.Refuel(i_Liters, i_GasType);
+                    gasCarToRefuel.Refuel(i_Liters, i_GasType);
                 }
-                else if (m_Customers[i_PlateId].Vehicle is GasMotorcycle m_GasMotorcycleToRefuel)
+                else if (vehicle is GasMotorcycle gasMotorcycleToRefuel)
                 {
-                    m_GasMotorcycleToRefuel.Refuel(i_Liters, i_GasType);
+                    gasMotorcycleToRefuel.Refuel(i_Liters, i_GasType);
                 }
-                else if (m_Customers[i_PlateId].Vehicle is Truck m_TruckToRefuel)
+                else if (vehicle is Truck truckToRefuel)
                 {
-                    m_TruckToRefuel.Refuel(i_Liters, i_GasType);
+                    truckToRefuel.Refuel(i_Liters, i_GasType);
                 }
                 else
                 {
@@ -219,25 +298,27 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentNullException(); 
+                throw new ArgumentException(); 
             }
-            
         }
 
-
-        //Charges specified Electric vehicle in the garage
-        //Throws ArgumentNullException, ArgumentException and FormatException
+        /// <summary>
+        /// Charges specified electric vehicle in the garage with given time (by hours)
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public void ChargeBattery(string i_PlateId, float i_Hours)
         {
-            if (m_Customers.ContainsKey(i_PlateId))
+            if (vehicleExists(i_PlateId))
             {
-                if (m_Customers[i_PlateId].Vehicle is ElectricCar m_GasCarToRefuel)
+                Vehicle vehicle = getVehicleByPlateId(i_PlateId);
+
+                if (vehicle is ElectricCar gasCarToRefuel)
                 {
-                    m_GasCarToRefuel.ChargeBattery(i_Hours);
+                    gasCarToRefuel.ChargeBattery(i_Hours);
                 }
-                else if (m_Customers[i_PlateId].Vehicle is ElectricMotorcycle m_GasMotorcycleToRefuel)
+                else if (vehicle is ElectricMotorcycle gasMotorcycleToRefuel)
                 {
-                    m_GasMotorcycleToRefuel.ChargeBattery(i_Hours);
+                    gasMotorcycleToRefuel.ChargeBattery(i_Hours);
                 }
                 else
                 {
@@ -246,26 +327,30 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
         }
 
-
-        //Retuens the specified vehicle - GarageUi will iterate over
-        //the returned vehicle and print its details.
-        //Throws ArgumentNullException, ArgumentException and FormatException
-        public Vehicle GetVehicleDetels(string i_PlateId)
+        /// <summary>
+        /// Get customer by it's vehicle's plate ID
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException" cref="KeyNotFoundException"></exception>
+        /// <returns>The customer object corresponding to the given plate ID</returns>
+        public Customer GetCustomerByPlateId(string i_PlateId)
         {
-            if (m_Customers.ContainsKey(i_PlateId))
+            if (vehicleExists(i_PlateId))
             {
-                return m_Customers[i_PlateId].Vehicle;
+                return m_Customers[i_PlateId];
             }
             else
             {
-                throw new ArgumentNullException();
+                throw new ArgumentException();
             }
         }
 
+        /// <summary>
+        /// Returns the garage's (PlateID, Customer) dictionary
+        /// </summary>
         public Dictionary<string, Customer> Customers
         {
             get
