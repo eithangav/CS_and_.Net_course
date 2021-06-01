@@ -12,27 +12,18 @@ namespace Ex03.GarageLogic
     {
         private Dictionary<string, Customer> m_Customers;
 
-        //TODO: GarageUi need to clear the list every iteration
-        public static List<Vehicle.Wheel> wheels = new List<Vehicle.Wheel>();
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Garage()
         {
-            m_Customers = null;
+            m_Customers = new Dictionary<string, Customer>();
         }
 
- 
-
-        //Creates new Wheel
-        public Vehicle.Wheel CreateWheel(string i_Manufacture, float i_CurrentPressure, float i_MaxPresxure)
-        {
-            Vehicle.Wheel newWheel = new Vehicle.Wheel(i_Manufacture, i_CurrentPressure, i_MaxPresxure);
-
-            return newWheel;
-        }
-
-
-        //Insert new gas car to the garage
-        //Throws ArgumentException
+        /// <summary>
+        /// Insert new gas car to the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         public void InsertGasCar(string i_Model, string i_PlateID, Color i_Color, NumOfDoors i_NumOfDoors, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
@@ -43,9 +34,10 @@ namespace Ex03.GarageLogic
             m_Customers.Add(i_PlateID, newCustomer);
         }
 
-
-        //Insert new electric car to the garage
-        //Throws ArgumentException
+        /// <summary>
+        /// Insert new electric car to the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         public void InsertElectricCar(string i_Model, string i_PlateID, Color i_color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime, 
             string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, float i_EnergyLeft, string i_CostumerName, string i_CostumerPhone)
         {
@@ -56,9 +48,10 @@ namespace Ex03.GarageLogic
             m_Customers.Add(i_PlateID, newCustomer);
         }
 
-
-        //Insert new electric motorcycle to the garage
-        //Throws ArgumentException
+        /// <summary>
+        /// Insert new electric motorcycle to the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         public void InsertElectricMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity,
             float i_BatteryLeft, float i_MaxBateryTime, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
@@ -69,9 +62,10 @@ namespace Ex03.GarageLogic
             m_Customers.Add(i_PlateID, newCustomer);
         }
 
-
-        //Insert new gas motorcycle to the garage
-        //Throws ArgumentException
+        /// <summary>
+        /// Insert new gas motorcycle to the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         public void InsertGascMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
@@ -82,10 +76,10 @@ namespace Ex03.GarageLogic
             m_Customers.Add(i_PlateID, newCustomer);
         }
 
-
-
-        //Insert new truck to the garage
-        //Throws ArgumentException
+        /// <summary>
+        /// Insert new truck to the garage
+        /// </summary>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         public void InsertTruck(string i_Model, string i_PlateID, bool i_ContainsCimicals, float i_MaxCargoWeight, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
@@ -99,7 +93,10 @@ namespace Ex03.GarageLogic
         //end of TODO: update Diagram
 
 
-        //Return a list of all the plateIds of the vehicles in the garage
+        /// <summary>
+        /// Get all of the vehicle's plate IDs in the garage
+        /// </summary>
+        /// <returns>A list of all the plate IDs</returns>
         public List<string> GetPlatesId()
         {
             List<string> platesId = new List<string>();
@@ -112,6 +109,28 @@ namespace Ex03.GarageLogic
                 }
             }
  
+            return platesId;
+        }
+
+        /// <summary>
+        /// Get some (by vehicle's status) of the vehicle's plate IDs in the garage
+        /// </summary>
+        /// <returns>A list of the desired plate IDs</returns>
+        public List<string> GetPlatesId(VehicleStatus i_VehicleStatus)
+        {
+            List<string> platesId = new List<string>();
+
+            if (m_Customers.Count > 0)
+            {
+                foreach (var item in m_Customers)
+                {
+                    if(item.Value.VehicleStatus == i_VehicleStatus)
+                    {
+                        platesId.Add(item.Key);
+                    }
+                }
+            }
+
             return platesId;
         }
 

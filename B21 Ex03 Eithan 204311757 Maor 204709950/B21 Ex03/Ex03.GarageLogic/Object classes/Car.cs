@@ -9,12 +9,10 @@ namespace Ex03.GarageLogic
         private Color m_Color;
         private NumOfDoors m_NumOfDoors;
 
-        // Throws ArgumentException
-        /**
-      * TODO: send two arrays - wheels manufactures, wheel current air preasure
-      * לשאול את המשתמש רק עבור לחץ אוויר נוכחי ויצרן
-      * כנ"ל לגבי כל אחד מהרכבים רכבים, אופנועים
-      */
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <exception cref="ArgumentException"></exception>
         public Car(string i_Model, string i_PlateID, float i_EnergyLeft, Color i_Color, NumOfDoors i_NumOfDoors,
             string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures) :
             base(i_Model, i_PlateID, i_EnergyLeft)
@@ -24,6 +22,9 @@ namespace Ex03.GarageLogic
             SetWheels(4, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 32);
         }
 
+        /// <summary>
+        /// Returns the car's color
+        /// </summary>
         public Color Color
         {
             get
@@ -32,6 +33,9 @@ namespace Ex03.GarageLogic
             }
         }
 
+        /// <summary>
+        /// Returns the number of doors in the car
+        /// </summary>
         public NumOfDoors NumOfDoors
         {
             get
