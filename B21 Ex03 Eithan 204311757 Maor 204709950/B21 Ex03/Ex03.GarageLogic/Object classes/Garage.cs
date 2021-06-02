@@ -31,7 +31,7 @@ namespace Ex03.GarageLogic
         {
             bool operationSucceeded = false;
 
-            if (!vehicleExists(i_PlateID))
+            if (!VehicleExists(i_PlateID))
             {
                 GasCar newGasCar = new GasCar(i_Model, i_PlateID, i_Color, i_NumOfDoors, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
                 Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasCar);
@@ -55,11 +55,11 @@ namespace Ex03.GarageLogic
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         /// <returns>True if a new electric car has been inserted to the garage, and false otherwise</returns>
         public bool InsertElectricCar(string i_Model, string i_PlateID, Color i_color, NumOfDoors i_NumOfDoors, float i_BatteryLeft, float i_MaxBateryTime, 
-            string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, float i_EnergyLeft, string i_CostumerName, string i_CostumerPhone)
+            string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
             bool operationSucceeded = false;
 
-            if (!vehicleExists(i_PlateID))
+            if (!VehicleExists(i_PlateID))
             {
                 ElectricCar newElectricCar = new ElectricCar(i_Model, i_PlateID, i_color, i_NumOfDoors, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
                 Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricCar);
@@ -87,7 +87,7 @@ namespace Ex03.GarageLogic
         {
             bool operationSucceeded = false;
 
-            if (!vehicleExists(i_PlateID))
+            if (!VehicleExists(i_PlateID))
             {
                 ElectricMotorcycle newElectricMotorcycle = new ElectricMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_BatteryLeft, i_MaxBateryTime, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
                 Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newElectricMotorcycle);
@@ -110,12 +110,12 @@ namespace Ex03.GarageLogic
         /// </summary>
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         /// <returns>True if a new gas motorcycle has been inserted to the garage, and false otherwise</returns>
-        public bool InsertGascMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, GasType i_GasType,
+        public bool InsertGasMotorcycle(string i_Model, string i_PlateID, LicenseType i_LicenseType, int i_EngineCapacity, GasType i_GasType,
             float i_FuelLeft, float i_MaxFuel, string[] i_WheelsManufacturers, float[] i_WheelsCurrentAirPressures, string i_CostumerName, string i_CostumerPhone)
         {
             bool operationSucceeded = false;
 
-            if (!vehicleExists(i_PlateID))
+            if (!VehicleExists(i_PlateID))
             {
                 GasMotorcycle newGasMotorcycle = new GasMotorcycle(i_Model, i_PlateID, i_LicenseType, i_EngineCapacity, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
                 Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newGasMotorcycle);
@@ -143,7 +143,7 @@ namespace Ex03.GarageLogic
         {
             bool operationSucceeded = false;
 
-            if (!vehicleExists(i_PlateID))
+            if (!VehicleExists(i_PlateID))
             {
                 Truck newTruck = new Truck(i_Model, i_PlateID, i_ContainsCimicals, i_MaxCargoWeight, i_GasType, i_FuelLeft, i_MaxFuel, i_WheelsManufacturers, i_WheelsCurrentAirPressures);
                 Customer newCustomer = new Customer(i_CostumerName, i_CostumerPhone, newTruck);
@@ -165,7 +165,8 @@ namespace Ex03.GarageLogic
         /// Check if the given plate id already exists in the garage
         /// </summary>
         /// <returns>True if exists, and false otherwise</returns>
-        private bool vehicleExists(string i_PlateID)
+        /// <exception cref="ArgumentNullException"></exception>
+        public bool VehicleExists(string i_PlateID)
         {
             return m_Customers.ContainsKey(i_PlateID);
         }
@@ -217,7 +218,7 @@ namespace Ex03.GarageLogic
         /// <exception cref="ArgumentException" cref="ArgumentNullException"></exception>
         public void ChangeVehicleState(string i_PlateId, VehicleStatus i_VehicleStatus)
         {
-            if (vehicleExists(i_PlateId))
+            if (VehicleExists(i_PlateId))
             {
                 m_Customers[i_PlateId].VehicleStatus = i_VehicleStatus;
             }
@@ -233,7 +234,7 @@ namespace Ex03.GarageLogic
         /// <exception cref="ArgumentException" cref="ValueOutOfRangeException"></exception>
         public void InflateWheels(string i_PlateId)
         {    
-            if (vehicleExists(i_PlateId))
+            if (VehicleExists(i_PlateId))
             {
                 List<Vehicle.Wheel> m_Wheels = m_Customers[i_PlateId].Vehicle.Wheels;
 
@@ -257,7 +258,7 @@ namespace Ex03.GarageLogic
         {
             Vehicle vehicleToReturn = null;
 
-            if (vehicleExists(i_PlateId))
+            if (VehicleExists(i_PlateId))
             {
                 vehicleToReturn = m_Customers[i_PlateId].Vehicle;
 
@@ -276,7 +277,7 @@ namespace Ex03.GarageLogic
         /// <exception cref="ArgumentException" cref="ValueOutOfRangeException"></exception>
         public void RefuelVehicle(string i_PlateId, GasType i_GasType, float i_Liters)
         {
-            if (vehicleExists(i_PlateId))
+            if (VehicleExists(i_PlateId))
             {
                 Vehicle vehicle = getVehicleByPlateId(i_PlateId);
 
@@ -309,7 +310,7 @@ namespace Ex03.GarageLogic
         /// <exception cref="ArgumentException"></exception>
         public void ChargeBattery(string i_PlateId, float i_Hours)
         {
-            if (vehicleExists(i_PlateId))
+            if (VehicleExists(i_PlateId))
             {
                 Vehicle vehicle = getVehicleByPlateId(i_PlateId);
 
@@ -335,11 +336,11 @@ namespace Ex03.GarageLogic
         /// <summary>
         /// Get customer by it's vehicle's plate ID
         /// </summary>
-        /// <exception cref="ArgumentException" cref="ArgumentNullException" cref="KeyNotFoundException"></exception>
         /// <returns>The customer object corresponding to the given plate ID</returns>
+        /// <exception cref="ArgumentException" cref="ArgumentNullException" cref="KeyNotFoundException"></exception>
         public Customer GetCustomerByPlateId(string i_PlateId)
         {
-            if (vehicleExists(i_PlateId))
+            if (VehicleExists(i_PlateId))
             {
                 return m_Customers[i_PlateId];
             }

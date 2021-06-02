@@ -1,4 +1,3 @@
-C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex03 Eithan 204311757 Maor 204709950\B21 Ex03\Ex03.GarageLogic\obj\Debug\netcoreapp3.1\Ex03.GarageLogic.csprojAssemblyReference.cache
 C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex03 Eithan 204311757 Maor 204709950\B21 Ex03\Ex03.GarageLogic\obj\Debug\netcoreapp3.1\Ex03.GarageLogic.AssemblyInfoInputs.cache
 C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex03 Eithan 204311757 Maor 204709950\B21 Ex03\Ex03.GarageLogic\obj\Debug\netcoreapp3.1\Ex03.GarageLogic.AssemblyInfo.cs
 C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex03 Eithan 204311757 Maor 204709950\B21 Ex03\Ex03.GarageLogic\obj\Debug\netcoreapp3.1\Ex03.GarageLogic.csproj.CoreCompileInputs.cache
