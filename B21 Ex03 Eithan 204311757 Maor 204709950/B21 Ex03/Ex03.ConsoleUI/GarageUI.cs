@@ -112,9 +112,8 @@ namespace Ex03.ConsoleUI
             return userChoiceNum;
         }
 
-        private string readAndValidateStringInput()
+        private string readAndValidateStringInput(bool i_CheckPlateIdExistant = false)
         {
-            string invalidInputMsg = "Invalid input. Please enter a non-empty string";
             string inputStr = "";
 
             while(inputStr == "")
@@ -123,7 +122,12 @@ namespace Ex03.ConsoleUI
 
                 if(inputStr == "")
                 {
-                    Console.WriteLine(invalidInputMsg);
+                    Console.WriteLine("Invalid input. Please enter a non-empty string");
+                }
+                else if(i_CheckPlateIdExistant && !m_Garage.VehicleExists(inputStr))
+                {
+                    Console.WriteLine("Plate ID doesn't exist. Please try again");
+                    inputStr = "";
                 }
             }
 
@@ -189,6 +193,7 @@ namespace Ex03.ConsoleUI
                 else
                 {
                     vehicleInsertionMenu();
+                    Console.WriteLine("The vehicle was inserted successfully");
                 }
             }
             catch(Exception e)
@@ -230,12 +235,6 @@ namespace Ex03.ConsoleUI
 
         private void insertVehicleByType(VehicleType i_VehicleType)
         {
-            m_Garage.InsertGasCar();
-            m_Garage.InsertElectricCar();
-            m_Garage.InsertGasMotorcycle();
-            m_Garage.InsertElectricMotorcycle();
-            m_Garage.InsertTruck();
-
             string vehicleType = stringifyVehicleType(i_VehicleType);
 
             // Read shared properties:
@@ -264,6 +263,8 @@ namespace Ex03.ConsoleUI
 
             bool electric = isElectric(i_VehicleType);
 
+            // Read specific properties and insert the vehicle to the garage
+
             if (vehicleType == "car")
             {
                 Color color;
@@ -290,8 +291,22 @@ namespace Ex03.ConsoleUI
 
                 if (electric)
                 {
-
+                    readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
+                    m_Garage.InsertElectricMotorcycle(model, plateId, licenseType, engineCapacity, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
                 }
+                else
+                {
+                    readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
+                    m_Garage.InsertGasMotorcycle(model, plateId, licenseType, engineCapacity, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                }
+            }
+            else if(vehicleType == "truck")
+            {
+                bool containsCimicals;
+                float maxCargoWeight;
+                readTruckUniqueProperties(out containsCimicals, out maxCargoWeight);
+                readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
+                m_Garage.InsertTruck(model, plateId, containsCimicals, maxCargoWeight, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
             }
         }
 
@@ -538,22 +553,138 @@ namespace Ex03.ConsoleUI
 
         private void showGaragePlatesId()
         {
-            // TODO: implement
+            Console.WriteLine("Choose a vehicle status: (enter a number between 1-4)" +
+                       "\n1. In progress" +
+                       "\n2. Payed" +
+                       "\n3. Done" +
+                       "\n4. All vehicle statuses");
+
+            byte chosenNumber = readAndValidateMenuChoiceInput(4);
+            List<string> platesId = null;
+
+            switch (chosenNumber)
+            {
+                case 1:
+                    platesId = m_Garage.GetPlatesId(VehicleStatus.InProgress);
+                    break;
+                case 2:
+                    platesId = m_Garage.GetPlatesId(VehicleStatus.Payed);
+                    break;
+                case 3:
+                    platesId = m_Garage.GetPlatesId(VehicleStatus.Done);
+                    break;
+                case 4:
+                    platesId = m_Garage.GetPlatesId();
+                    break;
+            }
+
+            Console.WriteLine("Here is the plates ID list:");
+
+            foreach(string plateId in platesId)
+            {
+                Console.WriteLine(plateId);
+            }
         }
 
         private void changeVehicleState()
         {
-            // TODO: implement
+            Console.WriteLine("Enter a plate ID:");
+
+            string plateId = readAndValidateStringInput(true);
+
+            Console.WriteLine("Choose a new vehicle status: (enter a number between 1-3)" +
+                       "\n1. In progress" +
+                       "\n2. Payed" +
+                       "\n3. Done");
+
+            byte chosenNumber = readAndValidateMenuChoiceInput(3);
+
+            try
+            {
+                switch (chosenNumber)
+                {
+                    case 1:
+                        m_Garage.ChangeVehicleState(plateId, VehicleStatus.InProgress);
+                        break;
+                    case 2:
+                        m_Garage.ChangeVehicleState(plateId, VehicleStatus.Payed);
+                        break;
+                    case 3:
+                        m_Garage.ChangeVehicleState(plateId, VehicleStatus.Done);
+                        break;
+                }
+
+                Console.WriteLine("The vehicle state was changed successfully");
+            }
+            catch
+            {
+                Console.WriteLine("An error occured. Please try again...");
+            }
         }
 
         private void inflateWheels()
         {
-            // TODO: implement
+            Console.WriteLine("Enter a plate ID:");
+
+            string plateId = readAndValidateStringInput(true);
+
+            try
+            {
+                m_Garage.InflateWheels(plateId);
+                Console.WriteLine("The vehicle's wheels were successfully inflated to maximum");
+            }
+            catch
+            {
+                Console.WriteLine("An error occured. Please try again...");
+            }
         }
 
         private void refuelGasVehicle()
         {
-            // TODO: implement
+            Console.WriteLine("Enter a plate ID:");
+
+            string plateId = readAndValidateStringInput(true);
+
+            Console.WriteLine("Choose a gas type: (enter a number between 1-4)" +
+                       "\n1. Octan98" +
+                       "\n2. Octan96" +
+                       "\n3. Octan95" +
+                       "\n4. Soler");
+
+            byte chosenNumber = readAndValidateMenuChoiceInput(4);
+
+            Console.WriteLine("How many liters? (enter a positive number)");
+
+            float liters = readAndValidateNonNegativeNumInput(true, false);
+
+            try
+            {
+                switch (chosenNumber)
+                {
+                    case 1:
+                        m_Garage.RefuelVehicle(plateId, GasType.Octan98, liters);
+                        break;
+                    case 2:
+                        m_Garage.RefuelVehicle(plateId, GasType.Octan96, liters);
+                        break;
+                    case 3:
+                        m_Garage.RefuelVehicle(plateId, GasType.Octan95, liters);
+                        break;
+                    case 4:
+                        m_Garage.RefuelVehicle(plateId, GasType.Soler, liters);
+                        break;
+                }
+
+                Console.WriteLine("The vehicle has been refueled successfully");
+            }
+            catch(ArgumentOutOfRangeException aoore)
+            {
+                Console.WriteLine("Invalid amount of liters. " + aoore.StackTrace);
+            }
+            catch
+            {
+                Console.WriteLine("An error occured. Please try again...");
+            }
         }
 
         private void chargeElectricVehicle()
