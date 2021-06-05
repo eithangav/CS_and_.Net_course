@@ -155,9 +155,10 @@ namespace Ex03.ConsoleUI
 
                 try
                 {
-                    inputNum = float.Parse(inputStr);
+                    bool parsingSucceded = float.TryParse(inputStr, out inputNum);
 
-                    if (inputNum < 0 || (i_RequiredPositive && inputNum == 0) || (i_RequiredPositive && inputNum - (float)((int)inputNum) != 0))
+                    if (!parsingSucceded || 
+                        inputNum < 0 || (i_RequiredPositive && inputNum == 0) || (i_RequiredPositive && inputNum - (float)((int)inputNum) != 0))
                     {
                         inputNum = -1;
                         Console.WriteLine(invalidInputMsg);
@@ -193,6 +194,8 @@ namespace Ex03.ConsoleUI
             }
             catch(Exception e)
             {
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(e);
                 Console.WriteLine("An error occured. Please try again....");
             }
         }
@@ -309,12 +312,12 @@ namespace Ex03.ConsoleUI
             i_Manufacturers = new string[numOfWheels];
             i_CurrentAirPressures = new float[numOfWheels];
 
-            for(int i=0; i<numOfWheels; i++)
-            {
-                Console.WriteLine(string.Format("Enter wheel {0} manufacturer:"), i+1);
+            for(byte i=1; i<=numOfWheels; i++)
+            {      
+                Console.WriteLine(string.Format("Enter wheel {0} manufacturer:", i));
                 i_Manufacturers[i] = readAndValidateStringInput();
 
-                Console.WriteLine(string.Format("Enter wheel {0} current air pressure:"), i + 1);
+                Console.WriteLine(string.Format("Enter wheel {0} current air pressure:", i));
                 i_CurrentAirPressures[i] = readAndValidateNonNegativeNumInput();
             }
         }
