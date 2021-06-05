@@ -6,6 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Motorcycle: Vehicle
     {
+        public static readonly float WHEELS_MAX_AIR_PRESSURE = 30;
+
         private LicenseType m_LiscenceType;
         private int m_EngineCapacity;
 
@@ -19,7 +21,7 @@ namespace Ex03.GarageLogic
         {
             m_LiscenceType = i_LicenseType;
             m_EngineCapacity = i_EngineCapacity;
-            SetWheels(2, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 30);
+            SetWheels(2, i_WheelsManufacturers, i_WheelsCurrentAirPressures, WHEELS_MAX_AIR_PRESSURE);
         }
 
         /// <summary>
