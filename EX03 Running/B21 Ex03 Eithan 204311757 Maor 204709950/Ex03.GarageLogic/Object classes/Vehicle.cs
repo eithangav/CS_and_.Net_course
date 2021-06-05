@@ -70,7 +70,7 @@ namespace Ex03.GarageLogic
                 // In case of validation failure:
                 else
                 {
-                    //throw new ArgumentException();
+                    throw new ArgumentException();
                 }
             }
         }
