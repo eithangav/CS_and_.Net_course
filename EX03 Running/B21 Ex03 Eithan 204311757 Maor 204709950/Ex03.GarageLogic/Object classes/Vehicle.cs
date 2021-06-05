@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
             m_Model = i_Model;
             m_PlateID = i_PlateID;
             m_EnergyLeft = i_EnergyLeft;
-            m_Wheels = null;
+            m_Wheels = new List<Wheel>();
         }
 
         /// <summary>

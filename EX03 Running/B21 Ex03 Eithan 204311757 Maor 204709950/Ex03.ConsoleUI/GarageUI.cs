@@ -183,6 +183,8 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine("Insert the vehicle's Plate ID:");
                 string plateId = readAndValidateStringInput();
 
+                bool success = false;
+
                 if (m_Garage.VehicleExists(plateId))
                 {
                     m_Garage.ChangeVehicleState(plateId, VehicleStatus.InProgress);
@@ -190,8 +192,15 @@ namespace Ex03.ConsoleUI
                 }
                 else
                 {
-                    vehicleInsertionMenu(plateId);
-                    Console.WriteLine("The vehicle was inserted successfully");
+                    success = vehicleInsertionMenu(plateId);
+                    if (success)
+                    {
+                        Console.WriteLine("The vehicle was inserted successfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("The vehicle was not inserted");
+                    }
                 }
             }
             catch
@@ -200,7 +209,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private void vehicleInsertionMenu(string i_PlateId)
+        private bool vehicleInsertionMenu(string i_PlateId)
         {
             Console.WriteLine("Which vehicle would you like to insert? (enter a number between 1-5)" +
                        "\n1. Gas car" +
@@ -211,28 +220,34 @@ namespace Ex03.ConsoleUI
 
             byte chosenSection = readAndValidateMenuChoiceInput(5);
 
+            bool success = false;
+
             switch (chosenSection)
             {
                 case 1:
-                    insertVehicleByType(i_PlateId, VehicleType.GasCar);
+                    success = insertVehicleByType(i_PlateId, VehicleType.GasCar);
                     break;
                 case 2:
-                    insertVehicleByType(i_PlateId, VehicleType.ElectricCar);
+                    success = insertVehicleByType(i_PlateId, VehicleType.ElectricCar);
                     break;
                 case 3:
-                    insertVehicleByType(i_PlateId, VehicleType.GasMotorcycle);
+                    success = insertVehicleByType(i_PlateId, VehicleType.GasMotorcycle);
                     break;
                 case 4:
-                    insertVehicleByType(i_PlateId, VehicleType.ElectricMotorcycle);
+                    success = insertVehicleByType(i_PlateId, VehicleType.ElectricMotorcycle);
                     break;
                 case 5:
-                    insertVehicleByType(i_PlateId, VehicleType.Truck);
+                    success = insertVehicleByType(i_PlateId, VehicleType.Truck);
                     break;
             }
+
+            return success;
         }
 
-        private void insertVehicleByType(string i_PlateId, VehicleType i_VehicleType)
+        private bool insertVehicleByType(string i_PlateId, VehicleType i_VehicleType)
         {
+            bool success = false;
+
             try
             {
                 string vehicleType = stringifyVehicleType(i_VehicleType);
@@ -271,13 +286,13 @@ namespace Ex03.ConsoleUI
                     if (electric)
                     {
                         readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
-                        m_Garage.InsertElectricCar(model, i_PlateId, color, numOfDoors, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                        success = m_Garage.InsertElectricCar(model, i_PlateId, color, numOfDoors, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
 
                     }
                     else
                     {
                         readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
-                        m_Garage.InsertGasCar(model, i_PlateId, color, numOfDoors, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                        success = m_Garage.InsertGasCar(model, i_PlateId, color, numOfDoors, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
                     }
                 }
                 else if (vehicleType == "motorcycle")
@@ -289,12 +304,12 @@ namespace Ex03.ConsoleUI
                     if (electric)
                     {
                         readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
-                        m_Garage.InsertElectricMotorcycle(model, i_PlateId, licenseType, engineCapacity, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                        success = m_Garage.InsertElectricMotorcycle(model, i_PlateId, licenseType, engineCapacity, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
                     }
                     else
                     {
                         readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
-                        m_Garage.InsertGasMotorcycle(model, i_PlateId, licenseType, engineCapacity, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                        success = m_Garage.InsertGasMotorcycle(model, i_PlateId, licenseType, engineCapacity, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
                     }
                 }
                 else if (vehicleType == "truck")
@@ -303,14 +318,15 @@ namespace Ex03.ConsoleUI
                     float maxCargoWeight;
                     readTruckUniqueProperties(out containsCimicals, out maxCargoWeight);
                     readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
-                    m_Garage.InsertTruck(model, i_PlateId, containsCimicals, maxCargoWeight, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                    success = m_Garage.InsertTruck(model, i_PlateId, containsCimicals, maxCargoWeight, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
                 }
             }
             catch
             {
                 Console.WriteLine("IO (read/write) error occured. Please try again...");
             }
-            
+
+            return success;
         }
 
         private void readWheelsProperties(VehicleType i_VehicleType, out string[] i_Manufacturers, out float[] i_CurrentAirPressures)
@@ -707,9 +723,13 @@ namespace Ex03.ConsoleUI
 
                 Console.WriteLine("The vehicle has been refueled successfully");
             }
-            catch(ArgumentOutOfRangeException aoore)
+            catch(ArgumentException)
             {
-                Console.WriteLine("Invalid amount of liters. " + aoore.StackTrace);
+                Console.WriteLine("This gas type does not fit your vehicle. Please try again...");
+            }
+            catch(ValueOutOfRangeException)
+            {
+                Console.WriteLine("Too much fuel for this vehicle's tank.");
             }
             catch
             {
@@ -778,43 +798,44 @@ namespace Ex03.ConsoleUI
                 //In case vehicle is of type GasCar
                 if (vehicle is GasCar gasCar)
                 {
-                    Console.WriteLine(string.Format(fuelDetailsMsg, gasCar.GasType, gasCar.FuelLeft), 
-                        string.Format(carUniqueDetailsMsg, gasCar.Color, gasCar.NumOfDoors));
+
+                    Console.WriteLine(string.Format(fuelDetailsMsg, gasCar.GasType, gasCar.FuelLeft)); 
+                    Console.WriteLine(string.Format(carUniqueDetailsMsg, gasCar.Color, gasCar.NumOfDoors));
                 }
 
                 //In case vehicle is of type ElectricCar
-                else if (vehicle is ElectricCar electricCar)
+                else if (vehicle as ElectricCar != null)
                 {
-                    Console.WriteLine(string.Format(batteryDetailsMsg, electricCar.EnergyLeft),
-                        string.Format(carUniqueDetailsMsg, electricCar.Color, electricCar.NumOfDoors));
+                    Console.WriteLine(string.Format(batteryDetailsMsg, ((ElectricCar)vehicle).EnergyLeft));
+                    Console.WriteLine(string.Format(carUniqueDetailsMsg, ((ElectricCar)vehicle).Color, ((ElectricCar)vehicle).NumOfDoors));
 
                 }
 
                 //In case vehicle is of type GasMotorcycle
-                else if (vehicle is GasMotorcycle gasMotorcycle)
+                else if (vehicle as GasMotorcycle != null)
                 {
-                    Console.WriteLine(string.Format(fuelDetailsMsg, gasMotorcycle.GasType, gasMotorcycle.FuelLeft),
-                        string.Format(motorcycleUniqueDetailsMsg, gasMotorcycle.LicenseType, gasMotorcycle.EngineCapacity));
+                    Console.WriteLine(string.Format(fuelDetailsMsg, ((GasMotorcycle)vehicle).GasType, ((GasMotorcycle)vehicle).FuelLeft));
+                    Console.WriteLine(string.Format(motorcycleUniqueDetailsMsg, ((GasMotorcycle)vehicle).LicenseType, ((GasMotorcycle)vehicle).EngineCapacity));
                 }
 
                 //In case vehicle is of type ElectricMotorcycle
-                else if (vehicle is ElectricMotorcycle electricMotorcycle)
+                else if (vehicle as ElectricMotorcycle != null)
                 {
-                    Console.WriteLine(string.Format(batteryDetailsMsg, electricMotorcycle.EnergyLeft),
-                        string.Format(motorcycleUniqueDetailsMsg, electricMotorcycle.LicenseType, electricMotorcycle.EngineCapacity));
+                    Console.WriteLine(string.Format(batteryDetailsMsg, ((ElectricMotorcycle)vehicle).EnergyLeft));
+                    Console.WriteLine(string.Format(motorcycleUniqueDetailsMsg, ((ElectricMotorcycle)vehicle).LicenseType, ((ElectricMotorcycle)vehicle).EngineCapacity));
 
                 }
 
                 //In case vehicle is of type Truck
-                else if (vehicle is Truck truck)
+                else if (vehicle as Truck != null)
                 {
                     string containsOrNot = "Does not contain";
-                    if (truck.ContainsCimicals)
+                    if (((Truck)vehicle).ContainsCimicals)
                     {
                         containsOrNot = "Contains";
                     }
-                    Console.WriteLine(string.Format(fuelDetailsMsg, truck.GasType, truck.FuelLeft),
-                        string.Format(truckUniqueDetailsMsg, containsOrNot, truck.MaxCargoWeight));
+                    Console.WriteLine(string.Format(fuelDetailsMsg, ((Truck)vehicle).GasType, ((Truck)vehicle).FuelLeft));
+                    Console.WriteLine(string.Format(truckUniqueDetailsMsg, containsOrNot, ((Truck)vehicle).MaxCargoWeight));
                 }
             }
             catch
