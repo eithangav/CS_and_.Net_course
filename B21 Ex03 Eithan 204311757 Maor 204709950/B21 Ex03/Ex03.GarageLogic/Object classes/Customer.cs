@@ -11,7 +11,6 @@ namespace Ex03.GarageLogic
         private VehicleStatus m_VehicleStatus;
         private Vehicle m_Vehicle;
 
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -21,7 +20,17 @@ namespace Ex03.GarageLogic
             m_CustomerPhone = i_CustomerPhone;
             m_Vehicle = i_Vehicle;
             m_VehicleStatus = VehicleStatus.InProgress;
+        }
 
+        /// <summary>
+        /// Returns the customer's vehicle type
+        /// </summary>
+        public VehicleType VehicleType
+        {
+            get
+            {
+                return m_VehicleType;
+            }
         }
 
         /// <summary>
