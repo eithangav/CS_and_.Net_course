@@ -1,0 +1,6 @@
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\Testing\B21 Ex03 Eithan 204311757 Maor 204709950\Ex03.GarageLogic\obj\Debug\Ex03.GarageLogic.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\Testing\B21 Ex03 Eithan 204311757 Maor 204709950\Ex03.GarageLogic\bin\Debug\Ex03.GarageLogic.dll.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\Testing\B21 Ex03 Eithan 204311757 Maor 204709950\Ex03.GarageLogic\bin\Debug\Ex03.GarageLogic.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\Testing\B21 Ex03 Eithan 204311757 Maor 204709950\Ex03.GarageLogic\bin\Debug\Ex03.GarageLogic.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\Testing\B21 Ex03 Eithan 204311757 Maor 204709950\Ex03.GarageLogic\obj\Debug\Ex03.GarageLogic.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\Testing\B21 Ex03 Eithan 204311757 Maor 204709950\Ex03.GarageLogic\obj\Debug\Ex03.GarageLogic.pdb

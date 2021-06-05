@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\B21 Ex03"
+    "\\B21 Ex03",
+    "\\B21 Ex03\\Ex03.ConsoleUI",
+    "\\B21 Ex03\\Ex03.GarageLogic"
   ],
+  "SelectedNode": "\\B21 Ex03\\Ex03.GarageLogic\\Ex03.GarageLogic.csproj",
   "PreviewInSolutionExplorer": false
 }
