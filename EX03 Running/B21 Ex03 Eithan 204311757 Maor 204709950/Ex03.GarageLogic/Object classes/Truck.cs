@@ -6,6 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Truck: Vehicle, IGasVehicle
     {
+        public static readonly float WHEELS_MAX_AIR_PRESSURE = 26;
+
         private bool m_ContainsCimicals;
         private float m_MaxCargoWeight;
         private GasType m_GasType;
@@ -25,7 +27,7 @@ namespace Ex03.GarageLogic
             m_FuelLeft = i_FuelLeft;
             m_MaxFuel = i_MaxFuel;
             m_GasType = i_GasType;
-            SetWheels(16, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 26);
+            SetWheels(16, i_WheelsManufacturers, i_WheelsCurrentAirPressures, WHEELS_MAX_AIR_PRESSURE);
         }
 
         /// <summary>

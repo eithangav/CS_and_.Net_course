@@ -6,6 +6,8 @@ namespace Ex03.GarageLogic
 {
     public class Car: Vehicle
     {
+        public static readonly float WHEELS_MAX_AIR_PRESSURE = 32;
+
         private Color m_Color;
         private NumOfDoors m_NumOfDoors;
 
@@ -19,7 +21,7 @@ namespace Ex03.GarageLogic
         {
             m_Color = i_Color;
             m_NumOfDoors = i_NumOfDoors;
-            SetWheels(4, i_WheelsManufacturers, i_WheelsCurrentAirPressures, 32);
+            SetWheels(4, i_WheelsManufacturers, i_WheelsCurrentAirPressures, WHEELS_MAX_AIR_PRESSURE);
         }
 
         /// <summary>

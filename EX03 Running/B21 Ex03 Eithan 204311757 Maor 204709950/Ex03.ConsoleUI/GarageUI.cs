@@ -77,13 +77,13 @@ namespace Ex03.ConsoleUI
 
             while (userChoiceNum == 0)
             {
-                userChoice = Console.ReadLine();
-
                 try
                 {
-                    userChoiceNum = byte.Parse(userChoice);
+                    userChoice = Console.ReadLine();
 
-                    if (userChoiceNum < 1 || userChoiceNum > i_MaxValue)
+                    bool parsingSucceded = byte.TryParse(userChoice, out userChoiceNum);
+
+                    if (!parsingSucceded || userChoiceNum < 1 || userChoiceNum > i_MaxValue)
                     {
                         userChoiceNum = 0;
                         Console.WriteLine(invalidInputMsg);
@@ -91,15 +91,14 @@ namespace Ex03.ConsoleUI
                 }
                 catch
                 {
-                    userChoiceNum = 0;
-                    Console.WriteLine(invalidInputMsg);
+                    Console.WriteLine("IO (read/write) error occured. Please try again...");
                 }
             }
 
             return userChoiceNum;
         }
 
-        private string readAndValidateStringInput(bool i_CheckPlateIdExistant = false)
+        private string readAndValidateStringInput(bool i_CheckPlateIdExistance = false)
         {
             string inputStr = "";
 
@@ -109,19 +108,23 @@ namespace Ex03.ConsoleUI
                 {
                     inputStr = Console.ReadLine();
 
-                    if (inputStr == "")
+                    if(inputStr.ToLower() == "q")
+                    {
+                        MainMenu();
+                    }
+                    else if (inputStr == "")
                     {
                         Console.WriteLine("Invalid input. Please enter a non-empty string");
                     }
-                    else if (i_CheckPlateIdExistant && !m_Garage.VehicleExists(inputStr))
+                    else if (i_CheckPlateIdExistance && !m_Garage.VehicleExists(inputStr))
                     {
-                        Console.WriteLine("Plate ID doesn't exist. Please try again");
+                        Console.WriteLine("Plate ID doesn't exist. Please try again or type 'Q' to go back");
                         inputStr = "";
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("An error occured. Please try again...");
+                    Console.WriteLine("IO (read/write) error occured. Please try again...");
                 }
                 
             }
@@ -129,7 +132,8 @@ namespace Ex03.ConsoleUI
             return inputStr;
         }
 
-        private float readAndValidateNonNegativeNumInput(bool i_RequiredPositive = false, bool i_RequiredInteger = false)
+        private float readAndValidateNonNegativeNumInput(bool i_RequiredPositive = false, bool i_RequiredInteger = false, 
+            float i_MaxValue = float.MaxValue)
         {
             string inputStr;
             float inputNum = -1;
@@ -147,18 +151,17 @@ namespace Ex03.ConsoleUI
                 numType = "integer";
             }
 
-            string invalidInputMsg = string.Format("Invalid input. Please enter a {0} {1}", numPositivity, numType);
+            string invalidInputMsg = string.Format("Invalid input. Please enter a {0} {1}, not larger than {2}", numPositivity, numType, i_MaxValue);
 
             while (inputNum == -1)
             {
-                inputStr = Console.ReadLine();
-
                 try
                 {
+                    inputStr = Console.ReadLine();
                     bool parsingSucceded = float.TryParse(inputStr, out inputNum);
 
-                    if (!parsingSucceded || 
-                        inputNum < 0 || (i_RequiredPositive && inputNum == 0) || (i_RequiredPositive && inputNum - (float)((int)inputNum) != 0))
+                    if (!parsingSucceded || inputNum < 0 || inputNum > i_MaxValue || (i_RequiredPositive && inputNum == 0) || 
+                        (i_RequiredInteger && inputNum - (float)((int)inputNum) != 0))
                     {
                         inputNum = -1;
                         Console.WriteLine(invalidInputMsg);
@@ -166,8 +169,7 @@ namespace Ex03.ConsoleUI
                 }
                 catch
                 {
-                    inputNum = -1;
-                    Console.WriteLine(invalidInputMsg);
+                    Console.WriteLine("IO (read/write) error occured. Please try again...");
                 }
             }
 
@@ -179,7 +181,7 @@ namespace Ex03.ConsoleUI
             try
             {
                 Console.WriteLine("Insert the vehicle's Plate ID:");
-                string plateId = Console.ReadLine();
+                string plateId = readAndValidateStringInput();
 
                 if (m_Garage.VehicleExists(plateId))
                 {
@@ -192,11 +194,9 @@ namespace Ex03.ConsoleUI
                     Console.WriteLine("The vehicle was inserted successfully");
                 }
             }
-            catch(Exception e)
+            catch
             {
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine(e);
-                Console.WriteLine("An error occured. Please try again....");
+                Console.WriteLine("IO (read/write) error occured. Please try again...");
             }
         }
 
@@ -233,81 +233,90 @@ namespace Ex03.ConsoleUI
 
         private void insertVehicleByType(string i_PlateId, VehicleType i_VehicleType)
         {
-            string vehicleType = stringifyVehicleType(i_VehicleType);
-
-            // Read shared properties:
-
-            Console.WriteLine("Enter customer's name:");
-            string customerName = readAndValidateStringInput();
-
-            Console.WriteLine("Enter customer's phone:");
-            string customerPhone = readAndValidateStringInput();
-
-            Console.WriteLine(string.Format("Enter the {0}'s model:", vehicleType));
-            string model = readAndValidateStringInput();
-
-            string[] wheelsManucafturers;
-            float[] wheelsCurrentAirPressures;
-            readWheelsProperties(i_VehicleType, out wheelsManucafturers, out wheelsCurrentAirPressures);
-
-            GasType gasType;
-            float fuelLeft;
-            float maxFuel;
-            float batteryLeft;
-            float maxBatteryTime;
-
-            bool electric = isElectric(i_VehicleType);
-
-            // Read specific properties and insert the vehicle to the garage
-
-            if (vehicleType == "car")
+            try
             {
-                Color color;
-                NumOfDoors numOfDoors;
-                readCarUniqueProperties(out color, out numOfDoors);
+                string vehicleType = stringifyVehicleType(i_VehicleType);
 
-                if (electric)
+                // Read shared properties:
+
+                Console.WriteLine("Enter customer's name:");
+                string customerName = readAndValidateStringInput();
+
+                Console.WriteLine("Enter customer's phone:");
+                string customerPhone = readAndValidateStringInput();
+
+                Console.WriteLine(string.Format("Enter the {0}'s model:", vehicleType));
+                string model = readAndValidateStringInput();
+
+                string[] wheelsManucafturers;
+                float[] wheelsCurrentAirPressures;
+                readWheelsProperties(i_VehicleType, out wheelsManucafturers, out wheelsCurrentAirPressures);
+
+                GasType gasType;
+                float fuelLeft;
+                float maxFuel;
+                float batteryLeft;
+                float maxBatteryTime;
+
+                bool electric = isElectric(i_VehicleType);
+
+                // Read specific properties and insert the vehicle to the garage
+
+                if (vehicleType == "car")
                 {
-                    readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
-                    m_Garage.InsertElectricCar(model, i_PlateId, color, numOfDoors, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                    Color color;
+                    NumOfDoors numOfDoors;
+                    readCarUniqueProperties(out color, out numOfDoors);
 
+                    if (electric)
+                    {
+                        readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
+                        m_Garage.InsertElectricCar(model, i_PlateId, color, numOfDoors, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+
+                    }
+                    else
+                    {
+                        readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
+                        m_Garage.InsertGasCar(model, i_PlateId, color, numOfDoors, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                    }
                 }
-                else
+                else if (vehicleType == "motorcycle")
                 {
+                    LicenseType licenseType;
+                    int engineCapacity;
+                    readMotorcycleUniqueProperties(out licenseType, out engineCapacity);
+
+                    if (electric)
+                    {
+                        readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
+                        m_Garage.InsertElectricMotorcycle(model, i_PlateId, licenseType, engineCapacity, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                    }
+                    else
+                    {
+                        readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
+                        m_Garage.InsertGasMotorcycle(model, i_PlateId, licenseType, engineCapacity, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                    }
+                }
+                else if (vehicleType == "truck")
+                {
+                    bool containsCimicals;
+                    float maxCargoWeight;
+                    readTruckUniqueProperties(out containsCimicals, out maxCargoWeight);
                     readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
-                    m_Garage.InsertGasCar(model, i_PlateId, color, numOfDoors, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
+                    m_Garage.InsertTruck(model, i_PlateId, containsCimicals, maxCargoWeight, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
                 }
             }
-            else if(vehicleType == "motorcycle")
+            catch
             {
-                LicenseType licenseType;
-                int engineCapacity;
-                readMotorcycleUniqueProperties(out licenseType, out engineCapacity);
-
-                if (electric)
-                {
-                    readElectricVehicleUniqueProperties(i_VehicleType, out batteryLeft, out maxBatteryTime);
-                    m_Garage.InsertElectricMotorcycle(model, i_PlateId, licenseType, engineCapacity, batteryLeft, maxBatteryTime, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
-                }
-                else
-                {
-                    readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
-                    m_Garage.InsertGasMotorcycle(model, i_PlateId, licenseType, engineCapacity, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
-                }
+                Console.WriteLine("IO (read/write) error occured. Please try again...");
             }
-            else if(vehicleType == "truck")
-            {
-                bool containsCimicals;
-                float maxCargoWeight;
-                readTruckUniqueProperties(out containsCimicals, out maxCargoWeight);
-                readGasVehicleUniqueProperties(i_VehicleType, out gasType, out fuelLeft, out maxFuel);
-                m_Garage.InsertTruck(model, i_PlateId, containsCimicals, maxCargoWeight, gasType, fuelLeft, maxFuel, wheelsManucafturers, wheelsCurrentAirPressures, customerName, customerPhone);
-            }
+            
         }
 
         private void readWheelsProperties(VehicleType i_VehicleType, out string[] i_Manufacturers, out float[] i_CurrentAirPressures)
         {
             byte numOfWheels = getNumOfWheels(i_VehicleType);
+            float maxAirPressure = getWheelsMaxAirPressure(i_VehicleType);
 
             i_Manufacturers = new string[numOfWheels];
             i_CurrentAirPressures = new float[numOfWheels];
@@ -315,11 +324,37 @@ namespace Ex03.ConsoleUI
             for(byte i=1; i<=numOfWheels; i++)
             {      
                 Console.WriteLine(string.Format("Enter wheel {0} manufacturer:", i));
-                i_Manufacturers[i] = readAndValidateStringInput();
+                i_Manufacturers[i-1] = readAndValidateStringInput();
 
                 Console.WriteLine(string.Format("Enter wheel {0} current air pressure:", i));
-                i_CurrentAirPressures[i] = readAndValidateNonNegativeNumInput();
+                i_CurrentAirPressures[i-1] = readAndValidateNonNegativeNumInput(false, false, maxAirPressure);
             }
+        }
+
+        private float getWheelsMaxAirPressure(VehicleType i_VehicleType)
+        {
+            float maxAirPressure = 0;
+
+            switch (i_VehicleType)
+            {
+                case VehicleType.ElectricCar:
+                    maxAirPressure = Car.WHEELS_MAX_AIR_PRESSURE;
+                    break;
+                case VehicleType.GasCar:
+                    maxAirPressure = Car.WHEELS_MAX_AIR_PRESSURE;
+                    break;
+                case VehicleType.ElectricMotorcycle:
+                    maxAirPressure = Motorcycle.WHEELS_MAX_AIR_PRESSURE;
+                    break;
+                case VehicleType.GasMotorcycle:
+                    maxAirPressure = Motorcycle.WHEELS_MAX_AIR_PRESSURE;
+                    break;
+                case VehicleType.Truck:
+                    maxAirPressure = Truck.WHEELS_MAX_AIR_PRESSURE;
+                    break;
+            }
+
+            return maxAirPressure;
         }
 
         private void readCarUniqueProperties(out Color i_Color, out NumOfDoors i_NumOfDoors)
@@ -468,13 +503,13 @@ namespace Ex03.ConsoleUI
 
             i_GasType = gasType;
 
-            Console.WriteLine(string.Format("How much fuel left in the {0}'s tank? (enter a non-negative number)", vehicleType));
-
-            i_FuelLeft = readAndValidateNonNegativeNumInput();
-
             Console.WriteLine(string.Format("What is the maximum possible fuel of the {0}'s tank? (enter a positive number)", vehicleType));
 
             i_MaxFuel = readAndValidateNonNegativeNumInput(true, false);
+
+            Console.WriteLine(string.Format("How much fuel left in the {0}'s tank? (enter a non-negative number not larger than {1})", vehicleType, i_MaxFuel));
+
+            i_FuelLeft = readAndValidateNonNegativeNumInput(false, false, i_MaxFuel);
         }
 
         /// <summary>
@@ -490,13 +525,13 @@ namespace Ex03.ConsoleUI
 
             string vehicleType = stringifyVehicleType(i_VehicleType);
 
-            Console.WriteLine(string.Format("How much time left in the {0}'s battery? (enter a non-negative number)", vehicleType));
-
-            i_BatteryLeft = readAndValidateNonNegativeNumInput();
-
             Console.WriteLine(string.Format("What is the maximum time of the {0}'s battery? (enter a non-negative number)", vehicleType));
 
             i_MaxBatteryTime = readAndValidateNonNegativeNumInput();
+
+            Console.WriteLine(string.Format("How much time left in the {0}'s battery? (enter a non-negative number not larger than {1})", vehicleType, i_MaxBatteryTime));
+
+            i_BatteryLeft = readAndValidateNonNegativeNumInput(false, false, i_MaxBatteryTime);
         }
 
         private string stringifyVehicleType(VehicleType i_VehicleType)
@@ -697,7 +732,7 @@ namespace Ex03.ConsoleUI
             {
                 m_Garage.ChargeBattery(plateId, hoursToCharge);
             }
-            catch(ArgumentException ae)
+            catch
             {
                 Console.WriteLine("Invalid input. Please choose an electric vehicle to charge it's battery");
             }
