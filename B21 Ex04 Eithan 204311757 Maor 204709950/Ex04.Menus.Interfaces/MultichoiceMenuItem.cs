@@ -52,9 +52,9 @@ namespace Ex04.Menus.Interfaces
         {
             Console.Clear();
 
-            printMenuItem();
+            PrintMenuItem();
 
-            int selection = readAndValidateMenuInput();
+            int selection = ReadAndValidateMenuInput();
 
             if(selection == 0)
             {
@@ -79,7 +79,7 @@ namespace Ex04.Menus.Interfaces
             }
         }
 
-        public void printMenuItem()
+        public void PrintMenuItem()
         {
             StringBuilder menuContent = new StringBuilder();
 
@@ -107,7 +107,7 @@ namespace Ex04.Menus.Interfaces
             Console.WriteLine(menuContent.ToString());
         }
 
-        public int readAndValidateMenuInput()
+        public int ReadAndValidateMenuInput()
         {
             string userChoice;
             int userChoiceNum = -1;
