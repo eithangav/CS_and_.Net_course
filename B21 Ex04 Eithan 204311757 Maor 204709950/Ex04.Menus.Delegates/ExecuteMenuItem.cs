@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Delegates
 {
-    public class MainMenu : MultichoiceMenuItem
+    public class ExecuteMenuItem : MenuItem
     {
-        public MainMenu(string i_MenuTitle) :
-            base(i_MenuTitle, null)
+
+        public ExecuteMenuItem(string i_ItemTitle) :
+            base(i_ItemTitle)
         {
+
+        }
+
+        public void Execute()
+        {
+
         }
     }
 }
