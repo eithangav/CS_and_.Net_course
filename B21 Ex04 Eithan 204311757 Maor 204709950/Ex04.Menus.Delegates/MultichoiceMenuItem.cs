@@ -84,7 +84,7 @@ namespace Ex04.Menus.Delegates
 
             string backOrExit = m_Previous == null ? "Exit" : "Go back" ;
 
-            menuContent.Append("----- ");
+            menuContent.Append("\n----- ");
             menuContent.Append(this.ItemTitle);
             menuContent.Append(": -----\n\n");
 

@@ -3,22 +3,22 @@ namespace Ex04.Menus.Delegates
 {
     public class ExecuteMenuItem : MenuItem
     {
-        private event Executable m_Exe;
+        private event ExecutableDelegate ActionToExecute;
 
-        public ExecuteMenuItem(string i_ItemTitle, Executable i_Executable) :
+        public ExecuteMenuItem(string i_ItemTitle, ExecutableDelegate i_Executable) :
             base(i_ItemTitle)
         {
-            m_Exe += i_Executable;
+            ActionToExecute += i_Executable;
         }
 
         public void Execute()
         {
-            if(m_Exe != null)
+            if(ActionToExecute != null)
             {
-                m_Exe.Invoke();
+                ActionToExecute.Invoke();
             }
         }
     }
 
-    public delegate void Executable();
+    public delegate void ExecutableDelegate();
 }
