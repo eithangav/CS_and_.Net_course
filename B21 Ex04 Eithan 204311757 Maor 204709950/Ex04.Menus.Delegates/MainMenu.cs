@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Delegates
 {
-    class Program
+    class MainMenu
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }

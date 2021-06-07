@@ -50,13 +50,13 @@ namespace Ex04.Menus.Interfaces
 
         public void Show()
         {
-            Console.Clear();
-
             PrintMenuItem();
 
             int selection = ReadAndValidateMenuInput();
 
-            if(selection == 0)
+            Console.Clear();
+
+            if (selection == 0)
             {
                 if(m_Previous != null)
                 {
@@ -66,11 +66,12 @@ namespace Ex04.Menus.Interfaces
             }
             else
             {
-                MenuItem item = m_MenuItems[selection];
-                
-                if(item is ExecuteMenuItem executableItem)
+                MenuItem item = m_MenuItems[selection-1];
+
+                if (item is ExecuteMenuItem executableItem)
                 {
                     executableItem.Execute();
+                    this.Show();
                 }
                 else if(item is MultichoiceMenuItem subMenuItem)
                 {
@@ -85,7 +86,7 @@ namespace Ex04.Menus.Interfaces
 
             string backOrExit = m_Previous == null ? "Exit" : "Go back" ;
 
-            menuContent.Append("-----");
+            menuContent.Append("----- ");
             menuContent.Append(this.ItemTitle);
             menuContent.Append(": -----\n\n");
 

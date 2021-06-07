@@ -1,0 +1,14 @@
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.exe.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Test.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Delegates.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Interfaces.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Delegates.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Delegates.dll.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Interfaces.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\bin\Debug\Ex04.Menus.Interfaces.dll.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csprojAssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.csproj.CopyComplete
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.exe
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\B21 Ex04 Eithan 204311757 Maor 204709950\Ex04.Menus.Test\obj\Debug\Ex04.Menus.Test.pdb
