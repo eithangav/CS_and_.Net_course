@@ -42,9 +42,33 @@ namespace Ex04.Menus.Test
 
         private static Delegates.MainMenu createMenuWithDelegates()
         {
-            // TODO: Implement Delegates project and then this method
+            // Main menu layer:
 
-            return new Delegates.MainMenu("Main menu (using delegates)");
+            Delegates.MainMenu mainMenu = new Delegates.MainMenu("Main menu (using delegates)");
+
+            // Second menu layers:
+
+            Delegates.MultichoiceMenuItem subMenuVersionAndSpaces = new Delegates.MultichoiceMenuItem("Version and Spaces", mainMenu);
+            Delegates.MultichoiceMenuItem subMenuDateTime = new Delegates.MultichoiceMenuItem("Show Date/Time", mainMenu);
+
+            mainMenu.AddMenuItem(subMenuVersionAndSpaces);
+            mainMenu.AddMenuItem(subMenuDateTime);
+
+            // Third menu layers:
+
+            Delegates.ExecuteMenuItem itemShowVersion = new Delegates.ExecuteMenuItem("Show Version", new ShowVersion().PerformAction);
+            Delegates.ExecuteMenuItem itemCountSpaces = new Delegates.ExecuteMenuItem("Count Spaces", new CountSpaces().PerformAction);
+
+            subMenuVersionAndSpaces.AddMenuItem(itemShowVersion);
+            subMenuVersionAndSpaces.AddMenuItem(itemCountSpaces);
+
+            Delegates.ExecuteMenuItem itemShowTime = new Delegates.ExecuteMenuItem("Show Time", new ShowTime().PerformAction);
+            Delegates.ExecuteMenuItem itemShowDate = new Delegates.ExecuteMenuItem("Show Date", new ShowDate().PerformAction);
+
+            subMenuDateTime.AddMenuItem(itemShowTime);
+            subMenuDateTime.AddMenuItem(itemShowDate);
+
+            return mainMenu;
         }
     }
 }
