@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ex04.Menus.Interfaces;
-
+﻿
 namespace Ex04.Menus.Test
 {
     class Program
@@ -15,30 +9,30 @@ namespace Ex04.Menus.Test
             createMenuWithDelegates().Show();
         }
 
-        private static MainMenu createMenuWithInterfaces()
+        private static Interfaces.MainMenu createMenuWithInterfaces()
         {
             // Main menu layer:
 
-            MainMenu mainMenu = new MainMenu("Main menu (using interfaces)");
+            Interfaces.MainMenu mainMenu = new Interfaces.MainMenu("Main menu (using interfaces)");
 
             // Second menu layers:
 
-            MultichoiceMenuItem subMenuVersionAndSpaces = new MultichoiceMenuItem("Version and Spaces", mainMenu);
-            MultichoiceMenuItem subMenuDateTime = new MultichoiceMenuItem("Show Date/Time", mainMenu);
+            Interfaces.MultichoiceMenuItem subMenuVersionAndSpaces = new Interfaces.MultichoiceMenuItem("Version and Spaces", mainMenu);
+            Interfaces.MultichoiceMenuItem subMenuDateTime = new Interfaces.MultichoiceMenuItem("Show Date/Time", mainMenu);
 
             mainMenu.AddMenuItem(subMenuVersionAndSpaces);
             mainMenu.AddMenuItem(subMenuDateTime);
 
             // Third menu layers:
 
-            ExecuteMenuItem itemShowVersion = new ExecuteMenuItem("Show Version", new ShowVersion());
-            ExecuteMenuItem itemCountSpaces = new ExecuteMenuItem("Count Spaces", new CountSpaces());
+            Interfaces.ExecuteMenuItem itemShowVersion = new Interfaces.ExecuteMenuItem("Show Version", new ShowVersion());
+            Interfaces.ExecuteMenuItem itemCountSpaces = new Interfaces.ExecuteMenuItem("Count Spaces", new CountSpaces());
 
             subMenuVersionAndSpaces.AddMenuItem(itemShowVersion);
             subMenuVersionAndSpaces.AddMenuItem(itemCountSpaces);
 
-            ExecuteMenuItem itemShowTime = new ExecuteMenuItem("Show Time", new ShowTime());
-            ExecuteMenuItem itemShowDate = new ExecuteMenuItem("Show Date", new ShowDate());
+            Interfaces.ExecuteMenuItem itemShowTime = new Interfaces.ExecuteMenuItem("Show Time", new ShowTime());
+            Interfaces.ExecuteMenuItem itemShowDate = new Interfaces.ExecuteMenuItem("Show Date", new ShowDate());
 
             subMenuDateTime.AddMenuItem(itemShowTime);
             subMenuDateTime.AddMenuItem(itemShowDate);
@@ -46,11 +40,11 @@ namespace Ex04.Menus.Test
             return mainMenu;
         }
 
-        private static MainMenu createMenuWithDelegates()
+        private static Delegates.MainMenu createMenuWithDelegates()
         {
             // TODO: Implement Delegates project and then this method
 
-            return new MainMenu("Main menu (using delegates)");
+            return new Delegates.MainMenu("Main menu (using delegates)");
         }
     }
 }
