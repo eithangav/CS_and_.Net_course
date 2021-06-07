@@ -18,8 +18,6 @@ namespace Ex04.Menus.Interfaces
 
         public void Execute()
         {
-            Console.Clear();
-
             m_Executable.PerformAction();
         }
     }
