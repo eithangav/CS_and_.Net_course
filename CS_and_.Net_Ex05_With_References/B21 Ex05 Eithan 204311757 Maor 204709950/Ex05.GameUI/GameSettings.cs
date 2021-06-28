@@ -33,6 +33,7 @@ namespace Ex05.GameUI
             m_GameSettings = new Settings();
         }
 
+<<<<<<< HEAD
         //Return the Game Settings that were update 
         public Settings GameSetings
         {
@@ -41,16 +42,21 @@ namespace Ex05.GameUI
                 return m_GameSettings;
             }
         }
+               
+=======
 
         private void textBoxPlayer1_TextChanged(object sender, EventArgs e)
         {
 
         }
+>>>>>>> aff57e3dcdbbbc6d9bd1c7abca515429faefed35
 
         private void checkBoxPlayer2_CheckedChanged(object sender, EventArgs e)
         {
             textBoxPlayer2.Enabled = true;
             textBoxPlayer2.Text = "";
+<<<<<<< HEAD
+
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -108,6 +114,8 @@ namespace Ex05.GameUI
            
 
             return isFieldsNotEmpty;
+       
+=======
         }
 
         private void textBoxPlayer2_TextChanged(object sender, EventArgs e)
@@ -137,6 +145,7 @@ namespace Ex05.GameUI
         private void btnStart_Click(object sender, EventArgs e)
         {
             
+>>>>>>> aff57e3dcdbbbc6d9bd1c7abca515429faefed35
         }
 
 

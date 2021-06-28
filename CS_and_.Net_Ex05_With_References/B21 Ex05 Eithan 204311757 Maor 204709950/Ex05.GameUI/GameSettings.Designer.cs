@@ -366,6 +366,7 @@ namespace Ex05.GameUI
         private System.Windows.Forms.Label lblPlayers;
         private System.Windows.Forms.Label lblPlayer1;
         private System.Windows.Forms.CheckBox checkBoxPlayer2;
+<<<<<<< HEAD
         private System.Windows.Forms.TextBox textBoxPlayer1;
         private System.Windows.Forms.TextBox textBoxPlayer2;
         private System.Windows.Forms.Label lblBoardSize;
@@ -374,6 +375,7 @@ namespace Ex05.GameUI
         private System.Windows.Forms.Label lblRows;
         private System.Windows.Forms.Label lblCol;
         private System.Windows.Forms.Button btnStartGameSettings;
+=======
         private System.Windows.Forms.Label lblBoardSize;
         private System.Windows.Forms.NumericUpDown numericUpDownRows;
         private System.Windows.Forms.Label lblRows;
@@ -382,6 +384,7 @@ namespace Ex05.GameUI
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.TextBox textBoxPlayer1;
         private System.Windows.Forms.TextBox textBoxPlayer2;
+>>>>>>> aff57e3dcdbbbc6d9bd1c7abca515429faefed35
     }
 }
 

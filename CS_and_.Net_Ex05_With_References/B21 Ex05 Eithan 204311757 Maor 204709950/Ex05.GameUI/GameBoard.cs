@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Ex05.GameLogic;
 
 namespace Ex05.GameUI
 {
     public partial class GameBoard : Form
     {
-        private Game m_Game;
+        private GameLogic m_Game;
         private Settings m_GameSettings;
         
         private int m_BoardSize;
@@ -23,7 +22,7 @@ namespace Ex05.GameUI
 
         private List<Button> m_Buttons;
 
-        public GameBoard(Settings i_GameSettings, Game i_Game)
+        public GameBoard(Settings i_GameSettings, GameLogic i_Game)
         {
             InitializeComponent();
             m_GameSettings = i_GameSettings;
