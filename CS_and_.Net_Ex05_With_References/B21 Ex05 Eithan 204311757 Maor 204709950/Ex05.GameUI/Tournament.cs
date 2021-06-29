@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
+using Ex05.GameLogic;
 
-namespace Ex05.GameLogic
+namespace Ex05.GameUI
 {
     public class Tournament
     {
@@ -13,6 +15,7 @@ namespace Ex05.GameLogic
         private readonly byte m_BoardSize;
 
         private Game m_Game;
+        private Settings m_Settings;
 
         /* Constructor.
          * Init primitives, get user's size and mode inputs
@@ -21,7 +24,11 @@ namespace Ex05.GameLogic
         {
             m_Player1Score = 0;
             m_Player2Score = 0;
-            
+
+            GameUI.GameSettings SettingsForm = new GameUI.GameSettings();
+
+
+
             m_BoardSize = 4; //TODO: replace with the value of the user's size input (instead of: GameUI.InsertBoardSizeMsg)
             m_IsMultiplayer = false; //TODO: replace with the value of the user's isMultiplayer input (instead of: GameUI.IsMultiplayerMsg)
 
@@ -40,39 +47,14 @@ namespace Ex05.GameLogic
 
             while(roundResult == 0)
             {
-                usersChoice = m_GameUI.InsertNextPlayerMoveMsg(); // TODO: modify
+                //usersChoice = m_GameUI.InsertNextPlayerMoveMsg(); // TODO: modify
                 roundResult = m_Game.PlayerMove(usersChoice);
-                m_GameUI.PrintBoard(m_Game.Board); // TODO: modify
+                //m_GameUI.PrintBoard(m_Game.Board); // TODO: modify
             }
 
-            gameEnd(roundResult);
+            //gameEnd(roundResult);
         }
 
-        /* End a game - Prints the result, asks  */
-        private void gameEnd(eGameResult i_GameResult)
-        {
-            switch (i_GameResult) // TODO: modify all UI methods
-            {
-                case eGameResult.Quit:
-                    m_GameUI.QuitMsg();
-                    break;
-                case eGameResult.Tie:
-                    m_GameUI.TieGameMsg();
-                    break;
-                case eGameResult.PlayerTwoLose:
-                    m_GameUI.PlayerWinMsg(1);
-                    break;
-                case eGameResult.PlayerOneLose:
-                    m_GameUI.PlayerWinMsg(2);
-                    break;
-            }
-
-            m_GameUI.PointStatusMsg(m_Player1Score, m_Player2Score); // TODO: modify
-
-            if (m_GameUI.PlayAgainMsg()) // TODO: modify
-            {
-                gameRun();
-            }
-        }
+        
     }
 }

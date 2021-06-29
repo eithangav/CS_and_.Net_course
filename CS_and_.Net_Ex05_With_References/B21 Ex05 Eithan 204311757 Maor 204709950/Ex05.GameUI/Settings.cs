@@ -14,9 +14,9 @@ namespace Ex05.GameUI
         private int m_Rows;
         private int m_Cols;
 
-        public Settings(bool i_IsMultiplayer, string i_Player1Name, string i_Player2Name, int i_Rows, int i_Cols)
+        public Settings(int i_Rows, int i_Cols, string i_Player1Name, string i_Player2Name = "Computer")
         {
-            m_IsMultiplayer = i_IsMultiplayer;
+            m_IsMultiplayer = !(i_Player2Name == "Computer");
             m_Player1Name = i_Player1Name;
             m_Player2Name = i_Player2Name;
             m_Rows = i_Rows;
