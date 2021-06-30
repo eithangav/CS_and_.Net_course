@@ -11,19 +11,9 @@ using System.Windows.Forms;
 
 namespace B21_Ex05_Eithan_204311757_Maor_204709950
 {
-    /**TODO:
-     * Handle adding the buttons List to the board (show wise)
-     * Handle show the user choice and sign in the game board
-     * Handle get user choice from the board - handle apropiately in the Game class
-     * Handle change user current playing mark up (bold) the current pkayer turn (player 1 / player 2)
-     * Handle MessageBox.Show for a tie / win and play abother round
-     * Handle `Player 1` & `Player 2` name convention to user choice name / Computer (if in game mode - Player2Name = computer)
-     */
-
     public partial class GameBoardForm : Form
     {
         private Tournament m_Tournament;
-        //private List<GameButton> m_GameButtons;
         private GameButton[,] m_GameButtons;
 
         private const int k_SpaceBuffer = 8;
@@ -44,8 +34,6 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             initializeButtons();
             initializeBoard();
         }
-
-        
 
         private void gameButton_Click(object sender, EventArgs e)
         {
@@ -73,27 +61,34 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
                 switch (currentGame.GameResult)
                 {
                     case eGameResult.PlayerOneLose:
+                        endOfRound();
                         MessageBox.Show(LabelPlayer1Name.Text.Replace(":", "") + " Wins!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        cleanBoard();
                         break;
                     case eGameResult.PlayerTwoLose:
+                        endOfRound();
                         MessageBox.Show(LabelPlayer2Name.Text.Replace(":","") + "Wins!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        cleanBoard();
+                        break;
+                    case eGameResult.Tie:
+                        endOfRound();
+                        MessageBox.Show("This is a Tie!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     default:
-                        // Do nothing
+                        switchTurn();
                         break;
                 }
-                m_Tournament.UpdateScore();
-                updateScoreLabels();
-                switchTurn();
             }
         }
 
-        private void updateScoreLabels()
+        private void endOfRound()
         {
+            m_Tournament.NewRound();
             LabelPlayer1Score.Text = m_Tournament.Player1Score.ToString();
             LabelPlayer2Score.Text = m_Tournament.Player2Score.ToString();
+            cleanBoard();
+            if (!m_IsPlayer1Turn)
+            {
+                switchTurn();
+            }
         }
 
         private void cleanBoard()
@@ -125,7 +120,6 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         private void initializeButtons()
         {
             byte boardSize = m_Tournament.Settings.BoardSize;
-            //m_GameButtons = new List<GameButton>();
             m_GameButtons = new GameButton[boardSize, boardSize];
 
             for (byte i = 0; i < boardSize; i++)
@@ -138,7 +132,6 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
                     button.Location = buttonLocation;
                     button.Click += gameButton_Click;
                     Controls.Add(button);
-                    //m_GameButtons.Add(button);
                     m_GameButtons[i, j] = button;
                 }
             }
