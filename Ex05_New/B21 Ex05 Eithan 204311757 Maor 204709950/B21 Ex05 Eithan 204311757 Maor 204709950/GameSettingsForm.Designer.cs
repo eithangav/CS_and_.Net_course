@@ -1,7 +1,7 @@
 ﻿
 namespace B21_Ex05_Eithan_204311757_Maor_204709950
 {
-    partial class GameSettings
+    partial class GameSettingsForm
     {
         /// <summary>
         /// Required designer variable.

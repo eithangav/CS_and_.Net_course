@@ -39,20 +39,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameBoard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameBoard.Designer.cs" />
-    <Compile Include="GameSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameSettings.Designer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tournament.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="GameBoard.resx" />
-    <EmbeddedResource Include="GameSettings.resx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ex05.GameLogic\Ex05.GameLogic.csproj">

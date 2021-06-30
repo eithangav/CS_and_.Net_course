@@ -20,44 +20,31 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
      * Handle `Player 1` & `Player 2` name convention to user choice name / Computer (if in game mode - Player2Name = computer)
      */
 
-    public partial class GameBoard : Form
+    public partial class GameBoardForm : Form
     {
-        private Game m_Game;
-        private Settings m_GameSettings;
-
-        private int m_BoardSize;
-        private string m_Player1Name;
-        private string m_Player2Name;
+        private Tournament m_Tournament;
 
         private List<Button> m_Buttons;
 
         //Initialize Game Board with the apropriate Game and GameSettinigs
-        public GameBoard(Settings i_GameSettings, Game i_Game)
+        public GameBoardForm(Tournament i_Tournament)
         {
             InitializeComponent();
-            m_Game = i_Game;
-            m_GameSettings = i_GameSettings;
-            m_BoardSize = m_Game.BoardSize;
-            m_Player1Name = m_GameSettings.Player1Name;
-            m_Player2Name = m_GameSettings.Player2Name;
-            m_Buttons = initializeButtons();
-
+            //initializeButtons();
         }
 
         /// <summary>
         /// Creates a list of Buttons acording to the board size
         /// </summary>
-        /// <returns></returns>
-        private List<Button> initializeButtons()
+        private void initializeButtons()
         {
-            List<Button> Buttons = new List<Button>();
-            for (int i = 0; i < m_BoardSize; i++)
+            int numOfButtons = (int)Math.Pow(m_Tournament.Settings.BoardSize, 2);
+            m_Buttons = new List<Button>();
+
+            for (int i = 0; i < numOfButtons; i++)
             {
-                Buttons.Add(new Button());
+                m_Buttons.Add(new Button());
             }
-
-            return Buttons;
-
         }
     }
 }

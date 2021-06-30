@@ -3,26 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ex05.GameLogic;
 
-
-namespace B21_Ex05_Eithan_204311757_Maor_204709950
+namespace Ex05.GameLogic
 {
     public class Settings
     {
         private bool m_IsMultiplayer;
         private string m_Player1Name;
         private string m_Player2Name;
-        private int m_Rows;
-        private int m_Cols;
+        private byte m_BoardSize;
 
-        public Settings(bool i_IsMultiplayer, string i_Player1Name, string i_Player2Name, int i_Rows, int i_Cols)
+        public Settings(byte i_BoardSize, string i_Player1Name, bool i_IsMultiplayer = false, string i_Player2Name = "Computer")
         {
             m_IsMultiplayer = i_IsMultiplayer;
             m_Player1Name = i_Player1Name;
-            m_Player2Name = i_Player2Name;
-            m_Rows = i_Rows;
-            m_Cols = i_Cols;
+            m_Player2Name = i_IsMultiplayer ? i_Player2Name : "Computer";
+            m_BoardSize = i_BoardSize;
         }
 
         public Settings()
@@ -30,8 +26,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             m_IsMultiplayer = false;
             m_Player1Name = "";
             m_Player2Name = "";
-            m_Rows = 0;
-            m_Cols = 0;
+            m_BoardSize = 0;
         }
 
         public bool IsMultiplayer
@@ -67,29 +62,16 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
                 m_Player2Name = value;
             }
         }
-        public int Rows
+        public byte BoardSize
         {
             get
             {
-                return m_Rows;
+                return m_BoardSize;
             }
             set
             {
-                m_Rows = value;
+                m_BoardSize = value;
             }
         }
-
-        public int Cols
-        {
-            get
-            {
-                return m_Cols;
-            }
-            set
-            {
-                m_Cols = value;
-            }
-        }
-
     }
 }

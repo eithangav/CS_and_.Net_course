@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Ex05.GameLogic
 {
-    //TODO:
-    // Handle Board Initializer
     public class Game
     {
         private char[,] m_Board;
@@ -13,6 +11,8 @@ namespace Ex05.GameLogic
 
         private readonly byte m_BoardSize;
         private readonly bool m_IsMultiplayer;
+
+        private eGameResult m_GameResult;
 
         // Static variable used for cell randomization
         private static Random m_Random = new Random();
@@ -23,12 +23,12 @@ namespace Ex05.GameLogic
             m_BoardSize = i_BoardSize;
             m_IsMultiplayer = i_IsMultiplayer;
             m_FilledCells = 0;
+            m_GameResult = eGameResult.Pending;
             boardInitializer(); 
         }
 
         /* Intializes all of the board's cells with the 'space' character. */
-        private void boardInitializer()         //TODO: modify
-
+        private void boardInitializer()
         {
             m_Board = new char[m_BoardSize, m_BoardSize];
 
@@ -44,45 +44,38 @@ namespace Ex05.GameLogic
         /// <summary>
         /// Plays a move by a player request. If the game mode is not Multiplayer, preforms a computer move too.
         /// </summary>
-        /// <returns>  an enum result value </returns>
         /// <exception cref="ArgumentException"> in case of invalid Cell argument </exception>
-        public eGameResult PlayerMove(Cell i_userChoice)
+        public void PlayerMove(Cell i_userChoice)
         {
-            eGameResult result = eGameResult.Pending;
-
             if(i_userChoice.m_Row == 254)
             {
                 // the user has quit the game
-                result = eGameResult.Quit;       //TODO: delete?
+                m_GameResult = eGameResult.Quit;
             }
             else
             {
                 // play the user's move
-                result = makeMove(i_userChoice);
+                makeMove(i_userChoice);
             }
 
             // if the game mode is not multiplayer, play a computer move
-            if(result == eGameResult.Pending && !m_IsMultiplayer)
+            if(m_GameResult == eGameResult.Pending && !m_IsMultiplayer)
             {
                 Cell randomFreeCell = pickRandomFreeCell();
                 if (randomFreeCell.m_Row != 255)
                 {
-                    result = makeMove(randomFreeCell);
+                    makeMove(randomFreeCell);
                 }
             }
-
-            return result;
         }
 
         /// <summary>
         /// Plays a move by the input cell's values.
         /// </summary>
-        /// <returns> an enum result value </returns>
         /// <exception cref="ArgumentException"></exception>
-        private eGameResult makeMove(Cell i_Cell)
+        private void makeMove(Cell i_Cell)
         {
             bool validCellIndexes = i_Cell.m_Row < m_BoardSize && i_Cell.m_Column < m_BoardSize;
-            eGameResult result = eGameResult.Pending;
 
             if (!validCellIndexes)      //invalid cell
             {
@@ -90,7 +83,7 @@ namespace Ex05.GameLogic
             }
             else if(isBoardFull())      //tie
             {
-                result = eGameResult.Tie;
+                m_GameResult = eGameResult.Tie;
             }
             else                        //play
             {
@@ -98,15 +91,13 @@ namespace Ex05.GameLogic
 
                 if (didLose(i_Cell))    //player lose
                 {
-                    result = PlayedLast == 1 ? eGameResult.PlayerOneLose : eGameResult.PlayerTwoLose;
+                    m_GameResult = PlayedLast == 1 ? eGameResult.PlayerOneLose : eGameResult.PlayerTwoLose;
                 }
                 else if (isBoardFull()) //tie
                 {
-                    result = eGameResult.Tie;
+                    m_GameResult = eGameResult.Tie;
                 }
             }
-
-            return result;
         }
 
         /* Updates a cell value in the board matrix and increments 'FilledCells' value by 1. */
@@ -260,6 +251,15 @@ namespace Ex05.GameLogic
                 }
 
                 return playerNum;
+            }
+        }
+
+        /* Returns the current result status of this game. */
+        public eGameResult GameResult
+        {
+            get
+            {
+                return m_GameResult;
             }
         }
 
