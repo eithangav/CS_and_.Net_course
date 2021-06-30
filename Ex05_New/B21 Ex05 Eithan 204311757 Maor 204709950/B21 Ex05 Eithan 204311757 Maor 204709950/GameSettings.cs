@@ -105,11 +105,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
                                    && !string.IsNullOrWhiteSpace(textBoxPlayer1.Text);
             }
 
-
             return isFieldsNotEmpty;
-
         }
-
-   
     }
 }

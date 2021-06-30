@@ -5,3 +5,10 @@ C:\C#\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.Gam
 C:\C#\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.dll
 C:\C#\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.pdb
 C:\C#\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.csproj.AssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\bin\Debug\Ex05.GameLogic.dll.config
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\bin\Debug\Ex05.GameLogic.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\bin\Debug\Ex05.GameLogic.pdb
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.csprojAssemblyReference.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.csproj.CoreCompileInputs.cache
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.dll
+C:\Users\Eitan Gavrieli\VisualStudio source\repos\CS_and_.Net_course\Ex05_New\B21 Ex05 Eithan 204311757 Maor 204709950\Ex05.GameLogic\obj\Debug\Ex05.GameLogic.pdb

@@ -4,8 +4,6 @@ using System.Text;
 
 namespace Ex05.GameLogic
 {
-    //TODO:
-    // Handle Board Initializer
     public class Game
     {
         private char[,] m_Board;
@@ -27,8 +25,7 @@ namespace Ex05.GameLogic
         }
 
         /* Intializes all of the board's cells with the 'space' character. */
-        private void boardInitializer()         //TODO: modify
-
+        private void boardInitializer()
         {
             m_Board = new char[m_BoardSize, m_BoardSize];
 
@@ -53,7 +50,7 @@ namespace Ex05.GameLogic
             if(i_userChoice.m_Row == 254)
             {
                 // the user has quit the game
-                result = eGameResult.Quit;       //TODO: delete?
+                result = eGameResult.Quit;
             }
             else
             {
