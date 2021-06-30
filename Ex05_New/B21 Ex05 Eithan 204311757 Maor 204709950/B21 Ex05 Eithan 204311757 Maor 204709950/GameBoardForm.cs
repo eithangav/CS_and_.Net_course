@@ -35,6 +35,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             initializeBoard();
         }
 
+        /// <summary>
+        /// Triggers when a game button is clicked
+        /// </summary>
         private void gameButton_Click(object sender, EventArgs e)
         {
             GameButton clickedButton = sender as GameButton;
@@ -43,9 +46,11 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             {
                 Game currentGame = m_Tournament.CurrentGame;
 
+                // update user's choice on the button
                 clickedButton.Text = currentGame.CurrentPlayerSign().ToString();
                 clickedButton.Enabled = false;
 
+                // compare last played cell to the clicked cell in order to get a computer choice Cell if exists
                 Cell clickedCell = clickedButton.Position;
                 Cell lastPlayedCell = currentGame.PlayerMove(clickedCell);
 
@@ -58,19 +63,22 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
 
                 }
 
+                // in case the round is over, pop an alert and handle the users choice, otherwise- switch turn
+                DialogResult result = DialogResult.None;
+
                 switch (currentGame.GameResult)
                 {
                     case eGameResult.PlayerOneLose:
-                        endOfRound();
-                        MessageBox.Show(LabelPlayer1Name.Text.Replace(":", "") + " Wins!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        result = MessageBox.Show(LabelPlayer1Name.Text.Replace(":", "") + " Wins!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        handleAlertResult(result);
                         break;
                     case eGameResult.PlayerTwoLose:
-                        endOfRound();
-                        MessageBox.Show(LabelPlayer2Name.Text.Replace(":","") + "Wins!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        result = MessageBox.Show(LabelPlayer2Name.Text.Replace(":","") + "Wins!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        handleAlertResult(result);
                         break;
                     case eGameResult.Tie:
-                        endOfRound();
-                        MessageBox.Show("This is a Tie!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        result = MessageBox.Show("This is a Tie!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        handleAlertResult(result);
                         break;
                     default:
                         switchTurn();
@@ -79,6 +87,28 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             }
         }
 
+        /// <summary>
+        /// handles the pop up alert message result
+        /// Yes - resets the current game and sets a new round
+        /// No - closes the form
+        /// </summary>
+        /// <param name="i_Result"></param>
+        private void handleAlertResult(DialogResult i_Result)
+        {
+            switch (i_Result)
+            {
+                case DialogResult.Yes:
+                    endOfRound();
+                    break;
+                case DialogResult.No:
+                    this.Close();
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// resets the tournament's current game and sets the visuals properly
+        /// </summary>
         private void endOfRound()
         {
             m_Tournament.NewRound();
@@ -91,6 +121,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             }
         }
 
+        /// <summary>
+        /// cleans the game button's text and makes them clickable
+        /// </summary>
         private void cleanBoard()
         {
             byte boardSize = m_Tournament.Settings.BoardSize;
@@ -105,6 +138,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             }
         }
 
+        /// <summary>
+        /// Switches turns - flips the "Bold" state of the player's labels and scores
+        /// </summary>
         private void switchTurn()
         {
             if (m_Tournament.Settings.IsMultiplayer)
@@ -117,6 +153,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             }
         }
 
+        /// <summary>
+        /// Creates all of the required game buttons corresponding to the user's settings
+        /// </summary>
         private void initializeButtons()
         {
             byte boardSize = m_Tournament.Settings.BoardSize;
@@ -137,6 +176,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             }
         }
 
+        /// <summary>
+        /// Initializes the board's objects content
+        /// </summary>
         private void initializeBoard()
         {
             byte boardSize = m_Tournament.Settings.BoardSize;

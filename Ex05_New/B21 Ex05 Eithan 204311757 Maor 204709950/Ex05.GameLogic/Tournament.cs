@@ -22,17 +22,15 @@ namespace Ex05.GameLogic
             m_CurrentGame = new Game(m_Settings.BoardSize, m_Settings.IsMultiplayer);
         }
 
-        public eGameResult NewRound()
+        public void NewRound()
         {
-            UpdateScore();
+            updateScore();
 
             eGameResult lastGameResult = m_CurrentGame.GameResult;
             m_CurrentGame = new Game(m_Settings.BoardSize, m_Settings.IsMultiplayer);
-
-            return lastGameResult;
         }
 
-        public void UpdateScore()
+        private void updateScore()
         {
             switch (m_CurrentGame.GameResult)
             {
@@ -41,9 +39,6 @@ namespace Ex05.GameLogic
                     break;
                 case eGameResult.PlayerTwoLose:
                     m_Player2Score++;
-                    break;
-                default:
-                    // Do nothing
                     break;
             }
         }

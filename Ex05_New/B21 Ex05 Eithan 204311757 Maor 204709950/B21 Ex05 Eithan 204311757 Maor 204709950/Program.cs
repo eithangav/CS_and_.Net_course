@@ -18,17 +18,8 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new GameSettings());
-            //Application.Run(new GameBoard());
 
             new GameLauncher().Launch();
-
-            // -------------- testing -------------------
-            //SettingsTemp tempSettings = new SettingsTemp(false, "Eithan", "Dont care", 4, 4);
-            //Game tempGame = new Game(4, false);
-            //new GameBoardForm(tempSettings, tempGame).ShowDialog();
-
-            // -------------- testing -------------------
         }
 
     }
