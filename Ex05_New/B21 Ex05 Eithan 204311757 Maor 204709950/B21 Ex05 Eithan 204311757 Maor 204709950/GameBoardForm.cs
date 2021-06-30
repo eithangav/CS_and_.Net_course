@@ -23,27 +23,31 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
     public partial class GameBoardForm : Form
     {
         private Tournament m_Tournament;
+        private List<GameButton> m_GameButtons;
 
-        private List<Button> m_Buttons;
-
-        //Initialize Game Board with the apropriate Game and GameSettinigs
         public GameBoardForm(Tournament i_Tournament)
         {
             InitializeComponent();
-            //initializeButtons();
+
+            lblPlayer1GameBoard.Text = m_Tournament.Settings.Player1Name;
+            lblPlayer2GameBoard.Text = m_Tournament.Settings.Player2Name;
+
+            initializeButtons();
         }
 
-        /// <summary>
-        /// Creates a list of Buttons acording to the board size
-        /// </summary>
         private void initializeButtons()
         {
-            int numOfButtons = (int)Math.Pow(m_Tournament.Settings.BoardSize, 2);
-            m_Buttons = new List<Button>();
+            byte boardSize = m_Tournament.Settings.BoardSize;
+            m_GameButtons = new List<GameButton>();
 
-            for (int i = 0; i < numOfButtons; i++)
+            for (byte i = 0; i < boardSize; i++)
             {
-                m_Buttons.Add(new Button());
+                for(byte j = 0; j < boardSize; j++)
+                {
+                    GameButton button = new GameButton(new Cell(i, j));
+                    // TODO: continue here
+
+                }
             }
         }
     }
