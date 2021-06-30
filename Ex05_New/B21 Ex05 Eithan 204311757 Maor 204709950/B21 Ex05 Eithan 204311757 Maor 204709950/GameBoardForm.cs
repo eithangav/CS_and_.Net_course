@@ -25,14 +25,15 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         private Tournament m_Tournament;
         private List<GameButton> m_GameButtons;
 
+        private const int k_SpaceBuffer = 8;
+
         public GameBoardForm(Tournament i_Tournament)
         {
+            m_Tournament = i_Tournament;
             InitializeComponent();
 
-            lblPlayer1GameBoard.Text = m_Tournament.Settings.Player1Name;
-            lblPlayer2GameBoard.Text = m_Tournament.Settings.Player2Name;
-
             initializeButtons();
+            initializeBoard();
         }
 
         private void initializeButtons()
@@ -45,10 +46,49 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
                 for(byte j = 0; j < boardSize; j++)
                 {
                     GameButton button = new GameButton(new Cell(i, j));
-                    // TODO: continue here
-
+                    Point buttonLocation = new Point((k_SpaceBuffer + button.Width) * i + k_SpaceBuffer,
+                        (k_SpaceBuffer + button.Height) * j + k_SpaceBuffer);
+                    button.Location = buttonLocation;
+                    //button.Click += gameButton_Click;
+                    Controls.Add(button);
+                    m_GameButtons.Add(button);
                 }
             }
+        }
+
+        private void initializeBoard()
+        {
+            byte boardSize = m_Tournament.Settings.BoardSize;
+
+            // Set form size:
+            int labelsHeight = LabelPlayer1Name.Height;
+            int formWidth = (GameButton.sr_Width + k_SpaceBuffer) * boardSize + k_SpaceBuffer;
+            int formHeight = (GameButton.sr_Height + k_SpaceBuffer) * boardSize + (k_SpaceBuffer * 3) + labelsHeight;
+
+            Size size = new Size(formWidth, formHeight);
+            this.Size = size;
+            this.ClientSize = size;
+
+            // Set labels text:
+            LabelPlayer1Name.Text = m_Tournament.Settings.Player1Name + ": ";
+            LabelPlayer2Name.Text = m_Tournament.Settings.Player2Name + ": ";
+            LabelPlayer1Score.Text = "0";
+            LabelPlayer2Score.Text = "0";
+
+            // Set labels location:
+            int labelsWidth = LabelPlayer1Name.Width + LabelPlayer2Name.Width + 
+                LabelPlayer1Score.Width + LabelPlayer2Score.Width + (2 * k_SpaceBuffer);
+
+            int currentLeftStartPosition = (formWidth - labelsWidth) / 2;
+            int topStartPosition = formHeight - labelsHeight - k_SpaceBuffer;
+
+            LabelPlayer1Name.Location = new Point(currentLeftStartPosition, topStartPosition);
+            currentLeftStartPosition += LabelPlayer1Name.Width;
+            LabelPlayer1Score.Location = new Point(currentLeftStartPosition, topStartPosition);
+            currentLeftStartPosition += LabelPlayer1Score.Width + (2 * k_SpaceBuffer);
+            LabelPlayer2Name.Location = new Point(currentLeftStartPosition, topStartPosition);
+            currentLeftStartPosition += LabelPlayer2Name.Width;
+            LabelPlayer2Score.Location = new Point(currentLeftStartPosition, topStartPosition);
         }
     }
 }
