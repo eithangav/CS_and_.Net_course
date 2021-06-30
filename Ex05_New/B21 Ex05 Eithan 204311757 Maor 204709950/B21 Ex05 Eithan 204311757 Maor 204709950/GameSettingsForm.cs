@@ -8,10 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ex05.GameUI;
+using Ex05.GameLogic;
 
 namespace B21_Ex05_Eithan_204311757_Maor_204709950
 {
-    public partial class GameSettings : Form
+    public partial class GameSettingsForm : Form
     {
 
         private const string m_MissingFieldsMessage = "Some fields are missing!";
@@ -30,10 +31,10 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         }
 
 
-        public GameSettings()
+        public GameSettingsForm()
         {
             InitializeComponent();
-            m_GameSettings = new Settings();
+            m_GameSettings = new Settings(); // TODO: initialize in "btnStartGameSettings_Click" instead (by the overloading new CTOR)
         }
 
 
@@ -74,8 +75,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
 
                 }
 
-                m_GameSettings.Rows = (int)numericUpDownRows.Value;
-                m_GameSettings.Cols = (int)numericUpDownCols.Value;
+                m_GameSettings.BoardSize = (byte)numericUpDownRows.Value;
 
                 DialogResult = DialogResult.OK;
 

@@ -26,9 +26,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
 
 
             // -------------- testing -------------------
-            Settings tempSettings = new Settings(false, "Eithan", "Dont care", 4, 4);
+            SettingsTemp tempSettings = new SettingsTemp(false, "Eithan", "Dont care", 4, 4);
             Game tempGame = new Game(4, false);
-            new GameBoard(tempSettings, tempGame).ShowDialog();
+            new GameBoardForm(tempSettings, tempGame).ShowDialog();
             // -------------- testing -------------------
         }
 

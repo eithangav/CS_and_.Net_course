@@ -10,24 +10,16 @@ namespace Ex05.GameLogic
     {
         private byte m_Player1Score;
         private byte m_Player2Score;
-        private string m_Player1Name;
-        private string m_Player2Name;
-
-        private readonly bool r_IsMultiplayer;
-        private readonly byte r_BoardSize;
+        private Settings m_Settings;
 
         private Game m_CurrentGame;
 
-        public Tournament(byte i_BoardSize, string i_Player1Name, string i_Player2Name = "Computer", bool i_IsMultiplayer = false)
+        public Tournament(Settings i_Settings)
         {
             m_Player1Score = 0;
             m_Player2Score = 0;
-            m_Player1Name = i_Player1Name;
-            m_Player2Name = i_Player2Name;
-            r_IsMultiplayer = i_IsMultiplayer;
-            r_BoardSize = i_BoardSize;
-
-            m_CurrentGame = new Game(r_BoardSize, r_IsMultiplayer);
+            m_Settings = i_Settings;
+            m_CurrentGame = new Game(m_Settings.BoardSize, m_Settings.IsMultiplayer);
         }
 
         public eGameResult NewRound()
@@ -35,7 +27,7 @@ namespace Ex05.GameLogic
             updateScore();
 
             eGameResult lastGameResult = m_CurrentGame.GameResult;
-            m_CurrentGame = new Game(r_BoardSize, r_IsMultiplayer);
+            m_CurrentGame = new Game(m_Settings.BoardSize, m_Settings.IsMultiplayer);
 
             return lastGameResult;
         }
@@ -53,6 +45,22 @@ namespace Ex05.GameLogic
                 default:
                     // Do nothing
                     break;
+            }
+        }
+
+        public Settings Settings
+        {
+            get
+            {
+                return m_Settings;
+            }
+        }
+
+        public Game CurrentGame
+        {
+            get
+            {
+                return m_CurrentGame;
             }
         }
     }

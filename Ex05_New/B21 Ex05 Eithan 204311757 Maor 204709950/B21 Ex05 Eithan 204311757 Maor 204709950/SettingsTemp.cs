@@ -8,7 +8,7 @@ using Ex05.GameLogic;
 
 namespace B21_Ex05_Eithan_204311757_Maor_204709950
 {
-    public class Settings
+    public class SettingsTemp
     {
         private bool m_IsMultiplayer;
         private string m_Player1Name;
@@ -16,7 +16,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         private int m_Rows;
         private int m_Cols;
 
-        public Settings(bool i_IsMultiplayer, string i_Player1Name, string i_Player2Name, int i_Rows, int i_Cols)
+        public SettingsTemp(bool i_IsMultiplayer, string i_Player1Name, string i_Player2Name, int i_Rows, int i_Cols)
         {
             m_IsMultiplayer = i_IsMultiplayer;
             m_Player1Name = i_Player1Name;
@@ -25,7 +25,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             m_Cols = i_Cols;
         }
 
-        public Settings()
+        public SettingsTemp()
         {
             m_IsMultiplayer = false;
             m_Player1Name = "";

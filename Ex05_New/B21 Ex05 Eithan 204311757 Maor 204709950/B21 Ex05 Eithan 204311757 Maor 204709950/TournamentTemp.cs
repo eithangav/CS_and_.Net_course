@@ -12,15 +12,15 @@ namespace Ex05.GameUI
         private byte m_Player1Score;
         private byte m_Player2Score;
 
-        private Settings m_Settings;
-        private GameSettings m_GameSettingForm;
+        private B21_Ex05_Eithan_204311757_Maor_204709950.SettingsTemp m_Settings;
+        private GameSettingsForm m_GameSettingForm;
 
         private readonly bool m_IsMultiplayer;
         private readonly byte m_BoardSize;
 
 
         private Game m_Game;
-        private GameBoard m_GameBoard;
+        private GameBoardForm m_GameBoard;
 
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Ex05.GameUI
         /// </summary>
         public TournamentTemp()
         {
-            m_GameSettingForm = new GameSettings(); //Lunch a Game Setttings Form
+            m_GameSettingForm = new GameSettingsForm(); //Lunch a Game Setttings Form
             Application.Run(m_GameSettingForm);
 
             m_Settings = m_GameSettingForm.GameSetings; //Sets the user choice Game Settings 
@@ -51,7 +51,7 @@ namespace Ex05.GameUI
         private void gameRun()
         {
             m_Game = new Game(m_BoardSize, m_IsMultiplayer);
-            m_GameBoard = new GameBoard(m_Settings, m_Game);
+            m_GameBoard = new GameBoardForm(m_Settings, m_Game);
 
             Application.Run(m_GameBoard); //lunch the Game Board Form
 

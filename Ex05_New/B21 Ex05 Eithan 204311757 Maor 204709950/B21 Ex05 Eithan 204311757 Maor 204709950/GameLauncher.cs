@@ -9,19 +9,20 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
 {
     internal class GameLauncher
     {
-        private readonly GameSettings r_GameSettingsForm;
-        private GameBoard m_GameBoardForm;
+        private readonly GameSettingsForm r_GameSettingsForm;
+        private GameBoardForm m_GameBoardForm;
         private Tournament m_Tournament;
 
         public GameLauncher()
         {
-            r_GameSettingsForm = new GameSettings();
+            r_GameSettingsForm = new GameSettingsForm();
         }
 
         public void Launch()
         {
             r_GameSettingsForm.ShowDialog();
 
+            m_Tournament = new Tournament(r_GameSettingsForm.GameSetings);
 
             //m_GameBoardForm = new GameBoard();
         }
