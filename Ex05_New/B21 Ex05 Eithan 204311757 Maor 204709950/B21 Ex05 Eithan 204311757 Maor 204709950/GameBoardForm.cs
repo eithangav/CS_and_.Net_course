@@ -23,35 +23,123 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
     public partial class GameBoardForm : Form
     {
         private Tournament m_Tournament;
-        private List<GameButton> m_GameButtons;
+        //private List<GameButton> m_GameButtons;
+        private GameButton[,] m_GameButtons;
 
         private const int k_SpaceBuffer = 8;
+        private bool m_IsPlayer1Turn;
+
+        private readonly Font r_boldLabel;
+        private readonly Font r_regularLabel;
 
         public GameBoardForm(Tournament i_Tournament)
         {
             m_Tournament = i_Tournament;
+            m_IsPlayer1Turn = true;
+            r_boldLabel = new Font("MV Boli", 10F, FontStyle.Bold);
+            r_regularLabel = new Font("MV Boli", 10F, FontStyle.Regular);
+
             InitializeComponent();
 
             initializeButtons();
             initializeBoard();
         }
 
+        
+
+        private void gameButton_Click(object sender, EventArgs e)
+        {
+            GameButton clickedButton = sender as GameButton;
+
+            if(clickedButton != null)
+            {
+                Game currentGame = m_Tournament.CurrentGame;
+
+                clickedButton.Text = currentGame.CurrentPlayerSign().ToString();
+                clickedButton.Enabled = false;
+
+                Cell clickedCell = clickedButton.Position;
+                Cell lastPlayedCell = currentGame.PlayerMove(clickedCell);
+
+                if (!m_Tournament.Settings.IsMultiplayer && 
+                    (lastPlayedCell.m_Row != clickedCell.m_Row || lastPlayedCell.m_Column != clickedCell.m_Column))
+                {
+                    GameButton computerSelectedButton = m_GameButtons[lastPlayedCell.m_Row, lastPlayedCell.m_Column];
+                    computerSelectedButton.Text = "O";
+                    computerSelectedButton.Enabled = false;
+
+                }
+
+                switch (currentGame.GameResult)
+                {
+                    case eGameResult.PlayerOneLose:
+                        MessageBox.Show(LabelPlayer1Name.Text.Replace(":", "") + " Wins!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cleanBoard();
+                        break;
+                    case eGameResult.PlayerTwoLose:
+                        MessageBox.Show(LabelPlayer2Name.Text.Replace(":","") + "Wins!", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cleanBoard();
+                        break;
+                    default:
+                        // Do nothing
+                        break;
+                }
+                m_Tournament.UpdateScore();
+                updateScoreLabels();
+                switchTurn();
+            }
+        }
+
+        private void updateScoreLabels()
+        {
+            LabelPlayer1Score.Text = m_Tournament.Player1Score.ToString();
+            LabelPlayer2Score.Text = m_Tournament.Player2Score.ToString();
+        }
+
+        private void cleanBoard()
+        {
+            byte boardSize = m_Tournament.Settings.BoardSize;
+
+            for(byte i = 0; i < boardSize; i++)
+            {
+                for(byte j = 0; j < boardSize; j++)
+                {
+                    m_GameButtons[i, j].Text = "";
+                    m_GameButtons[i, j].Enabled = true;
+                }
+            }
+        }
+
+        private void switchTurn()
+        {
+            if (m_Tournament.Settings.IsMultiplayer)
+            {
+                m_IsPlayer1Turn = !m_IsPlayer1Turn;
+                LabelPlayer1Name.Font = LabelPlayer1Name.Font.Bold ? r_regularLabel : r_boldLabel;
+                LabelPlayer2Name.Font = LabelPlayer2Name.Font.Bold ? r_regularLabel : r_boldLabel;
+                LabelPlayer1Score.Font = LabelPlayer1Score.Font.Bold ? r_regularLabel : r_boldLabel;
+                LabelPlayer2Score.Font = LabelPlayer2Score.Font.Bold ? r_regularLabel : r_boldLabel;
+            }
+        }
+
         private void initializeButtons()
         {
             byte boardSize = m_Tournament.Settings.BoardSize;
-            m_GameButtons = new List<GameButton>();
+            //m_GameButtons = new List<GameButton>();
+            m_GameButtons = new GameButton[boardSize, boardSize];
 
             for (byte i = 0; i < boardSize; i++)
             {
-                for(byte j = 0; j < boardSize; j++)
+                for (byte j = 0; j < boardSize; j++)
                 {
                     GameButton button = new GameButton(new Cell(i, j));
                     Point buttonLocation = new Point((k_SpaceBuffer + button.Width) * i + k_SpaceBuffer,
                         (k_SpaceBuffer + button.Height) * j + k_SpaceBuffer);
                     button.Location = buttonLocation;
-                    //button.Click += gameButton_Click;
+                    button.Click += gameButton_Click;
                     Controls.Add(button);
-                    m_GameButtons.Add(button);
+                    //m_GameButtons.Add(button);
+                    m_GameButtons[i, j] = button;
                 }
             }
         }

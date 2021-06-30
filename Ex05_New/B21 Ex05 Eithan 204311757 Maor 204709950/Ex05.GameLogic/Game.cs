@@ -44,9 +44,12 @@ namespace Ex05.GameLogic
         /// <summary>
         /// Plays a move by a player request. If the game mode is not Multiplayer, preforms a computer move too.
         /// </summary>
+        /// <returns> The played Cell </returns>
         /// <exception cref="ArgumentException"> in case of invalid Cell argument </exception>
-        public void PlayerMove(Cell i_userChoice)
+        public Cell PlayerMove(Cell i_userChoice)
         {
+            Cell PlayedCell = i_userChoice;
+
             if(i_userChoice.m_Row == 254)
             {
                 // the user has quit the game
@@ -61,12 +64,14 @@ namespace Ex05.GameLogic
             // if the game mode is not multiplayer, play a computer move
             if(m_GameResult == eGameResult.Pending && !m_IsMultiplayer)
             {
-                Cell randomFreeCell = pickRandomFreeCell();
-                if (randomFreeCell.m_Row != 255)
+                PlayedCell = pickRandomFreeCell();
+                if (PlayedCell.m_Row != 255)
                 {
-                    makeMove(randomFreeCell);
+                    makeMove(PlayedCell);
                 }
             }
+
+            return PlayedCell;
         }
 
         /// <summary>
@@ -103,7 +108,7 @@ namespace Ex05.GameLogic
         /* Updates a cell value in the board matrix and increments 'FilledCells' value by 1. */
         private void updateCell(Cell i_Cell)      
         {
-            m_Board[i_Cell.m_Row, i_Cell.m_Column] = currentPlayerSign();
+            m_Board[i_Cell.m_Row, i_Cell.m_Column] = CurrentPlayerSign();
             m_FilledCells++;
         }
 
@@ -281,7 +286,7 @@ namespace Ex05.GameLogic
         }
 
         /* Returns the sign (X/O) of the player that is about to play the next move. */
-        private char currentPlayerSign()
+        public char CurrentPlayerSign()
         {
             char sign;
 
