@@ -11,15 +11,15 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
     internal class GameButton : Button
     {
         private readonly Cell r_Position;
-        private const int k_Height = 40;
-        private const int k_Width = 50;
+        internal static readonly int sr_Height = 64;
+        internal static readonly int sr_Width = 64;
 
         public GameButton(Cell i_ButtonPosition)
         {
             r_Position = i_ButtonPosition;
             this.Enabled = true;
-            this.Height = k_Height;
-            this.Width = k_Width;
+            this.Height = sr_Height;
+            this.Width = sr_Width;
         }
 
         public Cell Position

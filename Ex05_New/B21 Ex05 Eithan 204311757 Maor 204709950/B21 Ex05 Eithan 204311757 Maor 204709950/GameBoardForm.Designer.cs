@@ -29,68 +29,71 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblPlayer1GameBoard = new System.Windows.Forms.Label();
-            this.lblPlayer2GameBoard = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LabelPlayer1Name = new System.Windows.Forms.Label();
+            this.LabelPlayer2Name = new System.Windows.Forms.Label();
+            this.LabelPlayer1Score = new System.Windows.Forms.Label();
+            this.LabelPlayer2Score = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblPlayer1GameBoard
+            // LabelPlayer1Name
             // 
-            this.lblPlayer1GameBoard.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lblPlayer1GameBoard.AutoSize = true;
-            this.lblPlayer1GameBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblPlayer1GameBoard.Location = new System.Drawing.Point(177, 539);
-            this.lblPlayer1GameBoard.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPlayer1GameBoard.Name = "lblPlayer1GameBoard";
-            this.lblPlayer1GameBoard.Size = new System.Drawing.Size(69, 20);
-            this.lblPlayer1GameBoard.TabIndex = 800;
-            this.lblPlayer1GameBoard.Text = "Player 1:";
+            this.LabelPlayer1Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LabelPlayer1Name.AutoSize = true;
+            this.LabelPlayer1Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.LabelPlayer1Name.Location = new System.Drawing.Point(156, 511);
+            this.LabelPlayer1Name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelPlayer1Name.Name = "LabelPlayer1Name";
+            this.LabelPlayer1Name.Size = new System.Drawing.Size(69, 20);
+            this.LabelPlayer1Name.TabIndex = 800;
+            this.LabelPlayer1Name.Text = "Player 1:";
             // 
-            // lblPlayer2GameBoard
+            // LabelPlayer2Name
             // 
-            this.lblPlayer2GameBoard.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lblPlayer2GameBoard.AutoSize = true;
-            this.lblPlayer2GameBoard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblPlayer2GameBoard.Location = new System.Drawing.Point(379, 539);
-            this.lblPlayer2GameBoard.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblPlayer2GameBoard.Name = "lblPlayer2GameBoard";
-            this.lblPlayer2GameBoard.Size = new System.Drawing.Size(69, 20);
-            this.lblPlayer2GameBoard.TabIndex = 900;
-            this.lblPlayer2GameBoard.Text = "Player 2:";
+            this.LabelPlayer2Name.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LabelPlayer2Name.AutoSize = true;
+            this.LabelPlayer2Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.LabelPlayer2Name.Location = new System.Drawing.Point(324, 511);
+            this.LabelPlayer2Name.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LabelPlayer2Name.Name = "LabelPlayer2Name";
+            this.LabelPlayer2Name.Size = new System.Drawing.Size(69, 20);
+            this.LabelPlayer2Name.TabIndex = 900;
+            this.LabelPlayer2Name.Text = "Player 2:";
             // 
-            // label1
+            // LabelPlayer1Score
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label1.Location = new System.Drawing.Point(251, 539);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 20);
-            this.label1.TabIndex = 901;
-            this.label1.Text = "0";
+            this.LabelPlayer1Score.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LabelPlayer1Score.AutoSize = true;
+            this.LabelPlayer1Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.LabelPlayer1Score.Location = new System.Drawing.Point(230, 511);
+            this.LabelPlayer1Score.Name = "LabelPlayer1Score";
+            this.LabelPlayer1Score.Size = new System.Drawing.Size(18, 20);
+            this.LabelPlayer1Score.TabIndex = 901;
+            this.LabelPlayer1Score.Text = "0";
             // 
-            // label2
+            // LabelPlayer2Score
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label2.Location = new System.Drawing.Point(453, 539);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(18, 20);
-            this.label2.TabIndex = 902;
-            this.label2.Text = "0";
+            this.LabelPlayer2Score.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LabelPlayer2Score.AutoSize = true;
+            this.LabelPlayer2Score.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.LabelPlayer2Score.Location = new System.Drawing.Point(398, 511);
+            this.LabelPlayer2Score.Name = "LabelPlayer2Score";
+            this.LabelPlayer2Score.Size = new System.Drawing.Size(18, 20);
+            this.LabelPlayer2Score.TabIndex = 902;
+            this.LabelPlayer2Score.Text = "0";
             // 
             // GameBoardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 577);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblPlayer2GameBoard);
-            this.Controls.Add(this.lblPlayer1GameBoard);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientSize = new System.Drawing.Size(588, 549);
+            this.Controls.Add(this.LabelPlayer2Score);
+            this.Controls.Add(this.LabelPlayer1Score);
+            this.Controls.Add(this.LabelPlayer2Name);
+            this.Controls.Add(this.LabelPlayer1Name);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GameBoardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game Board";
@@ -100,9 +103,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         }
 
         #endregion
-        private System.Windows.Forms.Label lblPlayer2GameBoard;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.Label lblPlayer1GameBoard;
+        private System.Windows.Forms.Label LabelPlayer2Name;
+        private System.Windows.Forms.Label LabelPlayer1Score;
+        private System.Windows.Forms.Label LabelPlayer2Score;
+        public System.Windows.Forms.Label LabelPlayer1Name;
     }
 }
