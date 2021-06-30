@@ -41,7 +41,6 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             m_Player1Name = m_GameSettings.Player1Name;
             m_Player2Name = m_GameSettings.Player2Name;
             m_Buttons = initializeButtons();
-
         }
 
         /// <summary>
@@ -57,7 +56,6 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             }
 
             return Buttons;
-
         }
     }
 }

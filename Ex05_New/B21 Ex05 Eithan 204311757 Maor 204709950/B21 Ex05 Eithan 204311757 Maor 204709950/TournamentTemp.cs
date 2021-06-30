@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Ex05.GameUI
 {
-    public class Tournament
+    public class TournamentTemp
     {
         private byte m_Player1Score;
         private byte m_Player2Score;
@@ -27,7 +27,7 @@ namespace Ex05.GameUI
         /// Constructor. 
         /// Init primitives, get user's size and mode inputs and run the first game.
         /// </summary>
-        public Tournament()
+        public TournamentTemp()
         {
             m_GameSettingForm = new GameSettings(); //Lunch a Game Setttings Form
             Application.Run(m_GameSettingForm);
@@ -55,13 +55,12 @@ namespace Ex05.GameUI
 
             Application.Run(m_GameBoard); //lunch the Game Board Form
 
-            eGameResult roundResult = eGameResult.Pending;
             Cell usersChoice = new Cell(255,255);
 
-            while(roundResult == 0)
+            while(m_Game.GameResult == eGameResult.Pending)
             {
                 //usersChoice = m_GameBoard  //TODO: modify - Add event listeners to the buttons change
-                roundResult = m_Game.PlayerMove(usersChoice);
+                m_Game.PlayerMove(usersChoice);
                 //m_GameUI.PrintBoard(m_Game.Board); // TODO: modify
             }
 
