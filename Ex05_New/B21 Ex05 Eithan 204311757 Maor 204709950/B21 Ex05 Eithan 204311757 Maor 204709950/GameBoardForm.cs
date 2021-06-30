@@ -30,7 +30,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         public GameBoardForm(Tournament i_Tournament)
         {
             InitializeComponent();
-            initializeButtons();
+            //initializeButtons();
         }
 
         /// <summary>

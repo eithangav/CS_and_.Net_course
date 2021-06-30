@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Ex05.GameUI;
 using Ex05.GameLogic;
 
 namespace B21_Ex05_Eithan_204311757_Maor_204709950

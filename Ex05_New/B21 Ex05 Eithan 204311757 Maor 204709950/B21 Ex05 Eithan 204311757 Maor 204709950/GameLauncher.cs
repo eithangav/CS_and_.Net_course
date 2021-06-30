@@ -24,9 +24,9 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
 
             m_Tournament = new Tournament(r_GameSettingsForm.GameSetings);
 
-            //m_GameBoardForm = new GameBoard();
+            m_GameBoardForm = new GameBoardForm(m_Tournament);
+
+            m_GameBoardForm.ShowDialog();
         }
-
-
     }
 }

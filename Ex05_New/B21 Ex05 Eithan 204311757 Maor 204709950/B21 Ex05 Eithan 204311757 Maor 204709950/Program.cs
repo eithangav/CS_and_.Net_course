@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Ex05.GameLogic;
-using Ex05.GameUI;
 
 namespace B21_Ex05_Eithan_204311757_Maor_204709950
 {
@@ -22,13 +21,13 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
             //Application.Run(new GameSettings());
             //Application.Run(new GameBoard());
 
-            //Tournament m_Tournament = new Tournament();
-
+            new GameLauncher().Launch();
 
             // -------------- testing -------------------
-            SettingsTemp tempSettings = new SettingsTemp(false, "Eithan", "Dont care", 4, 4);
-            Game tempGame = new Game(4, false);
-            new GameBoardForm(tempSettings, tempGame).ShowDialog();
+            //SettingsTemp tempSettings = new SettingsTemp(false, "Eithan", "Dont care", 4, 4);
+            //Game tempGame = new Game(4, false);
+            //new GameBoardForm(tempSettings, tempGame).ShowDialog();
+
             // -------------- testing -------------------
         }
 
