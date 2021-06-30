@@ -33,7 +33,7 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
         public GameSettingsForm()
         {
             InitializeComponent();
-            m_GameSettings = new Settings(); // TODO: initialize in "btnStartGameSettings_Click" instead (by the overloading new CTOR)
+            m_GameSettings = new Settings();
         }
 
 
