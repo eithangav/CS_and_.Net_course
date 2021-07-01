@@ -35,10 +35,10 @@ namespace Ex05.GameLogic
             switch (m_CurrentGame.GameResult)
             {
                 case eGameResult.PlayerOneLose:
-                    m_Player1Score++;
+                    m_Player2Score++;
                     break;
                 case eGameResult.PlayerTwoLose:
-                    m_Player2Score++;
+                    m_Player1Score++;
                     break;
             }
         }
