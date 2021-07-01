@@ -69,11 +69,11 @@ namespace B21_Ex05_Eithan_204311757_Maor_204709950
                 switch (currentGame.GameResult)
                 {
                     case eGameResult.PlayerOneLose:
-                        result = MessageBox.Show(LabelPlayer1Name.Text.Replace(":", "") + " Wins!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        result = MessageBox.Show(LabelPlayer2Name.Text.Replace(":", "") + " Wins!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         handleAlertResult(result);
                         break;
                     case eGameResult.PlayerTwoLose:
-                        result = MessageBox.Show(LabelPlayer2Name.Text.Replace(":","") + "Wins!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                        result = MessageBox.Show(LabelPlayer1Name.Text.Replace(":","") + "Wins!\nWould you like to play another round?", "Game over", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                         handleAlertResult(result);
                         break;
                     case eGameResult.Tie:
